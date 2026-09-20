@@ -54,8 +54,6 @@
             font-family: inherit;
         }
 
-        /* HEADER */
-
         header {
             height: 72px;
             position: fixed;
@@ -103,8 +101,6 @@
             background: rgba(124,77,255,.12);
             border: 1px solid rgba(167,139,250,.18);
         }
-
-        /* SIDEBAR */
 
         .sidebar {
             position: fixed;
@@ -176,8 +172,6 @@
             border-color: rgba(124,77,255,.35);
         }
 
-        /* MAIN */
-
         main {
             margin-right: 245px;
             padding: 105px 35px 60px;
@@ -206,8 +200,6 @@
             color: #69687a;
             font-size: 12px;
         }
-
-        /* STAT CARDS */
 
         .stats {
             display: grid;
@@ -272,8 +264,6 @@
             font-size: 10px;
         }
 
-        /* GRID */
-
         .dashboard-grid {
             display: grid;
             grid-template-columns: 1.5fr 1fr;
@@ -307,8 +297,6 @@
         .panel-body {
             padding: 20px;
         }
-
-        /* MATCH */
 
         .match {
             display: flex;
@@ -368,8 +356,6 @@
             background: rgba(57,217,138,.08);
         }
 
-        /* QUICK ACTIONS */
-
         .actions {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -403,8 +389,6 @@
             font-size: 11px;
         }
 
-        /* ACTIVITY */
-
         .activity {
             display: flex;
             gap: 12px;
@@ -435,7 +419,148 @@
             font-size: 10px;
         }
 
-        /* DATABASE STATUS */
+        /* NEWS */
+
+        .news-section {
+            margin-top: 20px;
+        }
+
+        .news-form {
+            display: grid;
+            gap: 14px;
+        }
+
+        .field label {
+            display: block;
+            color: #aaa9bd;
+            font-size: 11px;
+            margin-bottom: 7px;
+        }
+
+        .field input,
+        .field textarea {
+            width: 100%;
+            border: 1px solid var(--border);
+            outline: none;
+            border-radius: 13px;
+            padding: 13px 14px;
+            color: white;
+            background: rgba(255,255,255,.025);
+            transition: .2s;
+            font-size: 12px;
+        }
+
+        .field textarea {
+            min-height: 130px;
+            resize: vertical;
+            line-height: 1.9;
+        }
+
+        .field input:focus,
+        .field textarea:focus {
+            border-color: rgba(124,77,255,.55);
+            background: rgba(124,77,255,.045);
+            box-shadow: 0 0 0 3px rgba(124,77,255,.06);
+        }
+
+        .publish-btn {
+            border: none;
+            border-radius: 13px;
+            padding: 14px;
+            color: white;
+            font-weight: 800;
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--purple), var(--blue));
+            box-shadow: 0 8px 25px rgba(124,77,255,.18);
+            transition: .2s;
+        }
+
+        .publish-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 30px rgba(124,77,255,.28);
+        }
+
+        .publish-btn:disabled {
+            opacity: .55;
+            cursor: wait;
+        }
+
+        .news-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .news-item {
+            padding: 16px;
+            border-radius: 15px;
+            background: rgba(255,255,255,.025);
+            border: 1px solid rgba(255,255,255,.045);
+        }
+
+        .news-item-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .news-item h3 {
+            font-size: 13px;
+            margin-bottom: 7px;
+        }
+
+        .news-item p {
+            color: #777689;
+            font-size: 11px;
+            line-height: 1.9;
+            white-space: pre-wrap;
+        }
+
+        .news-date {
+            color: #5f5e70;
+            font-size: 9px;
+            margin-top: 10px;
+        }
+
+        .delete-btn {
+            flex-shrink: 0;
+            border: 1px solid rgba(255,92,122,.15);
+            background: rgba(255,92,122,.07);
+            color: var(--red);
+            border-radius: 9px;
+            padding: 7px 9px;
+            cursor: pointer;
+            font-size: 10px;
+        }
+
+        .empty-news {
+            text-align: center;
+            padding: 30px 10px;
+            color: #666579;
+            font-size: 11px;
+        }
+
+        .message {
+            display: none;
+            padding: 12px 14px;
+            border-radius: 12px;
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+        .message.success {
+            display: block;
+            color: var(--green);
+            background: rgba(57,217,138,.07);
+            border: 1px solid rgba(57,217,138,.14);
+        }
+
+        .message.error {
+            display: block;
+            color: var(--red);
+            background: rgba(255,92,122,.07);
+            border: 1px solid rgba(255,92,122,.14);
+        }
 
         .database {
             margin-top: 20px;
@@ -487,10 +612,7 @@
             font-size: 11px;
         }
 
-        /* MOBILE */
-
         @media (max-width: 1050px) {
-
             .stats {
                 grid-template-columns: repeat(2,1fr);
             }
@@ -501,7 +623,6 @@
         }
 
         @media (max-width: 750px) {
-
             header {
                 padding: 0 15px;
             }
@@ -530,7 +651,6 @@
         }
 
         @media (max-width: 500px) {
-
             .stats {
                 grid-template-columns: 1fr;
             }
@@ -542,6 +662,10 @@
             .page-head h1 {
                 font-size: 25px;
             }
+
+            .news-item-top {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -549,27 +673,19 @@
 <body>
 
 <header>
-
     <a href="index.html" class="brand">
         <div class="brand-icon">🏆</div>
-
-        <div>
-            لیگ <span>تخته</span>
-        </div>
+        <div>لیگ <span>تخته</span></div>
     </a>
 
     <div class="admin-badge">
         🔐 پنل مدیریت
     </div>
-
 </header>
-
 
 <aside class="sidebar">
 
-    <div class="side-title">
-        مدیریت لیگ
-    </div>
+    <div class="side-title">مدیریت لیگ</div>
 
     <a href="admin.html" class="side-link active">
         <div class="side-icon">📊</div>
@@ -591,7 +707,7 @@
         نتایج
     </a>
 
-    <a href="#" class="side-link">
+    <a href="#newsManager" class="side-link">
         <div class="side-icon">📰</div>
         اخبار
     </a>
@@ -601,10 +717,7 @@
         تنظیمات لیگ
     </a>
 
-
-    <div class="side-title" style="margin-top:20px;">
-        سایت
-    </div>
+    <div class="side-title" style="margin-top:20px;">سایت</div>
 
     <a href="table.html" class="side-link">
         <div class="side-icon">📈</div>
@@ -617,20 +730,16 @@
     </a>
 
     <div class="sidebar-bottom">
-
         <a href="index.html" class="back-site">
             ← بازگشت به سایت
         </a>
-
     </div>
 
 </aside>
 
-
 <main>
 
     <div class="page-head">
-
         <div>
             <h1>داشبورد مدیریت</h1>
 
@@ -642,127 +751,84 @@
         <div class="date">
             وضعیت سیستم · آماده
         </div>
-
     </div>
-
 
     <!-- STATS -->
 
     <section class="stats">
 
         <div class="stat">
-
             <div class="stat-top">
-                <div class="stat-label">
-                    بازیکنان
-                </div>
-
-                <div class="stat-icon">
-                    👥
-                </div>
+                <div class="stat-label">بازیکنان</div>
+                <div class="stat-icon">👥</div>
             </div>
 
-            <div class="stat-value">
-                ۲
+            <div class="stat-value" id="playerCount">
+                ...
             </div>
 
             <div class="stat-sub">
                 بازیکن رسمی
             </div>
-
         </div>
 
-
         <div class="stat">
-
             <div class="stat-top">
-                <div class="stat-label">
-                    مسابقات
-                </div>
-
-                <div class="stat-icon">
-                    🎮
-                </div>
+                <div class="stat-label">مسابقات</div>
+                <div class="stat-icon">🎮</div>
             </div>
 
-            <div class="stat-value">
+            <div class="stat-value" id="matchCount">
                 ۰
             </div>
 
             <div class="stat-sub">
                 مسابقه ثبت‌شده
             </div>
-
         </div>
 
-
         <div class="stat">
-
             <div class="stat-top">
-                <div class="stat-label">
-                    نتایج
-                </div>
-
-                <div class="stat-icon">
-                    🏆
-                </div>
+                <div class="stat-label">نتایج</div>
+                <div class="stat-icon">🏆</div>
             </div>
 
-            <div class="stat-value">
+            <div class="stat-value" id="resultCount">
                 ۰
             </div>
 
             <div class="stat-sub">
                 نتیجه ثبت‌شده
             </div>
-
         </div>
 
-
         <div class="stat">
-
             <div class="stat-top">
-                <div class="stat-label">
-                    اخبار
-                </div>
-
-                <div class="stat-icon">
-                    📰
-                </div>
+                <div class="stat-label">اخبار</div>
+                <div class="stat-icon">📰</div>
             </div>
 
-            <div class="stat-value">
-                ۰
+            <div class="stat-value" id="newsCount">
+                ...
             </div>
 
             <div class="stat-sub">
                 خبر منتشرشده
             </div>
-
         </div>
 
     </section>
 
-
     <section class="dashboard-grid">
-
 
         <!-- MATCHES -->
 
         <div class="panel">
 
             <div class="panel-head">
-
-                <h2>
-                    🎮 مسابقات اخیر
-                </h2>
-
-                <span>
-                    مدیریت مسابقات
-                </span>
-
+                <h2>🎮 مسابقات اخیر</h2>
+                <span>مدیریت مسابقات</span>
             </div>
-
 
             <div class="panel-body">
 
@@ -775,15 +841,11 @@
                         </div>
 
                         <div>
-
-                            <h3>
-                                ساناز × ساشا
-                            </h3>
+                            <h3>ساناز × ساشا</h3>
 
                             <p>
                                 مسابقه #۰۱ · زمان نامعلوم
                             </p>
-
                         </div>
 
                     </div>
@@ -794,7 +856,6 @@
 
                 </div>
 
-
                 <div class="match">
 
                     <div class="match-info">
@@ -804,15 +865,11 @@
                         </div>
 
                         <div>
-
-                            <h3>
-                                برنامه مسابقه بعدی
-                            </h3>
+                            <h3>برنامه مسابقه بعدی</h3>
 
                             <p>
                                 هنوز زمان‌بندی نشده
                             </p>
-
                         </div>
 
                     </div>
@@ -823,7 +880,6 @@
 
                 </div>
 
-
                 <div class="match">
 
                     <div class="match-info">
@@ -833,15 +889,11 @@
                         </div>
 
                         <div>
-
-                            <h3>
-                                آخرین نتیجه
-                            </h3>
+                            <h3>آخرین نتیجه</h3>
 
                             <p>
                                 هنوز نتیجه‌ای ثبت نشده
                             </p>
-
                         </div>
 
                     </div>
@@ -856,23 +908,14 @@
 
         </div>
 
-
         <!-- QUICK ACTIONS -->
 
         <div class="panel">
 
             <div class="panel-head">
-
-                <h2>
-                    ⚡ عملیات سریع
-                </h2>
-
-                <span>
-                    مدیریت
-                </span>
-
+                <h2>⚡ عملیات سریع</h2>
+                <span>مدیریت</span>
             </div>
-
 
             <div class="panel-body">
 
@@ -893,7 +936,7 @@
                         <div class="action-name">ثبت نتیجه</div>
                     </button>
 
-                    <button class="action" onclick="comingSoon('انتشار خبر')">
+                    <button class="action" onclick="scrollToNews()">
                         <div class="action-icon">📰</div>
                         <div class="action-name">انتشار خبر</div>
                     </button>
@@ -904,9 +947,114 @@
 
         </div>
 
+    </section>
+
+    <!-- NEWS MANAGER -->
+
+    <section class="panel news-section" id="newsManager">
+
+        <div class="panel-head">
+
+            <h2>
+                📰 مدیریت اخبار
+            </h2>
+
+            <span>
+                انتشار و مدیریت خبرها
+            </span>
+
+        </div>
+
+        <div class="panel-body">
+
+            <div class="news-form">
+
+                <div class="field">
+
+                    <label for="newsTitle">
+                        عنوان خبر
+                    </label>
+
+                    <input
+                        id="newsTitle"
+                        type="text"
+                        placeholder="مثلاً: شروع رسمی لیگ اعلام شد"
+                    >
+
+                </div>
+
+                <div class="field">
+
+                    <label for="newsContent">
+                        متن خبر
+                    </label>
+
+                    <textarea
+                        id="newsContent"
+                        placeholder="متن کامل خبر را اینجا بنویس..."
+                    ></textarea>
+
+                </div>
+
+                <div class="field">
+
+                    <label for="newsImage">
+                        لینک تصویر (اختیاری)
+                    </label>
+
+                    <input
+                        id="newsImage"
+                        type="url"
+                        placeholder="https://example.com/image.jpg"
+                    >
+
+                </div>
+
+                <div id="newsMessage" class="message"></div>
+
+                <button
+                    class="publish-btn"
+                    id="publishNewsBtn"
+                    onclick="publishNews()"
+                >
+                    📰 انتشار خبر
+                </button>
+
+            </div>
+
+        </div>
 
     </section>
 
+    <!-- NEWS LIST -->
+
+    <section class="panel news-section">
+
+        <div class="panel-head">
+
+            <h2>
+                📋 خبرهای منتشرشده
+            </h2>
+
+            <span>
+                اطلاعات ذخیره‌شده در Supabase
+            </span>
+
+        </div>
+
+        <div class="panel-body">
+
+            <div id="newsList" class="news-list">
+
+                <div class="empty-news">
+                    در حال دریافت خبرها...
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
 
     <!-- ACTIVITY -->
 
@@ -923,7 +1071,6 @@
             </span>
 
         </div>
-
 
         <div class="panel-body">
 
@@ -943,7 +1090,6 @@
 
             </div>
 
-
             <div class="activity">
 
                 <div class="activity-dot"></div>
@@ -959,7 +1105,6 @@
                 </div>
 
             </div>
-
 
             <div class="activity">
 
@@ -981,7 +1126,6 @@
 
     </section>
 
-
     <!-- DATABASE -->
 
     <section class="database">
@@ -997,7 +1141,7 @@
                 </h3>
 
                 <p>
-                    اتصال Supabase در مرحله بعد فعال می‌شود.
+                    اتصال مستقیم به Supabase فعال است.
                 </p>
 
             </div>
@@ -1005,32 +1149,328 @@
         </div>
 
         <div class="db-status">
-            آماده اتصال
+            متصل
         </div>
 
     </section>
 
 </main>
 
-
 <footer>
     🏆 لیگ تخته ساناز و ساشا · پنل مدیریت · ساخته شده توسط امیر عباس ❤️
 </footer>
 
 
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+
+
 <script>
 
-    function comingSoon(name) {
+    /* =========================
+       ابزارهای عمومی
+    ========================= */
 
+    function toPersianNumber(number) {
+        return Number(number).toLocaleString("fa-IR");
+    }
+
+    function escapeHTML(text) {
+        return String(text ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    function scrollToNews() {
+        document.getElementById("newsManager").scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+
+    function comingSoon(name) {
         alert(
             "⚡ " + name +
-            "\n\nاین قابلیت در نسخه فعلی نمایشی است." +
-            "\nدر مرحله اتصال به Supabase فعال خواهد شد."
+            "\n\nاین بخش هنوز ساخته نشده."
         );
-
     }
+
+
+    /* =========================
+       بازیکنان
+    ========================= */
+
+    async function loadPlayerCount() {
+
+        const playerCount =
+            document.getElementById("playerCount");
+
+        const { count, error } = await supabaseClient
+            .from("players")
+            .select("*", {
+                count: "exact",
+                head: true
+            });
+
+        if (error) {
+
+            console.error("Players Error:", error);
+
+            playerCount.textContent = "—";
+
+            return;
+        }
+
+        playerCount.textContent =
+            toPersianNumber(count ?? 0);
+    }
+
+
+    /* =========================
+       اخبار
+    ========================= */
+
+    async function loadNews() {
+
+        const newsList =
+            document.getElementById("newsList");
+
+        const newsCount =
+            document.getElementById("newsCount");
+
+        const { data, error } = await supabaseClient
+            .from("news")
+            .select("id, title, content, image_url, created_at")
+            .order("created_at", {
+                ascending: false
+            });
+
+        if (error) {
+
+            console.error("News Error:", error);
+
+            newsCount.textContent = "—";
+
+            newsList.innerHTML = `
+                <div class="empty-news">
+                    ❌ دریافت اخبار با خطا مواجه شد.
+                    <br>
+                    <small>${escapeHTML(error.message)}</small>
+                </div>
+            `;
+
+            return;
+        }
+
+        newsCount.textContent =
+            toPersianNumber(data.length);
+
+        if (!data.length) {
+
+            newsList.innerHTML = `
+                <div class="empty-news">
+                    📰 هنوز خبری منتشر نشده است.
+                </div>
+            `;
+
+            return;
+        }
+
+        newsList.innerHTML = data.map(news => {
+
+            const date = news.created_at
+                ? new Date(news.created_at).toLocaleString(
+                    "fa-IR",
+                    {
+                        dateStyle: "medium",
+                        timeStyle: "short"
+                    }
+                )
+                : "تاریخ نامعلوم";
+
+            return `
+                <div class="news-item">
+
+                    <div class="news-item-top">
+
+                        <div>
+
+                            <h3>
+                                ${escapeHTML(news.title)}
+                            </h3>
+
+                            <p>
+                                ${escapeHTML(news.content)}
+                            </p>
+
+                        </div>
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteNews(${news.id})"
+                        >
+                            🗑 حذف
+                        </button>
+
+                    </div>
+
+                    <div class="news-date">
+                        🕐 ${escapeHTML(date)}
+                    </div>
+
+                </div>
+            `;
+
+        }).join("");
+    }
+
+
+    /* =========================
+       انتشار خبر
+    ========================= */
+
+    async function publishNews() {
+
+        const title =
+            document.getElementById("newsTitle").value.trim();
+
+        const content =
+            document.getElementById("newsContent").value.trim();
+
+        const imageUrl =
+            document.getElementById("newsImage").value.trim();
+
+        const button =
+            document.getElementById("publishNewsBtn");
+
+        const message =
+            document.getElementById("newsMessage");
+
+
+        message.className = "message";
+        message.textContent = "";
+
+
+        if (!title) {
+
+            message.className = "message error";
+            message.textContent =
+                "⚠️ لطفاً عنوان خبر را وارد کن.";
+
+            return;
+        }
+
+
+        if (!content) {
+
+            message.className = "message error";
+            message.textContent =
+                "⚠️ لطفاً متن خبر را وارد کن.";
+
+            return;
+        }
+
+
+        button.disabled = true;
+        button.textContent = "⏳ در حال انتشار...";
+
+
+        const { error } = await supabaseClient
+            .from("news")
+            .insert([
+                {
+                    title: title,
+                    content: content,
+                    image_url: imageUrl || null
+                }
+            ]);
+
+
+        if (error) {
+
+            console.error("Publish News Error:", error);
+
+            message.className = "message error";
+
+            message.textContent =
+                "❌ خبر ذخیره نشد: " + error.message;
+
+            button.disabled = false;
+            button.textContent = "📰 انتشار خبر";
+
+            return;
+        }
+
+
+        message.className = "message success";
+
+        message.textContent =
+            "✅ خبر با موفقیت منتشر شد.";
+
+
+        document.getElementById("newsTitle").value = "";
+        document.getElementById("newsContent").value = "";
+        document.getElementById("newsImage").value = "";
+
+
+        button.disabled = false;
+        button.textContent = "📰 انتشار خبر";
+
+
+        await loadNews();
+    }
+
+
+    /* =========================
+       حذف خبر
+    ========================= */
+
+    async function deleteNews(id) {
+
+        const confirmed =
+            confirm("آیا مطمئنی می‌خواهی این خبر حذف شود؟");
+
+
+        if (!confirmed) {
+            return;
+        }
+
+
+        const { error } = await supabaseClient
+            .from("news")
+            .delete()
+            .eq("id", id);
+
+
+        if (error) {
+
+            console.error("Delete News Error:", error);
+
+            alert(
+                "❌ حذف خبر انجام نشد.\n\n" +
+                error.message
+            );
+
+            return;
+        }
+
+
+        await loadNews();
+    }
+
+
+    /* =========================
+       شروع
+    ========================= */
+
+    loadPlayerCount();
+    loadNews();
 
 </script>
 
 </body>
-          </html>
+    </html>
