@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>آرشیو لیگ | لیگ تخته ساناز و ساشا</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Vazirmatn", sans-serif;
+            background:
+                radial-gradient(circle at 15% 10%, rgba(126, 87, 255, 0.14), transparent 30%),
+                radial-gradient(circle at 85% 20%, rgba(0, 174, 255, 0.10), transparent 30%),
+                #060611;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(18px);
+            background: rgba(6, 6, 17, 0.78);
+            border-bottom: 1px solid rgba(150, 100, 255, 0.15);
+        }
+
+        .header-inner {
+            max-width: 1250px;
+            margin: auto;
+            padding: 15px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: 900;
+            white-space: nowrap;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #7c4dff, #00b7ff);
+            box-shadow: 0 0 25px rgba(124, 77, 255, 0.35);
+        }
+
+        .logo span {
+            color: #a78bfa;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        nav a {
+            padding: 8px 11px;
+            border-radius: 10px;
+            color: #aaa9bd;
+            font-size: 13px;
+            transition: 0.25s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #fff;
+            background: rgba(124, 77, 255, 0.16);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 55px 22px 80px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 15px;
+            border-radius: 999px;
+            background: rgba(124, 77, 255, 0.12);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            color: #c4b5fd;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 6vw, 58px);
+            font-weight: 900;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #fff, #b8a4ff, #63d7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: #9998aa;
+            font-size: 15px;
+        }
+
+        .archive-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .info-card {
+            background: rgba(15, 15, 30, 0.72);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 20px;
+            padding: 25px 18px;
+            text-align: center;
+        }
+
+        .info-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .info-value {
+            font-size: 22px;
+            font-weight: 900;
+            color: #a78bfa;
+            margin-bottom: 5px;
+        }
+
+        .info-label {
+            color: #77768a;
+            font-size: 12px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 35px 0 18px;
+            font-size: 21px;
+        }
+
+        .section-title span {
+            color: #a78bfa;
+        }
+
+        .archive-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .archive-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 23px;
+            border-radius: 21px;
+            background: rgba(15, 15, 30, 0.72);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            transition: 0.25s;
+        }
+
+        .archive-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(124, 77, 255, 0.3);
+        }
+
+        .archive-number {
+            width: 58px;
+            height: 58px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 17px;
+            background: linear-gradient(135deg, rgba(124, 77, 255, 0.22), rgba(0, 174, 255, 0.12));
+            border: 1px solid rgba(167, 139, 250, 0.15);
+            font-size: 22px;
+        }
+
+        .archive-content {
+            flex: 1;
+        }
+
+        .archive-content h3 {
+            font-size: 16px;
+            margin-bottom: 7px;
+        }
+
+        .archive-content p {
+            color: #77768a;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .archive-status {
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: rgba(255, 190, 60, 0.08);
+            border: 1px solid rgba(255, 190, 60, 0.13);
+            color: #d9ad5d;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 55px 20px;
+            border-radius: 22px;
+            background: rgba(15, 15, 30, 0.72);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .empty h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .empty p {
+            color: #77768a;
+            font-size: 13px;
+            line-height: 1.9;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 13px;
+            margin-top: 20px;
+        }
+
+        .category {
+            padding: 18px 12px;
+            text-align: center;
+            border-radius: 17px;
+            background: rgba(15, 15, 30, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .category-icon {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .category span {
+            color: #8b899c;
+            font-size: 12px;
+        }
+
+        .notice {
+            margin-top: 25px;
+            padding: 18px;
+            border-radius: 16px;
+            background: rgba(124, 77, 255, 0.07);
+            border: 1px solid rgba(124, 77, 255, 0.14);
+            color: #9998aa;
+            font-size: 13px;
+            line-height: 1.9;
+            text-align: center;
+        }
+
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            padding: 30px 20px;
+            text-align: center;
+            color: #686779;
+            font-size: 12px;
+            line-height: 2;
+        }
+
+        footer strong {
+            color: #a78bfa;
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                display: none;
+            }
+
+            .archive-info {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .categories {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            main {
+                padding: 40px 15px 60px;
+            }
+
+            .archive-info {
+                grid-template-columns: 1fr;
+            }
+
+            .categories {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .archive-card {
+                align-items: flex-start;
+            }
+
+            .archive-status {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+
+        <a href="index.html" class="logo">
+            <div class="logo-icon">🏆</div>
+            <div>لیگ <span>تخته</span></div>
+        </a>
+
+        <nav>
+            <a href="index.html">خانه</a>
+            <a href="news.html">اخبار</a>
+            <a href="matches.html">بازی‌ها</a>
+            <a href="results.html">نتایج</a>
+            <a href="table.html">جدول</a>
+            <a href="players.html">بازیکنان</a>
+            <a href="calendar.html">تقویم</a>
+            <a href="stats.html">آمار</a>
+            <a href="rules.html">قوانین</a>
+            <a href="honors.html">افتخارات</a>
+            <a href="about.html">درباره</a>
+            <a href="archive.html" class="active">آرشیو</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<main>
+
+    <section class="hero">
+
+        <div class="badge">
+            📚 آرشیو رسمی لیگ
+        </div>
+
+        <h1>آرشیو لیگ</h1>
+
+        <p>
+            تاریخچه مسابقات، نتایج، اخبار و رویدادهای ثبت‌شده
+        </p>
+
+    </section>
+
+
+    <section class="archive-info">
+
+        <div class="info-card">
+            <div class="info-icon">📅</div>
+            <div class="info-value">۰</div>
+            <div class="info-label">فصل‌های ثبت‌شده</div>
+        </div>
+
+        <div class="info-card">
+            <div class="info-icon">🎮</div>
+            <div class="info-value">۰</div>
+            <div class="info-label">مسابقات آرشیوشده</div>
+        </div>
+
+        <div class="info-card">
+            <div class="info-icon">📰</div>
+            <div class="info-value">۰</div>
+            <div class="info-label">رویدادهای ثبت‌شده</div>
+        </div>
+
+    </section>
+
+
+    <h2 class="section-title">
+        <span>🗂️</span>
+        فصل‌های لیگ
+    </h2>
+
+
+    <section class="archive-list">
+
+        <div class="archive-card">
+
+            <div class="archive-number">
+                🏆
+            </div>
+
+            <div class="archive-content">
+
+                <h3>فصل اول لیگ تخته</h3>
+
+                <p>
+                    اولین فصل رسمی لیگ ساناز و ساشا.
+                    اطلاعات فصل پس از شروع مسابقات ثبت خواهد شد.
+                </p>
+
+            </div>
+
+            <div class="archive-status">
+                ⏳ هنوز شروع نشده
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <h2 class="section-title">
+        <span>📦</span>
+        دسته‌بندی آرشیو
+    </h2>
+
+
+    <section class="categories">
+
+        <div class="category">
+            <div class="category-icon">🎮</div>
+            <span>مسابقات</span>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">🏆</div>
+            <span>قهرمانی‌ها</span>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">📰</div>
+            <span>اخبار</span>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">📊</div>
+            <span>آمار</span>
+        </div>
+
+    </section>
+
+
+    <h2 class="section-title">
+        <span>🕐</span>
+        آخرین رویدادهای آرشیوشده
+    </h2>
+
+
+    <section class="empty">
+
+        <div class="empty-icon">
+            📚
+        </div>
+
+        <h3>
+            هنوز اطلاعاتی برای آرشیو وجود ندارد
+        </h3>
+
+        <p>
+            پس از شروع لیگ، مسابقات، نتایج، اخبار و رویدادهای
+            مهم به‌صورت مرتب در این بخش ذخیره خواهند شد.
+        </p>
+
+    </section>
+
+
+    <div class="notice">
+        💡 آرشیو در نسخه فعلی نمایشی است.
+        پس از اتصال سایت به Supabase، اطلاعات واقعی لیگ
+        از پایگاه داده دریافت و در این صفحه نمایش داده می‌شود.
+    </div>
+
+</main>
+
+
+<footer>
+
+    <strong>🏆 لیگ تخته ساناز و ساشا</strong>
+    <br>
+
+    سایت رسمی لیگ تخته
+    <br>
+
+    ساخته شده توسط امیر عباس ❤️
+    <br>
+
+    © 2026 — تمامی حقوق محفوظ است.
+
+</footer>
+
+</body>
+  </html>
