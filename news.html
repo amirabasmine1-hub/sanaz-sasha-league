@@ -1,521 +1,271 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>اخبار لیگ | لیگ تخته ساناز و ساشا</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:"Vazirmatn",Tahoma,sans-serif;
-    background:#060611;
-    color:#fff;
-    min-height:100vh;
-    overflow-x:hidden;
-}
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-3;
-
-    background:
-        radial-gradient(
-            circle at 15% 10%,
-            rgba(124,58,237,.28),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 85% 30%,
-            rgba(37,99,235,.18),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 50% 90%,
-            rgba(168,85,247,.12),
-            transparent 35%
-        );
-}
-
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-2;
-
-    background-image:
-        linear-gradient(
-            rgba(255,255,255,.025) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.025) 1px,
-            transparent 1px
-        );
-
-    background-size:45px 45px;
-}
-
-
-/* ================= HEADER ================= */
-
-header{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    z-index:100;
-
-    background:rgba(6,6,17,.78);
-    backdrop-filter:blur(20px);
-
-    border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.navbar{
-    width:min(1250px,92%);
-    min-height:75px;
-    margin:auto;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-
-    font-size:18px;
-    font-weight:900;
-}
-
-.logo-icon{
-    width:43px;
-    height:43px;
-
-    display:grid;
-    place-items:center;
-
-    border-radius:13px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7c3aed,
-            #2563eb
-        );
-
-    box-shadow:
-        0 0 30px rgba(124,58,237,.35);
-}
-
-.logo span{
-    color:#c084fc;
-}
-
-.nav-links{
-    display:flex;
-    gap:7px;
-    flex-wrap:wrap;
-}
-
-.nav-links a{
-    color:#aaa;
-    text-decoration:none;
-
-    padding:9px 12px;
-
-    border-radius:10px;
-
-    font-size:13px;
-    font-weight:600;
-
-    transition:.2s;
-}
-
-.nav-links a:hover,
-.nav-links a.active{
-    color:#fff;
-    background:rgba(124,58,237,.18);
-}
-
-
-/* ================= PAGE ================= */
-
-.container{
-    width:min(1150px,92%);
-    margin:auto;
-}
-
-.page{
-    padding-top:145px;
-    padding-bottom:100px;
-}
-
-.page-title{
-    text-align:center;
-    margin-bottom:55px;
-}
-
-.badge{
-    display:inline-block;
-
-    padding:8px 15px;
-
-    border-radius:999px;
-
-    background:rgba(168,85,247,.10);
-
-    border:1px solid rgba(168,85,247,.30);
-
-    color:#d8b4fe;
-
-    font-size:13px;
-    font-weight:800;
-
-    margin-bottom:18px;
-}
-
-.page-title h1{
-    font-size:clamp(38px,7vw,65px);
-
-    font-weight:900;
-
-    background:
-        linear-gradient(
-            100deg,
-            #fff,
-            #c084fc,
-            #60a5fa,
-            #fff
-        );
-
-    background-size:250%;
-
-    -webkit-background-clip:text;
-    background-clip:text;
-
-    color:transparent;
-
-    animation:titleMove 7s linear infinite;
-}
-
-@keyframes titleMove{
-    to{
-        background-position:250%;
-    }
-}
-
-.page-title p{
-    margin:18px auto 0;
-
-    max-width:650px;
-
-    color:#888;
-
-    line-height:2;
-}
-
-
-/* ================= NEWS ================= */
-
-.news-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:20px;
-}
-
-.news-card{
-    position:relative;
-
-    padding:26px;
-
-    border-radius:25px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.07),
-            rgba(255,255,255,.018)
-        );
-
-    border:1px solid rgba(255,255,255,.08);
-
-    overflow:hidden;
-
-    transition:.25s;
-}
-
-.news-card:hover{
-    transform:translateY(-6px);
-
-    border-color:
-        rgba(168,85,247,.40);
-
-    box-shadow:
-        0 20px 60px rgba(0,0,0,.25);
-}
-
-.news-card::after{
-    content:"";
-
-    position:absolute;
-
-    width:150px;
-    height:150px;
-
-    right:-70px;
-    bottom:-80px;
-
-    border-radius:50%;
-
-    background:#7c3aed;
-
-    filter:blur(60px);
-
-    opacity:.14;
-}
-
-.news-top{
-    display:flex;
-
-    justify-content:space-between;
-    align-items:center;
-
-    gap:10px;
-
-    margin-bottom:18px;
-}
-
-.news-tag{
-    padding:6px 11px;
-
-    border-radius:8px;
-
-    background:rgba(124,58,237,.15);
-
-    color:#c084fc;
-
-    font-size:11px;
-
-    font-weight:800;
-}
-
-.news-date{
-    color:#666;
-    font-size:11px;
-}
-
-.news-icon{
-    font-size:42px;
-    margin-bottom:15px;
-}
-
-.news-card h2{
-    font-size:21px;
-    margin-bottom:10px;
-}
-
-.news-card p{
-    color:#888;
-
-    line-height:2;
-
-    font-size:14px;
-}
-
-.read-more{
-    display:inline-flex;
-
-    margin-top:20px;
-
-    color:#a855f7;
-
-    text-decoration:none;
-
-    font-size:13px;
-
-    font-weight:800;
-}
-
-
-/* ================= EMPTY ================= */
-
-.empty{
-    grid-column:1 / -1;
-
-    text-align:center;
-
-    padding:65px 20px;
-
-    border-radius:25px;
-
-    border:1px dashed rgba(255,255,255,.12);
-
-    background:rgba(255,255,255,.025);
-}
-
-.empty-icon{
-    font-size:55px;
-    margin-bottom:15px;
-}
-
-.empty h2{
-    font-size:22px;
-    margin-bottom:10px;
-}
-
-.empty p{
-    color:#777;
-    line-height:2;
-}
-
-
-/* ================= FOOTER ================= */
-
-footer{
-    border-top:
-        1px solid rgba(255,255,255,.08);
-
-    padding:45px 20px;
-
-    text-align:center;
-
-    color:#666;
-}
-
-.footer-title{
-    color:#aaa;
-    font-weight:800;
-    margin-bottom:10px;
-}
-
-.creator{
-    margin-top:12px;
-    color:#a855f7;
-    font-weight:800;
-}
-
-
-/* ================= MOBILE ================= */
-
-@media(max-width:750px){
-
-    .nav-links{
-        display:none;
-    }
-
-    .page{
-        padding-top:120px;
-    }
-
-    .news-grid{
-        grid-template-columns:1fr;
-    }
-
-    .page-title{
-        margin-bottom:35px;
-    }
-
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>اخبار | لیگ تخته ساناز و ساشا</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #060611;
+            --panel: #0e0e1d;
+            --border: rgba(255,255,255,.07);
+            --purple: #7c4dff;
+            --purple-light: #a78bfa;
+            --blue: #00b7ff;
+            --text: #fff;
+            --muted: #858497;
+            --green: #39d98a;
+        }
+
+        body {
+            font-family: "Vazirmatn", sans-serif;
+            background:
+                radial-gradient(circle at 10% 5%, rgba(124,77,255,.13), transparent 28%),
+                radial-gradient(circle at 90% 15%, rgba(0,183,255,.08), transparent 28%),
+                var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 72px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            background: rgba(6,6,17,.82);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--purple), var(--blue));
+            box-shadow: 0 0 25px rgba(124,77,255,.3);
+        }
+
+        .logo span {
+            color: var(--purple-light);
+        }
+
+        nav {
+            display: flex;
+            gap: 7px;
+        }
+
+        nav a {
+            color: #858497;
+            font-size: 11px;
+            padding: 9px 11px;
+            border-radius: 9px;
+            transition: .2s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: white;
+            background: rgba(124,77,255,.12);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 125px 25px 60px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 7px 13px;
+            border-radius: 999px;
+            color: #c4b5fd;
+            background: rgba(124,77,255,.10);
+            border: 1px solid rgba(167,139,250,.18);
+            font-size: 10px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .news-card {
+            background: rgba(15,15,30,.76);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: .25s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(124,77,255,.3);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .news-image-placeholder {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 45px;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(124,77,255,.25), transparent 40%),
+                linear-gradient(135deg, #111126, #0b1224);
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-date {
+            color: var(--purple-light);
+            font-size: 10px;
+            margin-bottom: 9px;
+        }
+
+        .news-title {
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .news-text {
+            color: #858497;
+            font-size: 12px;
+            line-height: 2;
+            white-space: pre-wrap;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 70px 20px;
+            border: 1px dashed rgba(255,255,255,.08);
+            border-radius: 20px;
+            color: #666579;
+        }
+
+        .empty-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: var(--muted);
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 25px;
+            text-align: center;
+            color: #555468;
+            font-size: 11px;
+        }
+
+        @media (max-width: 800px) {
+            header {
+                padding: 0 15px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 29px;
+            }
+        }
+    </style>
 </head>
-
 
 <body>
 
-
-<!-- ================= HEADER ================= -->
-
 <header>
 
-<nav class="navbar">
-
-    <div class="logo">
-
-        <div class="logo-icon">
-            🏆
-        </div>
-
+    <a href="index.html" class="logo">
+        <div class="logo-icon">🏆</div>
         <div>
             لیگ <span>تخته</span>
         </div>
+    </a>
 
-    </div>
-
-
-    <div class="nav-links">
-
-        <a href="index.html">
-            خانه
-        </a>
-
-        <a href="news.html" class="active">
-            اخبار
-        </a>
-
-        <a href="matches.html">
-            بازی‌ها
-        </a>
-
-        <a href="results.html">
-            نتایج
-        </a>
-
-        <a href="table.html">
-            جدول
-        </a>
-
-        <a href="players.html">
-            بازیکنان
-        </a>
-
-        <a href="rules.html">
-            قوانین
-        </a>
-
-    </div>
-
-</nav>
+    <nav>
+        <a href="index.html">خانه</a>
+        <a href="news.html" class="active">اخبار</a>
+        <a href="matches.html">بازی‌ها</a>
+        <a href="results.html">نتایج</a>
+        <a href="table.html">جدول</a>
+        <a href="players.html">بازیکنان</a>
+        <a href="rules.html">قوانین</a>
+    </nav>
 
 </header>
 
+<main>
 
-<!-- ================= MAIN ================= -->
-
-<main class="page">
-
-<div class="container">
-
-
-    <div class="page-title">
+    <section class="hero">
 
         <div class="badge">
             📰 اطلاعیه‌های رسمی
@@ -526,152 +276,146 @@ footer{
         </h1>
 
         <p>
-            آخرین اخبار، اطلاعیه‌ها و اتفاقات رسمی
-            لیگ تخته ساناز و ساشا را از اینجا دنبال کنید.
+            آخرین اخبار و اطلاعیه‌های رسمی لیگ تخته ساناز و ساشا
         </p>
 
-    </div>
+    </section>
 
 
-    <div class="news-grid">
+    <section id="newsContainer">
 
-
-        <!-- خبر نمونه -->
-
-        <article class="news-card">
-
-            <div class="news-top">
-
-                <span class="news-tag">
-                    اطلاعیه
-                </span>
-
-                <span class="news-date">
-                    به‌زودی
-                </span>
-
-            </div>
-
-
-            <div class="news-icon">
-                🏆
-            </div>
-
-
-            <h2>
-                شروع لیگ در انتظار اعلام رسمی
-            </h2>
-
-
-            <p>
-                زمان شروع لیگ تخته ساناز و ساشا
-                هنوز مشخص نشده است.
-                پس از اعلام زمان رسمی، اطلاعات
-                این بخش به‌روزرسانی خواهد شد.
-            </p>
-
-
-            <a href="#" class="read-more">
-                ادامه خبر ←
-            </a>
-
-        </article>
-
-
-        <!-- خبر نمونه دوم -->
-
-        <article class="news-card">
-
-            <div class="news-top">
-
-                <span class="news-tag">
-                    لیگ
-                </span>
-
-                <span class="news-date">
-                    به‌زودی
-                </span>
-
-            </div>
-
-
-            <div class="news-icon">
-                🎮
-            </div>
-
-
-            <h2>
-                برنامه مسابقات به‌زودی منتشر می‌شود
-            </h2>
-
-
-            <p>
-                پس از مشخص شدن برنامه رسمی،
-                تاریخ و ساعت مسابقات در سایت
-                قرار خواهد گرفت.
-            </p>
-
-
-            <a href="#" class="read-more">
-                ادامه خبر ←
-            </a>
-
-        </article>
-
-
-        <!-- وضعیت خالی -->
-
-        <div class="empty">
-
-            <div class="empty-icon">
-                📢
-            </div>
-
-            <h2>
-                اخبار بیشتری در راه است
-            </h2>
-
-            <p>
-                با اتصال این صفحه به دیتابیس،
-                اخبار جدید مستقیماً از پنل مدیریت
-                در این قسمت نمایش داده خواهند شد.
-            </p>
-
+        <div class="loading">
+            ⏳ در حال دریافت اخبار...
         </div>
 
-
-    </div>
-
-</div>
+    </section>
 
 </main>
 
-
-<!-- ================= FOOTER ================= -->
-
 <footer>
-
-    <div class="footer-title">
-        🏆 لیگ تخته ساناز و ساشا
-    </div>
-
-    <div>
-        سایت رسمی لیگ تخته
-    </div>
-
-    <div class="creator">
-        ساخته شده توسط امیر عباس ❤️
-    </div>
-
-    <div style="
-        margin-top:15px;
-        font-size:12px;
-    ">
-        © 2026 — تمامی حقوق محفوظ است.
-    </div>
-
+    🏆 لیگ تخته ساناز و ساشا · سایت رسمی لیگ تخته · ساخته شده توسط امیر عباس ❤️
 </footer>
 
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+
+<script>
+
+    function escapeHTML(text) {
+        return String(text ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    async function loadNews() {
+
+        const container =
+            document.getElementById("newsContainer");
+
+        const { data, error } = await supabaseClient
+            .from("news")
+            .select("id, title, content, image_url, created_at")
+            .order("created_at", {
+                ascending: false
+            });
+
+        if (error) {
+
+            console.error("News Error:", error);
+
+            container.innerHTML = `
+                <div class="empty">
+                    <div class="empty-icon">⚠️</div>
+                    <div>
+                        دریافت اخبار با خطا مواجه شد.
+                    </div>
+                </div>
+            `;
+
+            return;
+        }
+
+        if (!data || data.length === 0) {
+
+            container.innerHTML = `
+                <div class="empty">
+                    <div class="empty-icon">📰</div>
+                    <div>
+                        هنوز خبری منتشر نشده است.
+                    </div>
+                </div>
+            `;
+
+            return;
+        }
+
+        container.innerHTML = `
+            <div class="news-grid">
+
+                ${data.map(news => {
+
+                    const date = news.created_at
+                        ? new Date(news.created_at).toLocaleString(
+                            "fa-IR",
+                            {
+                                dateStyle: "medium",
+                                timeStyle: "short"
+                            }
+                        )
+                        : "تاریخ نامعلوم";
+
+                    const image = news.image_url
+                        ? `
+                            <img
+                                class="news-image"
+                                src="${escapeHTML(news.image_url)}"
+                                alt="${escapeHTML(news.title)}"
+                                loading="lazy"
+                            >
+                        `
+                        : `
+                            <div class="news-image-placeholder">
+                                📰
+                            </div>
+                        `;
+
+                    return `
+                        <article class="news-card">
+
+                            ${image}
+
+                            <div class="news-content">
+
+                                <div class="news-date">
+                                    🕐 ${escapeHTML(date)}
+                                </div>
+
+                                <h2 class="news-title">
+                                    ${escapeHTML(news.title)}
+                                </h2>
+
+                                <div class="news-text">
+                                    ${escapeHTML(news.content)}
+                                </div>
+
+                            </div>
+
+                        </article>
+                    `;
+
+                }).join("")}
+
+            </div>
+        `;
+    }
+
+    loadNews();
+
+</script>
+
 </body>
-      </html>
+</html>
