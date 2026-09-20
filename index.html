@@ -1,1022 +1,1044 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>لیگ تخته ساناز و ساشا | سایت رسمی</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet">
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:"Vazirmatn",Tahoma,sans-serif;
-    background:#060611;
-    color:#fff;
-    overflow-x:hidden;
-}
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-3;
-    background:
-        radial-gradient(circle at 15% 15%,rgba(124,58,237,.30),transparent 30%),
-        radial-gradient(circle at 85% 25%,rgba(37,99,235,.20),transparent 28%),
-        radial-gradient(circle at 50% 90%,rgba(168,85,247,.14),transparent 35%);
-}
-
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-2;
-    background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-    background-size:45px 45px;
-}
-
-
-/* ================= HEADER ================= */
-
-header{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    z-index:100;
-    background:rgba(6,6,17,.75);
-    backdrop-filter:blur(20px);
-    border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.navbar{
-    width:min(1250px,92%);
-    margin:auto;
-    min-height:75px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-size:18px;
-    font-weight:900;
-    white-space:nowrap;
-}
-
-.logo-icon{
-    width:43px;
-    height:43px;
-    display:grid;
-    place-items:center;
-    border-radius:13px;
-    background:linear-gradient(135deg,#7c3aed,#2563eb);
-    box-shadow:0 0 30px rgba(124,58,237,.35);
-}
-
-.logo span{
-    color:#c084fc;
-}
-
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:7px;
-    flex-wrap:wrap;
-    justify-content:flex-end;
-}
-
-.nav-links a{
-    text-decoration:none;
-    color:#aaa;
-    padding:9px 12px;
-    border-radius:10px;
-    font-size:13px;
-    font-weight:600;
-    transition:.2s;
-}
-
-.nav-links a:hover{
-    color:#fff;
-    background:rgba(255,255,255,.07);
-}
-
-
-/* ================= HERO ================= */
-
-.hero{
-    width:min(1250px,92%);
-    min-height:760px;
-    margin:auto;
-    padding-top:170px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-}
-
-.hero-content{
-    max-width:850px;
-}
-
-.live-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:9px;
-    padding:9px 16px;
-    border:1px solid rgba(168,85,247,.35);
-    border-radius:999px;
-    background:rgba(168,85,247,.08);
-    color:#d8b4fe;
-    font-size:13px;
-    font-weight:700;
-    margin-bottom:25px;
-}
-
-.live-dot{
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:#facc15;
-    box-shadow:0 0 12px #facc15;
-    animation:pulse 1.6s infinite;
-}
-
-@keyframes pulse{
-    0%,100%{
-        transform:scale(1);
-        opacity:1;
-    }
-
-    50%{
-        transform:scale(.65);
-        opacity:.5;
-    }
-}
-
-.hero h1{
-    font-size:clamp(45px,8vw,90px);
-    line-height:1.05;
-    font-weight:900;
-    letter-spacing:-3px;
-
-    background:
-        linear-gradient(
-            100deg,
-            #fff 5%,
-            #d8b4fe 35%,
-            #60a5fa 65%,
-            #fff 95%
-        );
-
-    background-size:250%;
-
-    -webkit-background-clip:text;
-    background-clip:text;
-
-    color:transparent;
-
-    animation:titleGradient 7s linear infinite;
-}
-
-@keyframes titleGradient{
-    to{
-        background-position:250%;
-    }
-}
-
-.hero-subtitle{
-    margin:25px auto;
-    max-width:650px;
-    color:#9ca3af;
-    font-size:16px;
-    line-height:2;
-}
-
-.hero-buttons{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:12px;
-    margin-top:30px;
-}
-
-.btn{
-    border:none;
-    text-decoration:none;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    padding:13px 20px;
-    border-radius:13px;
-    color:#fff;
-    font-family:inherit;
-    font-weight:700;
-    font-size:14px;
-    cursor:pointer;
-    transition:.25s;
-}
-
-.btn:hover{
-    transform:translateY(-3px);
-}
-
-.btn-primary{
-    background:linear-gradient(135deg,#7c3aed,#2563eb);
-    box-shadow:0 10px 35px rgba(124,58,237,.25);
-}
-
-.btn-secondary{
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.12);
-}
-
-
-/* ================= STATS ================= */
-
-.stats{
-    width:min(1100px,92%);
-    margin:-30px auto 70px;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:14px;
-}
-
-.stat{
-    padding:22px;
-    border-radius:20px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.07),
-            rgba(255,255,255,.025)
-        );
-
-    border:1px solid rgba(255,255,255,.08);
-    text-align:center;
-    backdrop-filter:blur(12px);
-}
-
-.stat-icon{
-    font-size:25px;
-    margin-bottom:10px;
-}
-
-.stat-number{
-    font-size:25px;
-    font-weight:900;
-}
-
-.stat-label{
-    margin-top:5px;
-    color:#888;
-    font-size:12px;
-}
-
-
-/* ================= CONTAINER ================= */
-
-.container{
-    width:min(1200px,92%);
-    margin:auto;
-}
-
-section{
-    margin:100px 0;
-}
-
-.section-heading{
-    margin-bottom:25px;
-}
-
-.section-heading small{
-    color:#a855f7;
-    font-weight:800;
-}
-
-.section-heading h2{
-    font-size:32px;
-    margin-top:5px;
-}
-
-.section-heading p{
-    color:#777;
-    margin-top:7px;
-}
-
-
-/* ================= MENU ================= */
-
-.menu-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-}
-
-.menu-card{
-    position:relative;
-    min-height:170px;
-    padding:22px;
-    border-radius:22px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.065),
-            rgba(255,255,255,.018)
-        );
-
-    border:1px solid rgba(255,255,255,.08);
-    text-decoration:none;
-    color:#fff;
-    overflow:hidden;
-    transition:.25s;
-}
-
-.menu-card::after{
-    content:"";
-    position:absolute;
-    width:130px;
-    height:130px;
-    border-radius:50%;
-    right:-50px;
-    bottom:-70px;
-    background:#7c3aed;
-    filter:blur(50px);
-    opacity:.15;
-}
-
-.menu-card:hover{
-    transform:translateY(-6px);
-    border-color:rgba(168,85,247,.4);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(168,85,247,.12),
-            rgba(255,255,255,.03)
-        );
-}
-
-.menu-icon{
-    font-size:34px;
-    margin-bottom:18px;
-}
-
-.menu-card h3{
-    font-size:17px;
-}
-
-.menu-card p{
-    color:#777;
-    font-size:12px;
-    line-height:1.7;
-    margin-top:7px;
-}
-
-
-/* ================= PANELS ================= */
-
-.feature{
-    display:grid;
-    grid-template-columns:1.2fr .8fr;
-    gap:20px;
-}
-
-.panel{
-    padding:28px;
-    border-radius:25px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.065),
-            rgba(255,255,255,.02)
-        );
-
-    border:1px solid rgba(255,255,255,.08);
-}
-
-.panel h3{
-    font-size:21px;
-    margin-bottom:15px;
-}
-
-.panel p{
-    color:#888;
-    line-height:2;
-}
-
-.next-match{
-    margin-top:20px;
-    padding:18px;
-    border-radius:17px;
-    background:rgba(0,0,0,.2);
-    border:1px solid rgba(255,255,255,.06);
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-}
-
-.team{
-    font-weight:800;
-    font-size:17px;
-}
-
-.vs{
-    color:#a855f7;
-    font-weight:900;
-}
-
-
-/* ================= FOOTER ================= */
-
-footer{
-    margin-top:120px;
-    border-top:1px solid rgba(255,255,255,.08);
-    padding:45px 20px;
-    text-align:center;
-    color:#666;
-}
-
-.footer-title{
-    color:#aaa;
-    font-weight:800;
-    margin-bottom:10px;
-}
-
-.creator{
-    margin-top:12px;
-    color:#a855f7;
-    font-weight:800;
-}
-
-
-/* ================= MOBILE ================= */
-
-@media(max-width:950px){
-
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .menu-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .feature{
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:650px){
-
-    .navbar{
-        padding:12px 0;
-    }
-
-    .nav-links{
-        display:none;
-    }
-
-    .hero{
-        min-height:680px;
-        padding-top:130px;
-    }
-
-    .hero h1{
-        letter-spacing:-2px;
-    }
-
-    .stats{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .menu-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .menu-card{
-        min-height:150px;
-    }
-
-    .menu-card p{
-        display:none;
-    }
-
-    .section-heading h2{
-        font-size:27px;
-    }
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>لیگ تخته ساناز و ساشا</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background:
+                radial-gradient(circle at top right, #32126b 0%, transparent 35%),
+                radial-gradient(circle at bottom left, #101c55 0%, transparent 35%),
+                #070713;
+            color: #fff;
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1150px, 92%);
+            margin: auto;
+        }
+
+        /* Header */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(18px);
+            background: rgba(7, 7, 19, 0.82);
+            border-bottom: 1px solid rgba(170, 100, 255, 0.18);
+        }
+
+        .nav {
+            min-height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 900;
+            color: #c78cff;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            padding: 8px 13px;
+            border-radius: 10px;
+            color: #c9c9d8;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(157, 78, 255, 0.15);
+            color: #fff;
+        }
+
+        /* Hero */
+
+        .hero {
+            padding: 90px 0 65px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 7px 15px;
+            border-radius: 999px;
+            background: rgba(157, 78, 255, 0.14);
+            border: 1px solid rgba(180, 100, 255, 0.3);
+            color: #d49cff;
+            font-size: 13px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 78px);
+            line-height: 1.1;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #fff, #bd7dff, #7b8cff);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero h2 {
+            font-size: clamp(20px, 4vw, 32px);
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            color: #9e9eb0;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        /* Stats */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0 70px;
+        }
+
+        .stat {
+            padding: 25px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.035);
+            border: 1px solid rgba(170,100,255,0.14);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #c78cff;
+        }
+
+        .stat-label {
+            color: #9999aa;
+            font-size: 14px;
+        }
+
+        /* Sections */
+
+        section {
+            margin-bottom: 75px;
+        }
+
+        .section-title {
+            margin-bottom: 25px;
+        }
+
+        .section-title h2 {
+            font-size: 28px;
+        }
+
+        .section-title p {
+            color: #858597;
+            font-size: 14px;
+        }
+
+        /* Cards */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            background: linear-gradient(
+                145deg,
+                rgba(255,255,255,0.055),
+                rgba(255,255,255,0.02)
+            );
+            border: 1px solid rgba(170,100,255,0.14);
+            border-radius: 20px;
+            padding: 25px;
+            transition: 0.25s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(180,100,255,0.4);
+        }
+
+        .card-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            margin-bottom: 7px;
+        }
+
+        .card p {
+            color: #9696a7;
+            font-size: 14px;
+        }
+
+        /* Status */
+
+        .status-box {
+            padding: 28px;
+            border-radius: 22px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(125, 52, 255, 0.16),
+                    rgba(31, 72, 190, 0.08)
+                );
+            border: 1px solid rgba(170,100,255,0.22);
+        }
+
+        .status-title {
+            color: #c78cff;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .status-text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Comments */
+
+        .comments-section {
+            margin-top: 90px;
+        }
+
+        .comments-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .comments-header > span {
+            width: 55px;
+            height: 55px;
+            display: grid;
+            place-items: center;
+            border-radius: 17px;
+            background: rgba(157,78,255,0.15);
+            border: 1px solid rgba(180,100,255,0.25);
+            font-size: 27px;
+        }
+
+        .comments-header h2 {
+            font-size: 28px;
+        }
+
+        .comments-header p {
+            color: #8f8fa1;
+            font-size: 14px;
+        }
+
+        .comment-form {
+            background: rgba(255,255,255,0.035);
+            border: 1px solid rgba(170,100,255,0.15);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .comment-form input,
+        .comment-form textarea {
+            width: 100%;
+            background: #0d0d1c;
+            color: white;
+            border: 1px solid rgba(170,100,255,0.18);
+            border-radius: 12px;
+            outline: none;
+            padding: 13px;
+            font-family: inherit;
+            margin-bottom: 12px;
+        }
+
+        .comment-form textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .comment-form input:focus,
+        .comment-form textarea:focus {
+            border-color: #a765ff;
+        }
+
+        .comment-form button {
+            border: 0;
+            border-radius: 12px;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #8d45ff, #5d65ff);
+            color: white;
+            font-family: inherit;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .comment-form button:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
+        #commentMessage {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #9f9faf;
+        }
+
+        .comments-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .comment-card {
+            padding: 20px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.035);
+            border: 1px solid rgba(170,100,255,0.13);
+        }
+
+        .comment-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 8px;
+        }
+
+        .comment-name {
+            font-weight: bold;
+            color: #d09aff;
+        }
+
+        .comment-date {
+            color: #777789;
+            font-size: 11px;
+        }
+
+        .comment-content {
+            color: #c5c5d0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .comments-loading,
+        .comments-empty,
+        .comments-error {
+            padding: 25px;
+            text-align: center;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.03);
+            color: #888899;
+        }
+
+        .comments-error {
+            color: #ff8d9d;
+        }
+
+        /* About */
+
+        .about {
+            padding: 30px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.035);
+            border: 1px solid rgba(170,100,255,0.14);
+        }
+
+        .about p {
+            color: #a5a5b4;
+        }
+
+        /* Footer */
+
+        footer {
+            margin-top: 80px;
+            padding: 35px 0;
+            border-top: 1px solid rgba(170,100,255,0.12);
+            text-align: center;
+            color: #777789;
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: #c78cff;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 800px) {
+            .nav {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 55px;
+            }
+
+            .comment-top {
+                flex-direction: column;
+                gap: 3px;
+            }
+        }
+    </style>
 </head>
-
 
 <body>
 
-
-<!-- ================= HEADER ================= -->
-
 <header>
+    <div class="container nav">
 
-<nav class="navbar">
+        <a href="index.html" class="logo">
+            🎲 لیگ تخته <span>ساناز و ساشا</span>
+        </a>
 
-    <div class="logo">
-
-        <div class="logo-icon">
-            🏆
-        </div>
-
-        <div>
-            لیگ <span>تخته</span>
-        </div>
-
-    </div>
-
-
-    <div class="nav-links">
-
-        <a href="index.html">خانه</a>
-        <a href="news.html">اخبار</a>
-        <a href="matches.html">بازی‌ها</a>
-        <a href="results.html">نتایج</a>
-        <a href="table.html">جدول</a>
-        <a href="players.html">بازیکنان</a>
-        <a href="rules.html">قوانین</a>
+        <nav class="nav-links">
+            <a href="index.html">خانه</a>
+            <a href="news.html">اخبار</a>
+            <a href="matches.html">بازی‌ها</a>
+            <a href="results.html">نتایج</a>
+            <a href="table.html">جدول</a>
+            <a href="players.html">بازیکنان</a>
+            <a href="rules.html">قوانین</a>
+        </nav>
 
     </div>
-
-</nav>
-
 </header>
 
 
-<!-- ================= HERO ================= -->
+<main class="container">
 
-<main>
+    <!-- HERO -->
 
-<section class="hero">
+    <section class="hero">
 
-<div class="hero-content">
-
-    <div class="live-badge">
-
-        <span class="live-dot"></span>
-
-        سایت رسمی لیگ تخته
-
-    </div>
-
-
-    <h1>
-
-        لیگ تخته
-
-        <br>
-
-        ساناز و ساشا
-
-    </h1>
-
-
-    <p class="hero-subtitle">
-
-        خانه رسمی رقابت‌های ساناز و ساشا؛
-        اخبار، مسابقات، نتایج، جدول و تمام
-        اتفاقات لیگ در یک مکان.
-
-    </p>
-
-
-    <div class="hero-buttons">
-
-        <a href="matches.html"
-           class="btn btn-primary">
-
-            🎮 مشاهده مسابقات
-
-        </a>
-
-
-        <a href="results.html"
-           class="btn btn-secondary">
-
-            🏆 آخرین نتایج
-
-        </a>
-
-
-        <a href="news.html"
-           class="btn btn-secondary">
-
-            📰 اخبار لیگ
-
-        </a>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- ================= STATS ================= -->
-
-<div class="stats">
-
-
-    <div class="stat">
-
-        <div class="stat-icon">📅</div>
-
-        <div class="stat-number">
-            نامعلوم
+        <div class="badge">
+            🏆 سایت رسمی لیگ تخته
         </div>
 
-        <div class="stat-label">
-            زمان شروع لیگ
+        <h1>لیگ تخته</h1>
+
+        <h2>ساناز و ساشا</h2>
+
+        <p>
+            وب‌سایت رسمی لیگ تخته؛
+            اخبار، بازی‌ها، نتایج، جدول و اطلاعات لیگ را اینجا دنبال کنید.
+        </p>
+
+    </section>
+
+
+    <!-- STATS -->
+
+    <section class="stats">
+
+        <div class="stat">
+            <div class="stat-number" id="playerCount">—</div>
+            <div class="stat-label">بازیکن</div>
         </div>
 
-    </div>
+        <div class="stat">
+            <div class="stat-number" id="matchCount">—</div>
+            <div class="stat-label">بازی</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number" id="championName">—</div>
+            <div class="stat-label">قهرمان</div>
+        </div>
+
+    </section>
 
 
-    <div class="stat">
+    <!-- QUICK ACCESS -->
 
-        <div class="stat-icon">👥</div>
+    <section>
 
-        <div class="stat-number"
-             id="playerCount">
+        <div class="section-title">
+            <h2>⚡ دسترسی سریع</h2>
+            <p>بخش‌های اصلی لیگ</p>
+        </div>
 
-            ۲
+        <div class="cards">
+
+            <a href="news.html" class="card">
+                <div class="card-icon">📰</div>
+                <h3>اخبار لیگ</h3>
+                <p>
+                    آخرین خبرها و اتفاقات لیگ را مشاهده کنید.
+                </p>
+            </a>
+
+            <a href="matches.html" class="card">
+                <div class="card-icon">🎲</div>
+                <h3>بازی‌ها</h3>
+                <p>
+                    برنامه بازی‌ها و مسابقات لیگ.
+                </p>
+            </a>
+
+            <a href="results.html" class="card">
+                <div class="card-icon">🏆</div>
+                <h3>نتایج</h3>
+                <p>
+                    نتایج ثبت‌شده مسابقات را ببینید.
+                </p>
+            </a>
+
+            <a href="table.html" class="card">
+                <div class="card-icon">📊</div>
+                <h3>جدول لیگ</h3>
+                <p>
+                    وضعیت بازیکنان و امتیازات لیگ.
+                </p>
+            </a>
+
+            <a href="players.html" class="card">
+                <div class="card-icon">👥</div>
+                <h3>بازیکنان</h3>
+                <p>
+                    اطلاعات بازیکنان حاضر در لیگ.
+                </p>
+            </a>
+
+            <a href="calendar.html" class="card">
+                <div class="card-icon">📅</div>
+                <h3>تقویم</h3>
+                <p>
+                    برنامه زمانی مسابقات لیگ.
+                </p>
+            </a>
 
         </div>
 
-        <div class="stat-label">
-            بازیکنان
+    </section>
+
+
+    <!-- STATUS -->
+
+    <section>
+
+        <div class="status-box">
+
+            <div class="status-title">
+                وضعیت لیگ
+            </div>
+
+            <div class="status-text" id="leagueStatus">
+                در حال دریافت...
+            </div>
+
         </div>
 
-    </div>
+    </section>
 
 
-    <div class="stat">
+    <!-- ABOUT -->
 
-        <div class="stat-icon">🎮</div>
+    <section>
 
-        <div class="stat-number">
-            ۰
+        <div class="section-title">
+            <h2>ℹ️ درباره لیگ</h2>
         </div>
 
-        <div class="stat-label">
-            بازی برگزارشده
+        <div class="about">
+
+            <p>
+                لیگ تخته ساناز و ساشا یک لیگ دوستانه و رقابتی
+                برای برگزاری مسابقات تخته است.
+                در این سایت می‌توانید اخبار، نتایج،
+                جدول و اطلاعات مربوط به مسابقات را مشاهده کنید.
+            </p>
+
         </div>
 
-    </div>
+    </section>
 
 
-    <div class="stat">
+    <!-- COMMENTS -->
 
-        <div class="stat-icon">🏆</div>
+    <section id="comments" class="comments-section">
 
-        <div class="stat-number">
-            —
+        <div class="comments-header">
+
+            <span>💬</span>
+
+            <div>
+                <h2>نظرات کاربران</h2>
+
+                <p>
+                    نظر خودت درباره لیگ تخته را بنویس!
+                </p>
+            </div>
+
         </div>
 
-        <div class="stat-label">
-            قهرمان فعلی
+
+        <div class="comment-form">
+
+            <input
+                id="commentName"
+                type="text"
+                maxlength="40"
+                placeholder="نام شما"
+            >
+
+            <textarea
+                id="commentContent"
+                maxlength="500"
+                placeholder="نظر شما..."
+            ></textarea>
+
+            <button id="commentButton" onclick="sendComment()">
+                🚀 ارسال نظر
+            </button>
+
+            <div id="commentMessage"></div>
+
         </div>
 
-    </div>
 
-</div>
+        <div id="commentsList" class="comments-list">
 
+            <div class="comments-loading">
+                در حال دریافت نظرات...
+            </div>
 
-<div class="container">
+        </div>
 
-
-<!-- ================= QUICK ACCESS ================= -->
-
-<section>
-
-<div class="section-heading">
-
-    <small>
-        QUICK ACCESS
-    </small>
-
-    <h2>
-        ⚡ دسترسی سریع
-    </h2>
-
-    <p>
-        همه بخش‌های لیگ از اینجا در دسترس هستند.
-    </p>
-
-</div>
-
-
-<div class="menu-grid">
-
-
-    <a href="news.html" class="menu-card">
-        <div class="menu-icon">📰</div>
-        <h3>اخبار لیگ</h3>
-        <p>آخرین اخبار و اطلاعیه‌های رسمی</p>
-    </a>
-
-
-    <a href="matches.html" class="menu-card">
-        <div class="menu-icon">🎮</div>
-        <h3>مسابقات</h3>
-        <p>بازی‌های آینده و برنامه مسابقات</p>
-    </a>
-
-
-    <a href="results.html" class="menu-card">
-        <div class="menu-icon">🏆</div>
-        <h3>نتایج</h3>
-        <p>نتایج رسمی مسابقات</p>
-    </a>
-
-
-    <a href="table.html" class="menu-card">
-        <div class="menu-icon">📊</div>
-        <h3>جدول لیگ</h3>
-        <p>وضعیت و امتیازات بازیکنان</p>
-    </a>
-
-
-    <a href="players.html" class="menu-card">
-        <div class="menu-icon">👥</div>
-        <h3>بازیکنان</h3>
-        <p>معرفی بازیکنان لیگ</p>
-    </a>
-
-
-    <a href="calendar.html" class="menu-card">
-        <div class="menu-icon">📅</div>
-        <h3>تقویم مسابقات</h3>
-        <p>تاریخ و زمان بازی‌ها</p>
-    </a>
-
-
-    <a href="stats.html" class="menu-card">
-        <div class="menu-icon">📈</div>
-        <h3>آمار لیگ</h3>
-        <p>آمار و عملکرد بازیکنان</p>
-    </a>
-
-
-    <a href="rules.html" class="menu-card">
-        <div class="menu-icon">📜</div>
-        <h3>قوانین</h3>
-        <p>قوانین رسمی لیگ تخته</p>
-    </a>
-
-
-    <a href="honors.html" class="menu-card">
-        <div class="menu-icon">🥇</div>
-        <h3>افتخارات</h3>
-        <p>قهرمانان و افتخارات لیگ</p>
-    </a>
-
-
-    <a href="about.html" class="menu-card">
-        <div class="menu-icon">ℹ️</div>
-        <h3>درباره لیگ</h3>
-        <p>اطلاعات و تاریخچه لیگ</p>
-    </a>
-
-
-    <a href="archive.html" class="menu-card">
-        <div class="menu-icon">🗂️</div>
-        <h3>آرشیو</h3>
-        <p>آرشیو اخبار و مسابقات گذشته</p>
-    </a>
-
-
-    <a href="admin.html" class="menu-card">
-        <div class="menu-icon">⚙️</div>
-        <h3>پنل مدیریت</h3>
-        <p>مدیریت اخبار، بازی‌ها و نتایج</p>
-    </a>
-
-
-</div>
-
-</section>
-
-
-<!-- ================= STATUS ================= -->
-
-<section>
-
-<div class="section-heading">
-
-    <small>
-        LEAGUE STATUS
-    </small>
-
-    <h2>
-        🔥 وضعیت لیگ
-    </h2>
-
-</div>
-
-
-<div class="feature">
-
-
-<div class="panel">
-
-    <h3>
-        🏆 لیگ تخته ساناز و ساشا
-    </h3>
-
-
-    <p>
-
-        زمان شروع لیگ هنوز مشخص نشده است.
-
-        به محض اعلام تاریخ رسمی،
-        اطلاعات این بخش از دیتابیس
-        به‌روزرسانی خواهد شد.
-
-    </p>
-
-
-    <div class="next-match">
-
-        <span class="team">
-            ساناز
-        </span>
-
-        <span class="vs">
-            VS
-        </span>
-
-        <span class="team">
-            ساشا
-        </span>
-
-    </div>
-
-</div>
-
-
-<div class="panel">
-
-    <h3>
-        📅 شروع لیگ
-    </h3>
-
-
-    <div style="
-        font-size:36px;
-        font-weight:900;
-        color:#facc15;
-        margin:20px 0;
-    ">
-
-        نامعلوم
-
-    </div>
-
-
-    <p>
-        منتظر اعلام رسمی زمان شروع باشید.
-    </p>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-<!-- ================= ABOUT ================= -->
-
-<section>
-
-<div class="panel">
-
-    <div class="section-heading">
-
-        <small>
-            OFFICIAL WEBSITE
-        </small>
-
-        <h2>
-            🏆 درباره لیگ
-        </h2>
-
-    </div>
-
-
-    <p>
-
-        لیگ تخته ساناز و ساشا،
-        یک رقابت اختصاصی بین دو بازیکن است.
-
-        این وب‌سایت به‌عنوان مرجع رسمی لیگ
-        برای نمایش اخبار، برنامه مسابقات،
-        نتایج، جدول و آمار ساخته شده است.
-
-    </p>
-
-</div>
-
-</section>
-
-
-</div>
+    </section>
 
 </main>
 
 
-<!-- ================= FOOTER ================= -->
-
 <footer>
 
-    <div class="footer-title">
-        🏆 لیگ تخته ساناز و ساشا
-    </div>
-
-    <div>
-        سایت رسمی لیگ تخته
-    </div>
-
-    <div class="creator">
+    <div class="container">
+        سایت رسمی <strong>لیگ تخته ساناز و ساشا</strong>
+        <br>
         ساخته شده توسط امیر عباس ❤️
-    </div>
-
-    <div style="
-        margin-top:15px;
-        font-size:12px;
-    ">
-        © 2026 — تمامی حقوق محفوظ است.
     </div>
 
 </footer>
 
 
-<!-- ================= SUPABASE ================= -->
+<!-- Supabase -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="supabase-config.js"></script>
+
 
 <script>
 
-async function loadPlayers(){
+    // -----------------------------
+    // ابزارها
+    // -----------------------------
 
-    const { data, error } = await supabaseClient
-        .from("players")
-        .select("id, name");
+    function escapeHTML(value) {
 
-    if(error){
-        console.error("Supabase Error:", error);
-        return;
+        return String(value ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
     }
 
-    const playerCount = document.getElementById("playerCount");
 
-    if(playerCount){
-        playerCount.textContent = data.length;
+    function persianNumber(number) {
+
+        return Number(number || 0).toLocaleString("fa-IR");
+
     }
-}
 
-loadPlayers();
+
+    function formatDate(date) {
+
+        if (!date) return "";
+
+        try {
+
+            return new Date(date).toLocaleDateString(
+                "fa-IR",
+                {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                }
+            );
+
+        } catch {
+
+            return "";
+
+        }
+
+    }
+
+
+    // -----------------------------
+    // اطلاعات اصلی صفحه
+    // -----------------------------
+
+    async function loadHomeData() {
+
+        try {
+
+            const playersResult = await supabaseClient
+                .from("players")
+                .select("id, name");
+
+            const matchesResult = await supabaseClient
+                .from("matches")
+                .select("id, status");
+
+            const settingsResult = await supabaseClient
+                .from("league_settings")
+                .select("*")
+                .order("id", { ascending: true })
+                .limit(1)
+                .maybeSingle();
+
+
+            // بازیکنان
+
+            if (!playersResult.error) {
+
+                document.getElementById("playerCount")
+                    .textContent =
+                    persianNumber(playersResult.data.length);
+
+            }
+
+
+            // بازی‌ها
+
+            if (!matchesResult.error) {
+
+                document.getElementById("matchCount")
+                    .textContent =
+                    persianNumber(matchesResult.data.length);
+
+            }
+
+
+            // تنظیمات لیگ
+
+            if (!settingsResult.error && settingsResult.data) {
+
+                const settings = settingsResult.data;
+
+                document.getElementById("leagueStatus")
+                    .textContent =
+                    settings.status || "نامعلوم";
+
+
+                if (settings.champion_id && playersResult.data) {
+
+                    const champion =
+                        playersResult.data.find(
+                            p => p.id === settings.champion_id
+                        );
+
+                    document.getElementById("championName")
+                        .textContent =
+                        champion
+                            ? champion.name
+                            : "—";
+
+                }
+
+            } else {
+
+                document.getElementById("leagueStatus")
+                    .textContent = "نامعلوم";
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "خطا در دریافت اطلاعات صفحه:",
+                error
+            );
+
+        }
+
+    }
+
+
+    // -----------------------------
+    // دریافت کامنت‌ها
+    // -----------------------------
+
+    async function loadComments() {
+
+        const list =
+            document.getElementById("commentsList");
+
+
+        list.innerHTML = `
+            <div class="comments-loading">
+                در حال دریافت نظرات...
+            </div>
+        `;
+
+
+        const { data, error } =
+            await supabaseClient
+                .from("comments")
+                .select("id, name, content, created_at")
+                .order("created_at", {
+                    ascending: false
+                });
+
+
+        if (error) {
+
+            console.error(
+                "خطا در دریافت کامنت‌ها:",
+                error
+            );
+
+            list.innerHTML = `
+                <div class="comments-error">
+                    ❌ دریافت نظرات با مشکل مواجه شد.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        if (!data || data.length === 0) {
+
+            list.innerHTML = `
+                <div class="comments-empty">
+                    هنوز نظری ثبت نشده.
+                    اولین نفری باش که نظر می‌دهی! 🚀
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        list.innerHTML = data.map(comment => `
+
+            <div class="comment-card">
+
+                <div class="comment-top">
+
+                    <div class="comment-name">
+                        👤 ${escapeHTML(comment.name)}
+                    </div>
+
+                    <div class="comment-date">
+                        ${formatDate(comment.created_at)}
+                    </div>
+
+                </div>
+
+                <div class="comment-content">
+                    ${escapeHTML(comment.content)}
+                </div>
+
+            </div>
+
+        `).join("");
+
+    }
+
+
+    // -----------------------------
+    // ارسال کامنت
+    // -----------------------------
+
+    async function sendComment() {
+
+        const nameInput =
+            document.getElementById("commentName");
+
+        const contentInput =
+            document.getElementById("commentContent");
+
+        const button =
+            document.getElementById("commentButton");
+
+        const message =
+            document.getElementById("commentMessage");
+
+
+        const name =
+            nameInput.value.trim();
+
+        const content =
+            contentInput.value.trim();
+
+
+        if (!name) {
+
+            message.textContent =
+                "⚠️ لطفاً نام خودت را وارد کن.";
+
+            return;
+
+        }
+
+
+        if (!content) {
+
+            message.textContent =
+                "⚠️ لطفاً نظر خودت را بنویس.";
+
+            return;
+
+        }
+
+
+        if (name.length > 40) {
+
+            message.textContent =
+                "⚠️ نام خیلی طولانی است.";
+
+            return;
+
+        }
+
+
+        if (content.length > 500) {
+
+            message.textContent =
+                "⚠️ متن نظر خیلی طولانی است.";
+
+            return;
+
+        }
+
+
+        button.disabled = true;
+
+        button.textContent =
+            "⏳ در حال ارسال...";
+
+
+        message.textContent = "";
+
+
+        const { error } =
+            await supabaseClient
+                .from("comments")
+                .insert({
+                    name: name,
+                    content: content
+                });
+
+
+        if (error) {
+
+            console.error(
+                "خطا در ارسال کامنت:",
+                error
+            );
+
+            message.textContent =
+                "❌ ارسال نظر انجام نشد.";
+
+            button.disabled = false;
+
+            button.textContent =
+                "🚀 ارسال نظر";
+
+            return;
+
+        }
+
+
+        nameInput.value = "";
+
+        contentInput.value = "";
+
+
+        message.textContent =
+            "✅ نظرت با موفقیت ثبت شد!";
+
+
+        button.disabled = false;
+
+        button.textContent =
+            "🚀 ارسال نظر";
+
+
+        await loadComments();
+
+    }
+
+
+    // -----------------------------
+    // شروع صفحه
+    // -----------------------------
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        () => {
+
+            loadHomeData();
+
+            loadComments();
+
+        }
+    );
 
 </script>
 
 </body>
-</html>
+      </html>
