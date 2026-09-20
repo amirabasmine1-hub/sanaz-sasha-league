@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>بازیکنان | لیگ تخته ساناز و ساشا</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Vazirmatn", sans-serif;
+            background:
+                radial-gradient(circle at 15% 10%, rgba(124, 58, 237, 0.16), transparent 30%),
+                radial-gradient(circle at 85% 20%, rgba(59, 130, 246, 0.13), transparent 30%),
+                #060611;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1000;
+
+            background: rgba(6, 6, 17, 0.78);
+            backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 16px 22px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background: linear-gradient(135deg, #7c3aed, #2563eb);
+
+            box-shadow:
+                0 0 25px rgba(124, 58, 237, 0.35);
+        }
+
+        .logo span {
+            color: #a78bfa;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            padding: 8px 11px;
+            border-radius: 9px;
+
+            color: #aaaac2;
+            font-size: 13px;
+
+            transition: 0.25s;
+        }
+
+        nav a:hover {
+            color: white;
+            background: rgba(124, 58, 237, 0.13);
+        }
+
+        nav a.active {
+            color: white;
+            background: rgba(124, 58, 237, 0.2);
+        }
+
+        main {
+            max-width: 1150px;
+            margin: auto;
+            padding: 135px 22px 60px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 42px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 14px;
+            border-radius: 999px;
+
+            background: rgba(124, 58, 237, 0.12);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+
+            color: #c4b5fd;
+            font-size: 13px;
+            font-weight: 700;
+
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 6vw, 58px);
+            font-weight: 900;
+            line-height: 1.2;
+
+            background: linear-gradient(
+                90deg,
+                #fff,
+                #c4b5fd,
+                #60a5fa
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: #9898b2;
+            margin-top: 14px;
+            font-size: 15px;
+        }
+
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .player-card {
+            position: relative;
+            overflow: hidden;
+
+            padding: 28px;
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(25, 20, 50, 0.88),
+                    rgba(12, 13, 28, 0.92)
+                );
+
+            border: 1px solid rgba(139, 92, 246, 0.18);
+
+            transition:
+                transform 0.25s,
+                border-color 0.25s,
+                box-shadow 0.25s;
+        }
+
+        .player-card::before {
+            content: "";
+
+            position: absolute;
+            width: 180px;
+            height: 180px;
+
+            top: -90px;
+            left: -90px;
+
+            background: rgba(124, 58, 237, 0.12);
+
+            border-radius: 50%;
+
+            filter: blur(25px);
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+
+            border-color: rgba(167, 139, 250, 0.4);
+
+            box-shadow:
+                0 20px 55px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(124, 58, 237, 0.08);
+        }
+
+        .player-top {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            gap: 17px;
+
+            margin-bottom: 25px;
+        }
+
+        .avatar {
+            width: 78px;
+            height: 78px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 22px;
+
+            background: linear-gradient(
+                135deg,
+                #7c3aed,
+                #2563eb
+            );
+
+            font-size: 36px;
+
+            box-shadow:
+                0 10px 30px rgba(124, 58, 237, 0.28);
+        }
+
+        .player-name {
+            font-size: 23px;
+            font-weight: 900;
+        }
+
+        .player-role {
+            margin-top: 5px;
+            color: #9494ad;
+            font-size: 13px;
+        }
+
+        .player-number {
+            margin-right: auto;
+
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: rgba(255, 255, 255, 0.05);
+
+            color: #a78bfa;
+            font-weight: 900;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .stat {
+            padding: 15px 10px;
+
+            text-align: center;
+
+            border-radius: 15px;
+
+            background: rgba(255, 255, 255, 0.035);
+
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: 900;
+            color: #c4b5fd;
+        }
+
+        .stat-title {
+            margin-top: 4px;
+
+            color: #77778e;
+            font-size: 11px;
+        }
+
+        .profile-info {
+            margin-top: 18px;
+
+            padding-top: 18px;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            color: #8c8ca4;
+            font-size: 12px;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+
+            color: #a5f3fc;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #22c55e;
+
+            box-shadow:
+                0 0 10px rgba(34, 197, 94, 0.6);
+        }
+
+        .bottom-note {
+            margin-top: 28px;
+
+            padding: 22px;
+
+            text-align: center;
+
+            border-radius: 18px;
+
+            background: rgba(14, 14, 28, 0.7);
+
+            border: 1px solid rgba(139, 92, 246, 0.12);
+
+            color: #818198;
+
+            font-size: 13px;
+        }
+
+        .bottom-note strong {
+            color: #b9a6ff;
+        }
+
+        footer {
+            border-top: 1px solid rgba(139, 92, 246, 0.12);
+
+            margin-top: 30px;
+            padding: 35px 20px;
+
+            text-align: center;
+
+            color: #74748c;
+            font-size: 13px;
+        }
+
+        footer .footer-title {
+            color: #b9a6ff;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        footer .creator {
+            margin-top: 8px;
+            color: #8f8fa8;
+        }
+
+        @media (max-width: 750px) {
+
+            .header-inner {
+                padding: 12px 15px;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .logo-icon {
+                width: 37px;
+                height: 37px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            main {
+                padding: 115px 14px 45px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .players-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .player-card {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="header-inner">
+
+        <a href="index.html" class="logo">
+
+            <div class="logo-icon">
+                🏆
+            </div>
+
+            <div>
+                لیگ <span>تخته</span>
+            </div>
+
+        </a>
+
+        <nav>
+            <a href="index.html">خانه</a>
+            <a href="news.html">اخبار</a>
+            <a href="matches.html">بازی‌ها</a>
+            <a href="results.html">نتایج</a>
+            <a href="table.html">جدول</a>
+            <a href="players.html" class="active">بازیکنان</a>
+            <a href="rules.html">قوانین</a>
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <section class="hero">
+
+        <div class="badge">
+            👥 بازیکنان رسمی
+        </div>
+
+        <h1>
+            بازیکنان لیگ
+        </h1>
+
+        <p>
+            معرفی بازیکنان حاضر در لیگ تخته ساناز و ساشا
+        </p>
+
+    </section>
+
+
+    <section class="players-grid">
+
+
+        <!-- SANAZ -->
+
+        <article class="player-card">
+
+            <div class="player-top">
+
+                <div class="avatar">
+                    🎲
+                </div>
+
+                <div>
+
+                    <div class="player-name">
+                        ساناز
+                    </div>
+
+                    <div class="player-role">
+                        بازیکن رسمی لیگ
+                    </div>
+
+                </div>
+
+                <div class="player-number">
+                    ۰۱
+                </div>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat">
+                    <div class="stat-value">۰</div>
+                    <div class="stat-title">بازی</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-value">۰</div>
+                    <div class="stat-title">برد</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-value">۰</div>
+                    <div class="stat-title">امتیاز</div>
+                </div>
+
+            </div>
+
+
+            <div class="profile-info">
+
+                <span>
+                    وضعیت بازیکن
+                </span>
+
+                <span class="status">
+                    <span class="dot"></span>
+                    فعال
+                </span>
+
+            </div>
+
+        </article>
+
+
+        <!-- SASHA -->
+
+        <article class="player-card">
+
+            <div class="player-top">
+
+                <div class="avatar">
+                    🎲
+                </div>
+
+                <div>
+
+                    <div class="player-name">
+                        ساشا
+                    </div>
+
+                    <div class="player-role">
+                        بازیکن رسمی لیگ
+                    </div>
+
+                </div>
+
+                <div class="player-number">
+                    ۰۲
+                </div>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat">
+                    <div class="stat-value">۰</div>
+                    <div class="stat-title">بازی</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-value">۰</div>
+                    <div class="stat-title">برد</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-value">۰</div>
+                    <div class="stat-title">امتیاز</div>
+                </div>
+
+            </div>
+
+
+            <div class="profile-info">
+
+                <span>
+                    وضعیت بازیکن
+                </span>
+
+                <span class="status">
+                    <span class="dot"></span>
+                    فعال
+                </span>
+
+            </div>
+
+        </article>
+
+
+    </section>
+
+
+    <div class="bottom-note">
+
+        ℹ️ اطلاعات این صفحه فعلاً <strong>نمایشی</strong> است.
+        پس از اتصال سایت به دیتابیس، مشخصات و آمار بازیکنان به‌صورت خودکار به‌روزرسانی خواهند شد.
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-title">
+        🏆 لیگ تخته ساناز و ساشا
+    </div>
+
+    <div>
+        سایت رسمی لیگ تخته
+    </div>
+
+    <div class="creator">
+        ساخته شده توسط امیر عباس ❤️
+    </div>
+
+    <div style="margin-top: 8px;">
+        © 2026 — تمامی حقوق محفوظ است.
+    </div>
+
+</footer>
+
+</body>
+  </html>
