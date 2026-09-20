@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>آمار لیگ | لیگ تخته ساناز و ساشا</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Vazirmatn", sans-serif;
+            background:
+                radial-gradient(circle at 15% 10%, rgba(124, 58, 237, 0.16), transparent 30%),
+                radial-gradient(circle at 85% 20%, rgba(59, 130, 246, 0.13), transparent 30%),
+                #060611;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1000;
+
+            background: rgba(6, 6, 17, 0.78);
+            backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 16px 22px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background: linear-gradient(135deg, #7c3aed, #2563eb);
+
+            box-shadow:
+                0 0 25px rgba(124, 58, 237, 0.35);
+        }
+
+        .logo span {
+            color: #a78bfa;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            padding: 8px 11px;
+            border-radius: 9px;
+
+            color: #aaaac2;
+            font-size: 13px;
+
+            transition: 0.25s;
+        }
+
+        nav a:hover {
+            color: white;
+            background: rgba(124, 58, 237, 0.13);
+        }
+
+        nav a.active {
+            color: white;
+            background: rgba(124, 58, 237, 0.2);
+        }
+
+        main {
+            max-width: 1150px;
+            margin: auto;
+            padding: 135px 22px 60px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 42px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 14px;
+            border-radius: 999px;
+
+            background: rgba(124, 58, 237, 0.12);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+
+            color: #c4b5fd;
+            font-size: 13px;
+            font-weight: 700;
+
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 6vw, 58px);
+            font-weight: 900;
+            line-height: 1.2;
+
+            background: linear-gradient(
+                90deg,
+                #fff,
+                #c4b5fd,
+                #60a5fa
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: #9898b2;
+            margin-top: 14px;
+            font-size: 15px;
+        }
+
+        .main-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            position: relative;
+            overflow: hidden;
+
+            padding: 23px;
+
+            border-radius: 20px;
+
+            background: rgba(17, 17, 34, 0.78);
+
+            border: 1px solid rgba(139, 92, 246, 0.15);
+
+            transition: 0.25s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.3);
+        }
+
+        .stat-icon {
+            font-size: 25px;
+            margin-bottom: 14px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 900;
+            color: #c4b5fd;
+        }
+
+        .stat-title {
+            margin-top: 5px;
+            color: #85859e;
+            font-size: 12px;
+        }
+
+        .section {
+            margin-top: 25px;
+
+            background: rgba(14, 14, 28, 0.82);
+
+            border: 1px solid rgba(139, 92, 246, 0.14);
+
+            border-radius: 22px;
+            overflow: hidden;
+        }
+
+        .section-title {
+            padding: 22px 24px;
+
+            font-size: 20px;
+            font-weight: 900;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .players-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+
+            padding: 22px;
+        }
+
+        .player-stat {
+            padding: 22px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(124, 58, 237, 0.08),
+                    rgba(37, 99, 235, 0.04)
+                );
+
+            border: 1px solid rgba(139, 92, 246, 0.11);
+        }
+
+        .player-name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .player-avatar {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background: linear-gradient(
+                135deg,
+                #7c3aed,
+                #2563eb
+            );
+        }
+
+        .mini-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+
+            margin-top: 18px;
+        }
+
+        .mini-stat {
+            padding: 12px 7px;
+
+            text-align: center;
+
+            border-radius: 12px;
+
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .mini-value {
+            font-size: 17px;
+            font-weight: 900;
+            color: #c4b5fd;
+        }
+
+        .mini-title {
+            margin-top: 3px;
+
+            color: #77778f;
+            font-size: 10px;
+        }
+
+        .records {
+            padding: 22px;
+
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .record {
+            padding: 22px;
+
+            border-radius: 18px;
+
+            background: rgba(255, 255, 255, 0.025);
+
+            border: 1px solid rgba(255, 255, 255, 0.05);
+
+            text-align: center;
+        }
+
+        .record-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .record-title {
+            color: #85859e;
+            font-size: 12px;
+        }
+
+        .record-value {
+            margin-top: 7px;
+
+            font-size: 20px;
+            font-weight: 900;
+
+            color: #c4b5fd;
+        }
+
+        .notice {
+            margin-top: 25px;
+
+            padding: 22px;
+
+            text-align: center;
+
+            border-radius: 18px;
+
+            background: rgba(14, 14, 28, 0.7);
+
+            border: 1px solid rgba(139, 92, 246, 0.12);
+
+            color: #818198;
+
+            font-size: 13px;
+        }
+
+        .notice strong {
+            color: #b9a6ff;
+        }
+
+        footer {
+            border-top: 1px solid rgba(139, 92, 246, 0.12);
+
+            margin-top: 30px;
+            padding: 35px 20px;
+
+            text-align: center;
+
+            color: #74748c;
+            font-size: 13px;
+        }
+
+        footer .footer-title {
+            color: #b9a6ff;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        footer .creator {
+            margin-top: 8px;
+            color: #8f8fa8;
+        }
+
+        @media (max-width: 850px) {
+            .main-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 750px) {
+
+            .header-inner {
+                padding: 12px 15px;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .logo-icon {
+                width: 37px;
+                height: 37px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            main {
+                padding: 115px 14px 45px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .main-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .players-stats,
+            .records {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="header-inner">
+
+        <a href="index.html" class="logo">
+
+            <div class="logo-icon">
+                🏆
+            </div>
+
+            <div>
+                لیگ <span>تخته</span>
+            </div>
+
+        </a>
+
+        <nav>
+            <a href="index.html">خانه</a>
+            <a href="news.html">اخبار</a>
+            <a href="matches.html">بازی‌ها</a>
+            <a href="results.html">نتایج</a>
+            <a href="table.html">جدول</a>
+            <a href="players.html">بازیکنان</a>
+            <a href="calendar.html">تقویم</a>
+            <a href="stats.html" class="active">آمار</a>
+            <a href="rules.html">قوانین</a>
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <section class="hero">
+
+        <div class="badge">
+            📊 آمار رسمی لیگ
+        </div>
+
+        <h1>
+            آمار لیگ
+        </h1>
+
+        <p>
+            آمار و رکوردهای لیگ تخته ساناز و ساشا
+        </p>
+
+    </section>
+
+
+    <!-- MAIN STATS -->
+
+    <section class="main-stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎮
+            </div>
+
+            <div class="stat-value">
+                ۰
+            </div>
+
+            <div class="stat-title">
+                مجموع مسابقات
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🏆
+            </div>
+
+            <div class="stat-value">
+                ۰
+            </div>
+
+            <div class="stat-title">
+                مسابقات انجام‌شده
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👥
+            </div>
+
+            <div class="stat-value">
+                ۲
+            </div>
+
+            <div class="stat-title">
+                بازیکنان
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🥇
+            </div>
+
+            <div class="stat-value">
+                —
+            </div>
+
+            <div class="stat-title">
+                بیشترین برد
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PLAYER STATS -->
+
+    <section class="section">
+
+        <div class="section-title">
+            👥 آمار بازیکنان
+        </div>
+
+
+        <div class="players-stats">
+
+
+            <div class="player-stat">
+
+                <div class="player-name">
+
+                    <div class="player-avatar">
+                        🎲
+                    </div>
+
+                    ساناز
+
+                </div>
+
+
+                <div class="mini-stats">
+
+                    <div class="mini-stat">
+                        <div class="mini-value">۰</div>
+                        <div class="mini-title">بازی</div>
+                    </div>
+
+                    <div class="mini-stat">
+                        <div class="mini-value">۰</div>
+                        <div class="mini-title">برد</div>
+                    </div>
+
+                    <div class="mini-stat">
+                        <div class="mini-value">۰</div>
+                        <div class="mini-title">امتیاز</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="player-stat">
+
+                <div class="player-name">
+
+                    <div class="player-avatar">
+                        🎲
+                    </div>
+
+                    ساشا
+
+                </div>
+
+
+                <div class="mini-stats">
+
+                    <div class="mini-stat">
+                        <div class="mini-value">۰</div>
+                        <div class="mini-title">بازی</div>
+                    </div>
+
+                    <div class="mini-stat">
+                        <div class="mini-value">۰</div>
+                        <div class="mini-title">برد</div>
+                    </div>
+
+                    <div class="mini-stat">
+                        <div class="mini-value">۰</div>
+                        <div class="mini-title">امتیاز</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- RECORDS -->
+
+    <section class="section">
+
+        <div class="section-title">
+            🏅 رکوردهای لیگ
+        </div>
+
+
+        <div class="records">
+
+            <div class="record">
+
+                <div class="record-icon">
+                    🔥
+                </div>
+
+                <div class="record-title">
+                    بیشترین برد متوالی
+                </div>
+
+                <div class="record-value">
+                    —
+                </div>
+
+            </div>
+
+
+            <div class="record">
+
+                <div class="record-icon">
+                    🎯
+                </div>
+
+                <div class="record-title">
+                    بیشترین امتیاز
+                </div>
+
+                <div class="record-value">
+                    —
+                </div>
+
+            </div>
+
+
+            <div class="record">
+
+                <div class="record-icon">
+                    ⚡
+                </div>
+
+                <div class="record-title">
+                    آخرین پیروزی
+                </div>
+
+                <div class="record-value">
+                    —
+                </div>
+
+            </div>
+
+
+            <div class="record">
+
+                <div class="record-icon">
+                    👑
+                </div>
+
+                <div class="record-title">
+                    قهرمان فعلی
+                </div>
+
+                <div class="record-value">
+                    —
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <div class="notice">
+
+        ℹ️ آمار فعلاً <strong>نمایشی</strong> است.
+        پس از اتصال سایت به دیتابیس، تمام اعداد و رکوردها به‌صورت خودکار محاسبه و نمایش داده خواهند شد.
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-title">
+        🏆 لیگ تخته ساناز و ساشا
+    </div>
+
+    <div>
+        سایت رسمی لیگ تخته
+    </div>
+
+    <div class="creator">
+        ساخته شده توسط امیر عباس ❤️
+    </div>
+
+    <div style="margin-top: 8px;">
+        © 2026 — تمامی حقوق محفوظ است.
+    </div>
+
+</footer>
+
+</body>
+                          </html>
