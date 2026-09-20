@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تست اتصال لیگ تخته</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+<h1>🏆 لیگ تخته ساناز و ساشا</h1>
+
+<p id="status">در حال اتصال به دیتابیس...</p>
+
+<script>
+
+const SUPABASE_URL = "https://ldjnkemwakuktqlicrgf.supabase.co";
+const SUPABASE_KEY = "sb_publishable_4GqTZUbB6poSY_LQ0_zIBQ_QF7Pj7Wy";
+
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+async function testConnection() {
+
+    const { data, error } = await supabaseClient
+        .from("players")
+        .select("*");
+
+    if (error) {
+        document.getElementById("status").innerText =
+            "❌ خطا در اتصال: " + error.message;
+        console.error(error);
+        return;
+    }
+
+    document.getElementById("status").innerText =
+        "✅ اتصال موفق! بازیکنان: " + data.length;
+
+    console.log(data);
+}
+
+testConnection();
+
+</script>
+
+</body>
+</html>
