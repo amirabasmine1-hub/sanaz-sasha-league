@@ -318,6 +318,7 @@
             display: flex;
             align-items: center;
             gap: 13px;
+            min-width: 0;
         }
 
         .match-icon {
@@ -328,6 +329,7 @@
             align-items: center;
             justify-content: center;
             background: rgba(124,77,255,.12);
+            flex-shrink: 0;
         }
 
         .match h3 {
@@ -344,6 +346,7 @@
             padding: 6px 10px;
             border-radius: 999px;
             font-size: 9px;
+            white-space: nowrap;
         }
 
         .status.waiting {
@@ -354,6 +357,11 @@
         .status.done {
             color: var(--green);
             background: rgba(57,217,138,.08);
+        }
+
+        .status.cancelled {
+            color: var(--red);
+            background: rgba(255,92,122,.08);
         }
 
         .actions {
@@ -419,15 +427,39 @@
             font-size: 10px;
         }
 
-        /* NEWS */
+        /* FORM SECTIONS */
 
-        .news-section {
+        .management-section {
             margin-top: 20px;
         }
 
-        .news-form {
+        .management-grid {
             display: grid;
-            gap: 14px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .management-card {
+            padding: 20px;
+            border-radius: 16px;
+            background: rgba(255,255,255,.025);
+            border: 1px solid rgba(255,255,255,.045);
+        }
+
+        .management-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .management-card > p {
+            color: #666579;
+            font-size: 10px;
+            margin-bottom: 17px;
+        }
+
+        .form {
+            display: grid;
+            gap: 12px;
         }
 
         .field label {
@@ -438,16 +470,26 @@
         }
 
         .field input,
+        .field select,
         .field textarea {
             width: 100%;
             border: 1px solid var(--border);
             outline: none;
             border-radius: 13px;
-            padding: 13px 14px;
+            padding: 12px 13px;
             color: white;
             background: rgba(255,255,255,.025);
             transition: .2s;
             font-size: 12px;
+        }
+
+        .field select {
+            appearance: auto;
+        }
+
+        .field option {
+            background: #121225;
+            color: white;
         }
 
         .field textarea {
@@ -457,10 +499,65 @@
         }
 
         .field input:focus,
+        .field select:focus,
         .field textarea:focus {
             border-color: rgba(124,77,255,.55);
             background: rgba(124,77,255,.045);
             box-shadow: 0 0 0 3px rgba(124,77,255,.06);
+        }
+
+        .primary-btn {
+            border: none;
+            border-radius: 13px;
+            padding: 13px;
+            color: white;
+            font-weight: 800;
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--purple), var(--blue));
+            box-shadow: 0 8px 25px rgba(124,77,255,.18);
+            transition: .2s;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .primary-btn:disabled {
+            opacity: .55;
+            cursor: wait;
+        }
+
+        .message {
+            display: none;
+            padding: 11px 13px;
+            border-radius: 12px;
+            font-size: 10px;
+            line-height: 1.7;
+        }
+
+        .message.success {
+            display: block;
+            color: var(--green);
+            background: rgba(57,217,138,.07);
+            border: 1px solid rgba(57,217,138,.14);
+        }
+
+        .message.error {
+            display: block;
+            color: var(--red);
+            background: rgba(255,92,122,.07);
+            border: 1px solid rgba(255,92,122,.14);
+        }
+
+        /* NEWS */
+
+        .news-section {
+            margin-top: 20px;
+        }
+
+        .news-form {
+            display: grid;
+            gap: 14px;
         }
 
         .publish-btn {
@@ -540,27 +637,7 @@
             font-size: 11px;
         }
 
-        .message {
-            display: none;
-            padding: 12px 14px;
-            border-radius: 12px;
-            font-size: 11px;
-            line-height: 1.7;
-        }
-
-        .message.success {
-            display: block;
-            color: var(--green);
-            background: rgba(57,217,138,.07);
-            border: 1px solid rgba(57,217,138,.14);
-        }
-
-        .message.error {
-            display: block;
-            color: var(--red);
-            background: rgba(255,92,122,.07);
-            border: 1px solid rgba(255,92,122,.14);
-        }
+        /* DATABASE */
 
         .database {
             margin-top: 20px;
@@ -610,6 +687,12 @@
             text-align: center;
             color: #555468;
             font-size: 11px;
+        }
+
+        @media (max-width: 1100px) {
+            .management-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 1050px) {
@@ -666,6 +749,10 @@
             .news-item-top {
                 flex-direction: column;
             }
+
+            .match {
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
@@ -683,6 +770,7 @@
     </div>
 </header>
 
+
 <aside class="sidebar">
 
     <div class="side-title">مدیریت لیگ</div>
@@ -692,17 +780,17 @@
         داشبورد
     </a>
 
-    <a href="#" class="side-link">
+    <a href="#management" class="side-link">
         <div class="side-icon">👥</div>
-        بازیکنان
+        مدیریت
     </a>
 
-    <a href="#" class="side-link">
+    <a href="#matchesManager" class="side-link">
         <div class="side-icon">🎮</div>
         مسابقات
     </a>
 
-    <a href="#" class="side-link">
+    <a href="#resultManager" class="side-link">
         <div class="side-icon">🏆</div>
         نتایج
     </a>
@@ -712,7 +800,7 @@
         اخبار
     </a>
 
-    <a href="#" class="side-link">
+    <a href="#" class="side-link" onclick="alert('⚙️ تنظیمات لیگ در مرحله بعد اضافه می‌شود.')">
         <div class="side-icon">⚙️</div>
         تنظیمات لیگ
     </a>
@@ -737,9 +825,11 @@
 
 </aside>
 
+
 <main>
 
     <div class="page-head">
+
         <div>
             <h1>داشبورد مدیریت</h1>
 
@@ -751,13 +841,16 @@
         <div class="date">
             وضعیت سیستم · آماده
         </div>
+
     </div>
+
 
     <!-- STATS -->
 
     <section class="stats">
 
         <div class="stat">
+
             <div class="stat-top">
                 <div class="stat-label">بازیکنان</div>
                 <div class="stat-icon">👥</div>
@@ -770,39 +863,48 @@
             <div class="stat-sub">
                 بازیکن رسمی
             </div>
+
         </div>
 
+
         <div class="stat">
+
             <div class="stat-top">
                 <div class="stat-label">مسابقات</div>
                 <div class="stat-icon">🎮</div>
             </div>
 
             <div class="stat-value" id="matchCount">
-                ۰
+                ...
             </div>
 
             <div class="stat-sub">
                 مسابقه ثبت‌شده
             </div>
+
         </div>
 
+
         <div class="stat">
+
             <div class="stat-top">
                 <div class="stat-label">نتایج</div>
                 <div class="stat-icon">🏆</div>
             </div>
 
             <div class="stat-value" id="resultCount">
-                ۰
+                ...
             </div>
 
             <div class="stat-sub">
                 نتیجه ثبت‌شده
             </div>
+
         </div>
 
+
         <div class="stat">
+
             <div class="stat-top">
                 <div class="stat-label">اخبار</div>
                 <div class="stat-icon">📰</div>
@@ -815,130 +917,113 @@
             <div class="stat-sub">
                 خبر منتشرشده
             </div>
+
         </div>
 
     </section>
 
+
+    <!-- DASHBOARD -->
+
     <section class="dashboard-grid">
+
 
         <!-- MATCHES -->
 
         <div class="panel">
 
             <div class="panel-head">
+
                 <h2>🎮 مسابقات اخیر</h2>
-                <span>مدیریت مسابقات</span>
+
+                <span>
+                    مدیریت مسابقات
+                </span>
+
             </div>
 
-            <div class="panel-body">
+            <div class="panel-body" id="recentMatches">
 
-                <div class="match">
-
-                    <div class="match-info">
-
-                        <div class="match-icon">
-                            🎲
-                        </div>
-
-                        <div>
-                            <h3>ساناز × ساشا</h3>
-
-                            <p>
-                                مسابقه #۰۱ · زمان نامعلوم
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <div class="status waiting">
-                        در انتظار
-                    </div>
-
-                </div>
-
-                <div class="match">
-
-                    <div class="match-info">
-
-                        <div class="match-icon">
-                            📅
-                        </div>
-
-                        <div>
-                            <h3>برنامه مسابقه بعدی</h3>
-
-                            <p>
-                                هنوز زمان‌بندی نشده
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <div class="status waiting">
-                        نامعلوم
-                    </div>
-
-                </div>
-
-                <div class="match">
-
-                    <div class="match-info">
-
-                        <div class="match-icon">
-                            🏆
-                        </div>
-
-                        <div>
-                            <h3>آخرین نتیجه</h3>
-
-                            <p>
-                                هنوز نتیجه‌ای ثبت نشده
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <div class="status waiting">
-                        خالی
-                    </div>
-
+                <div class="empty-news">
+                    در حال دریافت مسابقات...
                 </div>
 
             </div>
 
         </div>
 
+
         <!-- QUICK ACTIONS -->
 
         <div class="panel">
 
             <div class="panel-head">
+
                 <h2>⚡ عملیات سریع</h2>
-                <span>مدیریت</span>
+
+                <span>
+                    مدیریت
+                </span>
+
             </div>
 
             <div class="panel-body">
 
                 <div class="actions">
 
-                    <button class="action" onclick="comingSoon('افزودن بازیکن')">
+                    <button
+                        class="action"
+                        onclick="scrollToSection('playerManager')"
+                    >
+
                         <div class="action-icon">👤</div>
-                        <div class="action-name">افزودن بازیکن</div>
+
+                        <div class="action-name">
+                            افزودن بازیکن
+                        </div>
+
                     </button>
 
-                    <button class="action" onclick="comingSoon('ایجاد مسابقه')">
+
+                    <button
+                        class="action"
+                        onclick="scrollToSection('matchesManager')"
+                    >
+
                         <div class="action-icon">🎮</div>
-                        <div class="action-name">ایجاد مسابقه</div>
+
+                        <div class="action-name">
+                            ایجاد مسابقه
+                        </div>
+
                     </button>
 
-                    <button class="action" onclick="comingSoon('ثبت نتیجه')">
+
+                    <button
+                        class="action"
+                        onclick="scrollToSection('resultManager')"
+                    >
+
                         <div class="action-icon">🏆</div>
-                        <div class="action-name">ثبت نتیجه</div>
+
+                        <div class="action-name">
+                            ثبت نتیجه
+                        </div>
+
                     </button>
 
-                    <button class="action" onclick="scrollToNews()">
+
+                    <button
+                        class="action"
+                        onclick="scrollToNews()"
+                    >
+
                         <div class="action-icon">📰</div>
-                        <div class="action-name">انتشار خبر</div>
+
+                        <div class="action-name">
+                            انتشار خبر
+                        </div>
+
                     </button>
 
                 </div>
@@ -949,9 +1034,306 @@
 
     </section>
 
-    <!-- NEWS MANAGER -->
 
-    <section class="panel news-section" id="newsManager">
+    <!-- MANAGEMENT -->
+
+    <section
+        class="panel management-section"
+        id="management"
+    >
+
+        <div class="panel-head">
+
+            <h2>
+                ⚡ مدیریت لیگ
+            </h2>
+
+            <span>
+                افزودن و ثبت اطلاعات
+            </span>
+
+        </div>
+
+
+        <div class="panel-body">
+
+            <div class="management-grid">
+
+
+                <!-- PLAYER -->
+
+                <div
+                    class="management-card"
+                    id="playerManager"
+                >
+
+                    <h3>
+                        👤 افزودن بازیکن
+                    </h3>
+
+                    <p>
+                        بازیکن جدید را به لیگ اضافه کن.
+                    </p>
+
+
+                    <div class="form">
+
+                        <div class="field">
+
+                            <label for="playerName">
+                                نام بازیکن
+                            </label>
+
+                            <input
+                                id="playerName"
+                                type="text"
+                                placeholder="مثلاً: امیر"
+                            >
+
+                        </div>
+
+
+                        <div
+                            id="playerMessage"
+                            class="message"
+                        ></div>
+
+
+                        <button
+                            class="primary-btn"
+                            id="addPlayerBtn"
+                            onclick="addPlayer()"
+                        >
+                            👤 افزودن بازیکن
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MATCH -->
+
+                <div
+                    class="management-card"
+                    id="matchesManager"
+                >
+
+                    <h3>
+                        🎮 ایجاد مسابقه
+                    </h3>
+
+                    <p>
+                        یک مسابقه جدید برای دو بازیکن بساز.
+                    </p>
+
+
+                    <div class="form">
+
+
+                        <div class="field">
+
+                            <label for="matchPlayer1">
+                                بازیکن اول
+                            </label>
+
+                            <select id="matchPlayer1">
+                                <option value="">
+                                    انتخاب بازیکن
+                                </option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label for="matchPlayer2">
+                                بازیکن دوم
+                            </label>
+
+                            <select id="matchPlayer2">
+                                <option value="">
+                                    انتخاب بازیکن
+                                </option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label for="matchDate">
+                                تاریخ مسابقه
+                            </label>
+
+                            <input
+                                id="matchDate"
+                                type="date"
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label for="matchTime">
+                                ساعت مسابقه
+                            </label>
+
+                            <input
+                                id="matchTime"
+                                type="time"
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label for="matchStatus">
+                                وضعیت
+                            </label>
+
+                            <select id="matchStatus">
+
+                                <option value="scheduled">
+                                    برنامه‌ریزی‌شده
+                                </option>
+
+                                <option value="completed">
+                                    برگزارشده
+                                </option>
+
+                                <option value="cancelled">
+                                    لغوشده
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div
+                            id="matchMessage"
+                            class="message"
+                        ></div>
+
+
+                        <button
+                            class="primary-btn"
+                            id="createMatchBtn"
+                            onclick="createMatch()"
+                        >
+                            🎮 ایجاد مسابقه
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RESULT -->
+
+                <div
+                    class="management-card"
+                    id="resultManager"
+                >
+
+                    <h3>
+                        🏆 ثبت نتیجه
+                    </h3>
+
+                    <p>
+                        نتیجه یک مسابقه برگزارشده را ثبت کن.
+                    </p>
+
+
+                    <div class="form">
+
+
+                        <div class="field">
+
+                            <label for="resultMatch">
+                                مسابقه
+                            </label>
+
+                            <select id="resultMatch">
+
+                                <option value="">
+                                    انتخاب مسابقه
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label for="score1">
+                                امتیاز بازیکن اول
+                            </label>
+
+                            <input
+                                id="score1"
+                                type="number"
+                                min="0"
+                                step="1"
+                                placeholder="مثلاً ۵"
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label for="score2">
+                                امتیاز بازیکن دوم
+                            </label>
+
+                            <input
+                                id="score2"
+                                type="number"
+                                min="0"
+                                step="1"
+                                placeholder="مثلاً ۳"
+                            >
+
+                        </div>
+
+
+                        <div
+                            id="resultMessage"
+                            class="message"
+                        ></div>
+
+
+                        <button
+                            class="primary-btn"
+                            id="saveResultBtn"
+                            onclick="saveResult()"
+                        >
+                            🏆 ثبت نتیجه
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- NEWS -->
+
+    <section
+        class="panel news-section"
+        id="newsManager"
+    >
 
         <div class="panel-head">
 
@@ -965,9 +1347,11 @@
 
         </div>
 
+
         <div class="panel-body">
 
             <div class="news-form">
+
 
                 <div class="field">
 
@@ -983,6 +1367,7 @@
 
                 </div>
 
+
                 <div class="field">
 
                     <label for="newsContent">
@@ -995,6 +1380,7 @@
                     ></textarea>
 
                 </div>
+
 
                 <div class="field">
 
@@ -1010,7 +1396,12 @@
 
                 </div>
 
-                <div id="newsMessage" class="message"></div>
+
+                <div
+                    id="newsMessage"
+                    class="message"
+                ></div>
+
 
                 <button
                     class="publish-btn"
@@ -1025,6 +1416,7 @@
         </div>
 
     </section>
+
 
     <!-- NEWS LIST -->
 
@@ -1042,9 +1434,13 @@
 
         </div>
 
+
         <div class="panel-body">
 
-            <div id="newsList" class="news-list">
+            <div
+                id="newsList"
+                class="news-list"
+            >
 
                 <div class="empty-news">
                     در حال دریافت خبرها...
@@ -1056,9 +1452,13 @@
 
     </section>
 
+
     <!-- ACTIVITY -->
 
-    <section class="panel" style="margin-top:20px;">
+    <section
+        class="panel"
+        style="margin-top:20px;"
+    >
 
         <div class="panel-head">
 
@@ -1067,10 +1467,11 @@
             </h2>
 
             <span>
-                آخرین رویدادها
+                وضعیت سیستم
             </span>
 
         </div>
+
 
         <div class="panel-body">
 
@@ -1079,45 +1480,53 @@
                 <div class="activity-dot"></div>
 
                 <div>
+
                     <h4>
-                        سیستم مدیریت آماده شد
+                        سیستم مدیریت آماده است
                     </h4>
 
                     <p>
-                        پنل مدیریت لیگ ایجاد شده است.
+                        پنل مدیریت به Supabase متصل است.
                     </p>
+
                 </div>
 
             </div>
+
 
             <div class="activity">
 
                 <div class="activity-dot"></div>
 
                 <div>
+
                     <h4>
-                        دو بازیکن رسمی ثبت شدند
+                        مدیریت بازیکنان فعال است
                     </h4>
 
                     <p>
-                        ساناز و ساشا در سیستم لیگ قرار دارند.
+                        می‌توانی بازیکن جدید اضافه کنی.
                     </p>
+
                 </div>
 
             </div>
+
 
             <div class="activity">
 
                 <div class="activity-dot"></div>
 
                 <div>
+
                     <h4>
-                        لیگ هنوز شروع نشده است
+                        مدیریت مسابقات و نتایج فعال است
                     </h4>
 
                     <p>
-                        اولین مسابقه هنوز برنامه‌ریزی نشده.
+                        مسابقه بساز و نتیجه آن را ثبت کن.
                     </p>
+
                 </div>
 
             </div>
@@ -1125,6 +1534,7 @@
         </div>
 
     </section>
+
 
     <!-- DATABASE -->
 
@@ -1156,6 +1566,7 @@
 
 </main>
 
+
 <footer>
     🏆 لیگ تخته ساناز و ساشا · پنل مدیریت · ساخته شده توسط امیر عباس ❤️
 </footer>
@@ -1169,308 +1580,624 @@
 
 <script>
 
-    /* =========================
+    /* =====================================================
        ابزارهای عمومی
-    ========================= */
+    ===================================================== */
 
     function toPersianNumber(number) {
+
         return Number(number).toLocaleString("fa-IR");
+
     }
 
+
     function escapeHTML(text) {
+
         return String(text ?? "")
             .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
             .replace(/>/g, "&gt;")
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#039;");
+
     }
+
+
+    function scrollToSection(id) {
+
+        const element =
+            document.getElementById(id);
+
+        if (!element) return;
+
+        element.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    }
+
 
     function scrollToNews() {
-        document.getElementById("newsManager").scrollIntoView({
-            behavior: "smooth"
-        });
-    }
 
-    function comingSoon(name) {
-        alert(
-            "⚡ " + name +
-            "\n\nاین بخش هنوز ساخته نشده."
-        );
+        scrollToSection("newsManager");
+
     }
 
 
-    /* =========================
+    function showMessage(id, type, text) {
+
+        const element =
+            document.getElementById(id);
+
+        if (!element) return;
+
+        element.className =
+            "message " + type;
+
+        element.textContent = text;
+
+    }
+
+
+    function clearMessage(id) {
+
+        const element =
+            document.getElementById(id);
+
+        if (!element) return;
+
+        element.className = "message";
+        element.textContent = "";
+
+    }
+
+
+    /* =====================================================
        بازیکنان
-    ========================= */
+    ===================================================== */
+
+    async function loadPlayers() {
+
+        const player1 =
+            document.getElementById("matchPlayer1");
+
+        const player2 =
+            document.getElementById("matchPlayer2");
+
+
+        const { data, error } =
+            await supabaseClient
+                .from("players")
+                .select("id, name")
+                .order("id", {
+                    ascending: true
+                });
+
+
+        if (error) {
+
+            console.error(
+                "Players Load Error:",
+                error
+            );
+
+            return;
+
+        }
+
+
+        const options = data.map(player => {
+
+            return `
+                <option value="${player.id}">
+                    ${escapeHTML(player.name)}
+                </option>
+            `;
+
+        }).join("");
+
+
+        player1.innerHTML =
+            `<option value="">انتخاب بازیکن</option>` +
+            options;
+
+
+        player2.innerHTML =
+            `<option value="">انتخاب بازیکن</option>` +
+            options;
+
+    }
+
 
     async function loadPlayerCount() {
 
         const playerCount =
             document.getElementById("playerCount");
 
-        const { count, error } = await supabaseClient
-            .from("players")
-            .select("*", {
-                count: "exact",
-                head: true
-            });
+
+        const { count, error } =
+            await supabaseClient
+                .from("players")
+                .select("*", {
+                    count: "exact",
+                    head: true
+                });
+
 
         if (error) {
 
-            console.error("Players Error:", error);
+            console.error(
+                "Players Count Error:",
+                error
+            );
 
             playerCount.textContent = "—";
 
             return;
+
         }
+
 
         playerCount.textContent =
             toPersianNumber(count ?? 0);
+
     }
 
 
-    /* =========================
-       اخبار
-    ========================= */
+    async function addPlayer() {
 
-    async function loadNews() {
-
-        const newsList =
-            document.getElementById("newsList");
-
-        const newsCount =
-            document.getElementById("newsCount");
-
-        const { data, error } = await supabaseClient
-            .from("news")
-            .select("id, title, content, image_url, created_at")
-            .order("created_at", {
-                ascending: false
-            });
-
-        if (error) {
-
-            console.error("News Error:", error);
-
-            newsCount.textContent = "—";
-
-            newsList.innerHTML = `
-                <div class="empty-news">
-                    ❌ دریافت اخبار با خطا مواجه شد.
-                    <br>
-                    <small>${escapeHTML(error.message)}</small>
-                </div>
-            `;
-
-            return;
-        }
-
-        newsCount.textContent =
-            toPersianNumber(data.length);
-
-        if (!data.length) {
-
-            newsList.innerHTML = `
-                <div class="empty-news">
-                    📰 هنوز خبری منتشر نشده است.
-                </div>
-            `;
-
-            return;
-        }
-
-        newsList.innerHTML = data.map(news => {
-
-            const date = news.created_at
-                ? new Date(news.created_at).toLocaleString(
-                    "fa-IR",
-                    {
-                        dateStyle: "medium",
-                        timeStyle: "short"
-                    }
-                )
-                : "تاریخ نامعلوم";
-
-            return `
-                <div class="news-item">
-
-                    <div class="news-item-top">
-
-                        <div>
-
-                            <h3>
-                                ${escapeHTML(news.title)}
-                            </h3>
-
-                            <p>
-                                ${escapeHTML(news.content)}
-                            </p>
-
-                        </div>
-
-                        <button
-                            class="delete-btn"
-                            onclick="deleteNews(${news.id})"
-                        >
-                            🗑 حذف
-                        </button>
-
-                    </div>
-
-                    <div class="news-date">
-                        🕐 ${escapeHTML(date)}
-                    </div>
-
-                </div>
-            `;
-
-        }).join("");
-    }
-
-
-    /* =========================
-       انتشار خبر
-    ========================= */
-
-    async function publishNews() {
-
-        const title =
-            document.getElementById("newsTitle").value.trim();
-
-        const content =
-            document.getElementById("newsContent").value.trim();
-
-        const imageUrl =
-            document.getElementById("newsImage").value.trim();
+        const input =
+            document.getElementById("playerName");
 
         const button =
-            document.getElementById("publishNewsBtn");
-
-        const message =
-            document.getElementById("newsMessage");
+            document.getElementById("addPlayerBtn");
 
 
-        message.className = "message";
-        message.textContent = "";
+        clearMessage("playerMessage");
 
 
-        if (!title) {
-
-            message.className = "message error";
-            message.textContent =
-                "⚠️ لطفاً عنوان خبر را وارد کن.";
-
-            return;
-        }
+        const name =
+            input.value.trim();
 
 
-        if (!content) {
+        if (!name) {
 
-            message.className = "message error";
-            message.textContent =
-                "⚠️ لطفاً متن خبر را وارد کن.";
+            showMessage(
+                "playerMessage",
+                "error",
+                "⚠️ لطفاً نام بازیکن را وارد کن."
+            );
 
             return;
+
         }
 
 
         button.disabled = true;
-        button.textContent = "⏳ در حال انتشار...";
+        button.textContent =
+            "⏳ در حال افزودن...";
 
 
-        const { error } = await supabaseClient
-            .from("news")
-            .insert([
-                {
-                    title: title,
-                    content: content,
-                    image_url: imageUrl || null
-                }
-            ]);
-
-
-        if (error) {
-
-            console.error("Publish News Error:", error);
-
-            message.className = "message error";
-
-            message.textContent =
-                "❌ خبر ذخیره نشد: " + error.message;
-
-            button.disabled = false;
-            button.textContent = "📰 انتشار خبر";
-
-            return;
-        }
-
-
-        message.className = "message success";
-
-        message.textContent =
-            "✅ خبر با موفقیت منتشر شد.";
-
-
-        document.getElementById("newsTitle").value = "";
-        document.getElementById("newsContent").value = "";
-        document.getElementById("newsImage").value = "";
-
-
-        button.disabled = false;
-        button.textContent = "📰 انتشار خبر";
-
-
-        await loadNews();
-    }
-
-
-    /* =========================
-       حذف خبر
-    ========================= */
-
-    async function deleteNews(id) {
-
-        const confirmed =
-            confirm("آیا مطمئنی می‌خواهی این خبر حذف شود؟");
-
-
-        if (!confirmed) {
-            return;
-        }
-
-
-        const { error } = await supabaseClient
-            .from("news")
-            .delete()
-            .eq("id", id);
+        const { error } =
+            await supabaseClient
+                .from("players")
+                .insert([
+                    {
+                        name: name
+                    }
+                ]);
 
 
         if (error) {
 
-            console.error("Delete News Error:", error);
+            console.error(
+                "Add Player Error:",
+                error
+            );
 
-            alert(
-                "❌ حذف خبر انجام نشد.\n\n" +
+
+            showMessage(
+                "playerMessage",
+                "error",
+                "❌ بازیکن اضافه نشد: " +
                 error.message
             );
 
+
+            button.disabled = false;
+            button.textContent =
+                "👤 افزودن بازیکن";
+
             return;
+
         }
 
 
-        await loadNews();
+        showMessage(
+            "playerMessage",
+            "success",
+            "✅ بازیکن «" +
+            name +
+            "» با موفقیت اضافه شد."
+        );
+
+
+        input.value = "";
+
+
+        button.disabled = false;
+        button.textContent =
+            "👤 افزودن بازیکن";
+
+
+        await loadPlayerCount();
+        await loadPlayers();
+
     }
 
 
-    /* =========================
-       شروع
-    ========================= */
+    /* =====================================================
+       مسابقات
+    ===================================================== */
 
-    loadPlayerCount();
-    loadNews();
+    async function createMatch() {
 
-</script>
+        const player1 =
+            document.getElementById("matchPlayer1").value;
 
-</body>
-    </html>
+        const player2 =
+            document.getElementById("matchPlayer2").value;
+
+        const date =
+            document.getElementById("matchDate").value;
+
+        const time =
+            document.getElementById("matchTime").value;
+
+        const status =
+            document.getElementById("matchStatus").value;
+
+        const button =
+            document.getElementById("createMatchBtn");
+
+
+        clearMessage("matchMessage");
+
+
+        if (!player1 || !player2) {
+
+            showMessage(
+                "matchMessage",
+                "error",
+                "⚠️ لطفاً هر دو بازیکن را انتخاب کن."
+            );
+
+            return;
+
+        }
+
+
+        if (player1 === player2) {
+
+            showMessage(
+                "matchMessage",
+                "error",
+                "⚠️ یک بازیکن نمی‌تواند مقابل خودش بازی کند."
+            );
+
+            return;
+
+        }
+
+
+        if (!date) {
+
+            showMessage(
+                "matchMessage",
+                "error",
+                "⚠️ لطفاً تاریخ مسابقه را انتخاب کن."
+            );
+
+            return;
+
+        }
+
+
+        if (!time) {
+
+            showMessage(
+                "matchMessage",
+                "error",
+                "⚠️ لطفاً ساعت مسابقه را انتخاب کن."
+            );
+
+            return;
+
+        }
+
+
+        button.disabled = true;
+        button.textContent =
+            "⏳ در حال ایجاد...";
+
+
+        const { error } =
+            await supabaseClient
+                .from("matches")
+                .insert([
+                    {
+                        player1_id: Number(player1),
+                        player2_id: Number(player2),
+                        match_date: date,
+                        match_time: time,
+                        status: status
+                    }
+                ]);
+
+
+        if (error) {
+
+            console.error(
+                "Create Match Error:",
+                error
+            );
+
+
+            showMessage(
+                "matchMessage",
+                "error",
+                "❌ مسابقه ایجاد نشد: " +
+                error.message
+            );
+
+
+            button.disabled = false;
+            button.textContent =
+                "🎮 ایجاد مسابقه";
+
+            return;
+
+        }
+
+
+        showMessage(
+            "matchMessage",
+            "success",
+            "✅ مسابقه با موفقیت ایجاد شد."
+        );
+
+
+        document.getElementById("matchDate").value = "";
+        document.getElementById("matchTime").value = "";
+        document.getElementById("matchPlayer1").value = "";
+        document.getElementById("matchPlayer2").value = "";
+
+
+        button.disabled = false;
+        button.textContent =
+            "🎮 ایجاد مسابقه";
+
+
+        await loadMatchCount();
+        await loadMatches();
+        await loadResultMatches();
+
+    }
+
+
+    async function loadMatchCount() {
+
+        const element =
+            document.getElementById("matchCount");
+
+
+        const { count, error } =
+            await supabaseClient
+                .from("matches")
+                .select("*", {
+                    count: "exact",
+                    head: true
+                });
+
+
+        if (error) {
+
+            console.error(
+                "Match Count Error:",
+                error
+            );
+
+            element.textContent = "—";
+
+            return;
+
+        }
+
+
+        element.textContent =
+            toPersianNumber(count ?? 0);
+
+    }
+
+
+    function getStatusText(status) {
+
+        if (status === "completed") {
+            return "برگزارشده";
+        }
+
+        if (status === "cancelled") {
+            return "لغوشده";
+        }
+
+        return "در انتظار";
+
+    }
+
+
+    function getStatusClass(status) {
+
+        if (status === "completed") {
+            return "done";
+        }
+
+        if (status === "cancelled") {
+            return "cancelled";
+        }
+
+        return "waiting";
+
+    }
+
+
+    function formatMatchDate(date, time) {
+
+        let result = "";
+
+
+        if (date) {
+
+            result += new Date(
+                date + "T00:00:00"
+            ).toLocaleDateString(
+                "fa-IR",
+                {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                }
+            );
+
+        }
+
+
+        if (time) {
+
+            result +=
+                " · " +
+                time.substring(0, 5);
+
+        }
+
+
+        return result || "زمان نامعلوم";
+
+    }
+
+
+    async function loadMatches() {
+
+        const container =
+            document.getElementById("recentMatches");
+
+
+        const { data, error } =
+            await supabaseClient
+                .from("matches")
+                .select(`
+                    id,
+                    player1_id,
+                    player2_id,
+                    match_date,
+                    match_time,
+                    status,
+                    player1:players!matches_player1_id_fkey(id, name),
+                    player2:players!matches_player2_id_fkey(id, name)
+                `)
+                .order("id", {
+                    ascending: false
+                })
+                .limit(6);
+
+
+        if (error) {
+
+            console.error(
+                "Matches Load Error:",
+                error
+            );
+
+
+            container.innerHTML = `
+                <div class="empty-news">
+                    ❌ دریافت مسابقات با خطا مواجه شد.
+                    <br>
+                    <small>
+                        ${escapeHTML(error.message)}
+                    </small>
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        if (!data.length) {
+
+            container.innerHTML = `
+                <div class="empty-news">
+                    🎮 هنوز مسابقه‌ای ایجاد نشده است.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            data.map(match => {
+
+                const name1 =
+                    match.player1?.name ||
+                    "بازیکن ۱";
+
+                const name2 =
+                    match.player2?.name ||
+                    "بازیکن ۲";
+
+                const statusText =
+                    getStatusText(match.status);
+
+                const statusClass =
+                    getStatusClass(match.status);
+
+                const dateText =
+                    formatMatchDate(
+                        match.match_date,
+                        match.match_time
+                    );
+
+
+                return `
+                    <div class="match">
+
+                        <div class="match-info">
+
+                            <div class="match-icon">
+                                🎲
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    ${escapeHTML(name1)}
+                                    ×
+                                    ${escapeHTML(name2)}
+                                </h3>
+
+                                <p>
+                                    مسابقه #${toPersianNumber(match.id)}
+                                    ·
+                                    ${escapeHTML(dateText)}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="status ${statusClass}">
+                            ${statusText}
+                        </div
