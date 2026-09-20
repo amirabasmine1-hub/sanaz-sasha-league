@@ -1,877 +1,609 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>مسابقات | لیگ تخته ساناز و ساشا</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap"
-rel="stylesheet">
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:"Vazirmatn",Tahoma,sans-serif;
-    background:#060611;
-    color:#fff;
-    min-height:100vh;
-    overflow-x:hidden;
-}
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-3;
-
-    background:
-        radial-gradient(
-            circle at 15% 10%,
-            rgba(124,58,237,.28),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 85% 30%,
-            rgba(37,99,235,.18),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 50% 90%,
-            rgba(168,85,247,.12),
-            transparent 35%
-        );
-}
-
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-2;
-
-    background-image:
-        linear-gradient(
-            rgba(255,255,255,.025) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.025) 1px,
-            transparent 1px
-        );
-
-    background-size:45px 45px;
-}
-
-
-/* ================= HEADER ================= */
-
-header{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    z-index:100;
-
-    background:rgba(6,6,17,.78);
-    backdrop-filter:blur(20px);
-
-    border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.navbar{
-    width:min(1250px,92%);
-    min-height:75px;
-    margin:auto;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-
-    font-size:18px;
-    font-weight:900;
-}
-
-.logo-icon{
-    width:43px;
-    height:43px;
-
-    display:grid;
-    place-items:center;
-
-    border-radius:13px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7c3aed,
-            #2563eb
-        );
-
-    box-shadow:
-        0 0 30px rgba(124,58,237,.35);
-}
-
-.logo span{
-    color:#c084fc;
-}
-
-.nav-links{
-    display:flex;
-    gap:7px;
-    flex-wrap:wrap;
-}
-
-.nav-links a{
-    color:#aaa;
-    text-decoration:none;
-
-    padding:9px 12px;
-
-    border-radius:10px;
-
-    font-size:13px;
-    font-weight:600;
-
-    transition:.2s;
-}
-
-.nav-links a:hover,
-.nav-links a.active{
-    color:#fff;
-    background:rgba(124,58,237,.18);
-}
-
-
-/* ================= PAGE ================= */
-
-.container{
-    width:min(1150px,92%);
-    margin:auto;
-}
-
-.page{
-    padding-top:145px;
-    padding-bottom:100px;
-}
-
-.page-title{
-    text-align:center;
-    margin-bottom:55px;
-}
-
-.badge{
-    display:inline-block;
-
-    padding:8px 15px;
-
-    border-radius:999px;
-
-    background:rgba(168,85,247,.10);
-
-    border:1px solid rgba(168,85,247,.30);
-
-    color:#d8b4fe;
-
-    font-size:13px;
-    font-weight:800;
-
-    margin-bottom:18px;
-}
-
-.page-title h1{
-    font-size:clamp(38px,7vw,65px);
-
-    font-weight:900;
-
-    background:
-        linear-gradient(
-            100deg,
-            #fff,
-            #c084fc,
-            #60a5fa,
-            #fff
-        );
-
-    background-size:250%;
-
-    -webkit-background-clip:text;
-    background-clip:text;
-
-    color:transparent;
-
-    animation:titleMove 7s linear infinite;
-}
-
-@keyframes titleMove{
-    to{
-        background-position:250%;
-    }
-}
-
-.page-title p{
-    margin:18px auto 0;
-
-    max-width:650px;
-
-    color:#888;
-
-    line-height:2;
-}
-
-
-/* ================= LEAGUE INFO ================= */
-
-.info-box{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:15px;
-
-    margin-bottom:35px;
-}
-
-.info-item{
-
-    padding:20px;
-
-    border-radius:20px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.07),
-            rgba(255,255,255,.02)
-        );
-
-    border:1px solid rgba(255,255,255,.08);
-
-    text-align:center;
-}
-
-.info-icon{
-    font-size:30px;
-    margin-bottom:8px;
-}
-
-.info-value{
-    font-size:22px;
-    font-weight:900;
-}
-
-.info-label{
-    color:#777;
-    font-size:12px;
-    margin-top:5px;
-}
-
-
-/* ================= MATCH LIST ================= */
-
-.matches{
-    display:flex;
-    flex-direction:column;
-    gap:18px;
-}
-
-.match-card{
-
-    position:relative;
-
-    padding:25px;
-
-    border-radius:25px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.07),
-            rgba(255,255,255,.018)
-        );
-
-    border:1px solid rgba(255,255,255,.08);
-
-    overflow:hidden;
-
-    transition:.25s;
-}
-
-.match-card:hover{
-
-    transform:translateY(-4px);
-
-    border-color:
-        rgba(168,85,247,.40);
-
-    box-shadow:
-        0 20px 60px rgba(0,0,0,.25);
-}
-
-.match-top{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:15px;
-
-    margin-bottom:25px;
-}
-
-.match-number{
-
-    color:#777;
-
-    font-size:12px;
-
-    font-weight:700;
-}
-
-.status{
-
-    padding:6px 12px;
-
-    border-radius:999px;
-
-    font-size:11px;
-
-    font-weight:800;
-}
-
-.status.scheduled{
-
-    background:rgba(59,130,246,.12);
-
-    color:#60a5fa;
-
-    border:1px solid rgba(59,130,246,.25);
-}
-
-.status.unknown{
-
-    background:rgba(250,204,21,.10);
-
-    color:#facc15;
-
-    border:1px solid rgba(250,204,21,.20);
-}
-
-
-/* ================= TEAMS ================= */
-
-.teams{
-
-    display:grid;
-
-    grid-template-columns:
-        1fr 100px 1fr;
-
-    align-items:center;
-
-    text-align:center;
-
-    gap:15px;
-}
-
-.player{
-
-    padding:15px;
-}
-
-.player-icon{
-
-    width:65px;
-    height:65px;
-
-    margin:auto auto 12px;
-
-    display:grid;
-
-    place-items:center;
-
-    border-radius:20px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(124,58,237,.25),
-            rgba(37,99,235,.20)
-        );
-
-    border:1px solid rgba(255,255,255,.08);
-
-    font-size:28px;
-}
-
-.player-name{
-
-    font-size:20px;
-
-    font-weight:900;
-}
-
-.vs{
-
-    font-size:20px;
-
-    font-weight:900;
-
-    color:#a855f7;
-}
-
-.match-details{
-
-    margin-top:25px;
-
-    padding-top:18px;
-
-    border-top:
-        1px solid rgba(255,255,255,.07);
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:25px;
-
-    flex-wrap:wrap;
-
-    color:#888;
-
-    font-size:13px;
-}
-
-.detail{
-    display:flex;
-    align-items:center;
-    gap:7px;
-}
-
-
-/* ================= EMPTY ================= */
-
-.empty{
-
-    text-align:center;
-
-    padding:65px 20px;
-
-    border-radius:25px;
-
-    border:1px dashed rgba(255,255,255,.12);
-
-    background:rgba(255,255,255,.025);
-}
-
-.empty-icon{
-    font-size:55px;
-    margin-bottom:15px;
-}
-
-.empty h2{
-    font-size:22px;
-    margin-bottom:10px;
-}
-
-.empty p{
-    color:#777;
-    line-height:2;
-}
-
-
-/* ================= FOOTER ================= */
-
-footer{
-
-    border-top:
-        1px solid rgba(255,255,255,.08);
-
-    padding:45px 20px;
-
-    text-align:center;
-
-    color:#666;
-}
-
-.footer-title{
-    color:#aaa;
-    font-weight:800;
-    margin-bottom:10px;
-}
-
-.creator{
-    margin-top:12px;
-    color:#a855f7;
-    font-weight:800;
-}
-
-
-/* ================= MOBILE ================= */
-
-@media(max-width:750px){
-
-    .nav-links{
-        display:none;
-    }
-
-    .page{
-        padding-top:120px;
-    }
-
-    .info-box{
-        grid-template-columns:1fr;
-    }
-
-    .teams{
-        grid-template-columns:
-            1fr 60px 1fr;
-    }
-
-    .player-name{
-        font-size:16px;
-    }
-
-    .player-icon{
-        width:55px;
-        height:55px;
-    }
-
-    .match-details{
-        flex-direction:column;
-        gap:10px;
-    }
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>مسابقات | لیگ تخته ساناز و ساشا</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background:
+                radial-gradient(circle at top right, #24105c 0%, transparent 35%),
+                radial-gradient(circle at bottom left, #071d45 0%, transparent 35%),
+                #050712;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(5, 7, 18, 0.88);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: auto;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #c084fc;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            padding: 9px 13px;
+            border-radius: 10px;
+            color: #b8bdd4;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(139, 92, 246, 0.15);
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 45px 20px 70px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 7px 14px;
+            border: 1px solid rgba(168, 85, 247, 0.35);
+            border-radius: 999px;
+            color: #c084fc;
+            background: rgba(168, 85, 247, 0.08);
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: clamp(30px, 6vw, 50px);
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: #9299b5;
+            font-size: 15px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat {
+            background: rgba(14, 18, 38, 0.8);
+            border: 1px solid rgba(139, 92, 246, 0.17);
+            border-radius: 18px;
+            padding: 22px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #c084fc;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            color: #858ca8;
+            font-size: 13px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin: 30px 0 15px;
+        }
+
+        .section-title h2 {
+            font-size: 20px;
+        }
+
+        .refresh {
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            background: rgba(139, 92, 246, 0.1);
+            color: #d8b4fe;
+            padding: 9px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .matches {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .match-card {
+            background: linear-gradient(
+                145deg,
+                rgba(17, 22, 45, 0.95),
+                rgba(9, 12, 27, 0.95)
+            );
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            padding: 22px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .match-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #8b5cf6,
+                #38bdf8,
+                transparent
+            );
+        }
+
+        .match-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .match-number {
+            color: #717892;
+            font-size: 12px;
+        }
+
+        .status {
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            background: rgba(59, 130, 246, 0.12);
+            color: #93c5fd;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .status.completed {
+            background: rgba(34, 197, 94, 0.1);
+            color: #86efac;
+            border-color: rgba(34, 197, 94, 0.2);
+        }
+
+        .status.cancelled {
+            background: rgba(239, 68, 68, 0.1);
+            color: #fca5a5;
+            border-color: rgba(239, 68, 68, 0.2);
+        }
+
+        .players {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .player {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .player:last-child {
+            color: #a78bfa;
+        }
+
+        .vs {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(139, 92, 246, 0.12);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            color: #c084fc;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .match-info {
+            margin-top: 22px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            color: #8d94ae;
+            font-size: 12px;
+        }
+
+        .empty,
+        .error,
+        .loading {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 55px 20px;
+            border: 1px dashed rgba(139, 92, 246, 0.25);
+            border-radius: 20px;
+            color: #858ca8;
+            background: rgba(10, 13, 29, 0.6);
+        }
+
+        .empty-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .error {
+            color: #fca5a5;
+            border-color: rgba(239, 68, 68, 0.25);
+        }
+
+        footer {
+            border-top: 1px solid rgba(139, 92, 246, 0.15);
+            text-align: center;
+            padding: 25px 15px;
+            color: #626a84;
+            font-size: 12px;
+        }
+
+        @media (max-width: 750px) {
+            .nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .matches {
+                grid-template-columns: 1fr;
+            }
+
+            .match-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
-
 
 <body>
 
-
-<!-- ================= HEADER ================= -->
-
 <header>
+    <nav class="nav">
+        <div class="logo">🎲 لیگ تخته</div>
 
-<nav class="navbar">
-
-    <div class="logo">
-
-        <div class="logo-icon">
-            🏆
+        <div class="nav-links">
+            <a href="index.html">خانه</a>
+            <a href="news.html">اخبار</a>
+            <a href="matches.html" class="active">بازی‌ها</a>
+            <a href="results.html">نتایج</a>
+            <a href="table.html">جدول</a>
+            <a href="players.html">بازیکنان</a>
+            <a href="rules.html">قوانین</a>
         </div>
-
-        <div>
-            لیگ <span>تخته</span>
-        </div>
-
-    </div>
-
-
-    <div class="nav-links">
-
-        <a href="index.html">
-            خانه
-        </a>
-
-        <a href="news.html">
-            اخبار
-        </a>
-
-        <a href="matches.html" class="active">
-            بازی‌ها
-        </a>
-
-        <a href="results.html">
-            نتایج
-        </a>
-
-        <a href="table.html">
-            جدول
-        </a>
-
-        <a href="players.html">
-            بازیکنان
-        </a>
-
-        <a href="rules.html">
-            قوانین
-        </a>
-
-    </div>
-
-</nav>
-
+    </nav>
 </header>
 
+<main class="container">
 
-<!-- ================= MAIN ================= -->
+    <section class="hero">
+        <span class="badge">⚡ مسابقات رسمی لیگ</span>
+        <h1>مسابقات لیگ</h1>
+        <p>برنامه و وضعیت مسابقات لیگ تخته ساناز و ساشا</p>
+    </section>
 
-<main class="page">
-
-<div class="container">
-
-
-    <div class="page-title">
-
-        <div class="badge">
-            🎮 برنامه مسابقات
+    <section class="stats">
+        <div class="stat">
+            <div class="stat-number" id="totalMatches">۰</div>
+            <div class="stat-label">کل مسابقات</div>
         </div>
 
-        <h1>
-            مسابقات لیگ
-        </h1>
+        <div class="stat">
+            <div class="stat-number" id="scheduledMatches">۰</div>
+            <div class="stat-label">مسابقات پیش‌رو</div>
+        </div>
 
-        <p>
-            برنامه رسمی مسابقات لیگ تخته ساناز و ساشا،
-            شامل تاریخ، ساعت و وضعیت هر بازی.
-        </p>
+        <div class="stat">
+            <div class="stat-number" id="nearestMatch">—</div>
+            <div class="stat-label">نزدیک‌ترین مسابقه</div>
+        </div>
+    </section>
 
+    <div class="section-title">
+        <h2>📅 برنامه مسابقات</h2>
+        <button class="refresh" onclick="loadMatches()">↻ بروزرسانی</button>
     </div>
 
-
-    <!-- ================= INFO ================= -->
-
-    <div class="info-box">
-
-
-        <div class="info-item">
-
-            <div class="info-icon">
-                🎮
-            </div>
-
-            <div class="info-value">
-                ۰
-            </div>
-
-            <div class="info-label">
-                مسابقات برنامه‌ریزی‌شده
-            </div>
-
+    <section class="matches" id="matchesList">
+        <div class="loading">
+            در حال دریافت مسابقات...
         </div>
-
-
-        <div class="info-item">
-
-            <div class="info-icon">
-                📅
-            </div>
-
-            <div class="info-value">
-                نامعلوم
-            </div>
-
-            <div class="info-label">
-                نزدیک‌ترین مسابقه
-            </div>
-
-        </div>
-
-
-        <div class="info-item">
-
-            <div class="info-icon">
-                🏆
-            </div>
-
-            <div class="info-value">
-                ساناز × ساشا
-            </div>
-
-            <div class="info-label">
-                رقابت اصلی
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-    <!-- ================= MATCHES ================= -->
-
-    <div class="matches">
-
-
-        <!-- MATCH SAMPLE -->
-
-        <article class="match-card">
-
-
-            <div class="match-top">
-
-                <span class="match-number">
-                    مسابقه #۰۱
-                </span>
-
-                <span class="status unknown">
-                    زمان نامعلوم
-                </span>
-
-            </div>
-
-
-            <div class="teams">
-
-
-                <div class="player">
-
-                    <div class="player-icon">
-                        👩
-                    </div>
-
-                    <div class="player-name">
-                        ساناز
-                    </div>
-
-                </div>
-
-
-                <div class="vs">
-                    VS
-                </div>
-
-
-                <div class="player">
-
-                    <div class="player-icon">
-                        🧑
-                    </div>
-
-                    <div class="player-name">
-                        ساشا
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-            <div class="match-details">
-
-
-                <div class="detail">
-
-                    📅
-
-                    <span>
-                        تاریخ: نامعلوم
-                    </span>
-
-                </div>
-
-
-                <div class="detail">
-
-                    ⏰
-
-                    <span>
-                        ساعت: نامعلوم
-                    </span>
-
-                </div>
-
-
-                <div class="detail">
-
-                    📍
-
-                    <span>
-                        محل: نامعلوم
-                    </span>
-
-                </div>
-
-
-            </div>
-
-
-        </article>
-
-
-        <!-- EMPTY -->
-
-        <div class="empty">
-
-            <div class="empty-icon">
-                🎲
-            </div>
-
-            <h2>
-                هنوز مسابقه‌ای ثبت نشده است
-            </h2>
-
-            <p>
-                پس از ثبت مسابقات از پنل مدیریت،
-                برنامه بازی‌ها به‌صورت خودکار
-                در این صفحه نمایش داده خواهد شد.
-            </p>
-
-        </div>
-
-
-    </div>
-
-</div>
+    </section>
 
 </main>
 
-
-<!-- ================= FOOTER ================= -->
-
 <footer>
-
-    <div class="footer-title">
-        🏆 لیگ تخته ساناز و ساشا
-    </div>
-
-    <div>
-        سایت رسمی لیگ تخته
-    </div>
-
-    <div class="creator">
-        ساخته شده توسط امیر عباس ❤️
-    </div>
-
-    <div style="
-        margin-top:15px;
-        font-size:12px;
-    ">
-        © 2026 — تمامی حقوق محفوظ است.
-    </div>
-
+    لیگ تخته ساناز و ساشا — ساخته شده توسط امیر عباس ❤️
 </footer>
 
+<script>
+    const faNumber = number => {
+        if (number === null || number === undefined) return "—";
+        return Number(number).toLocaleString("fa-IR");
+    };
+
+    function escapeHTML(value) {
+        return String(value ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    function statusText(status) {
+        const map = {
+            scheduled: "در انتظار",
+            completed: "برگزار شده",
+            cancelled: "لغو شده"
+        };
+
+        return map[status] || status || "نامعلوم";
+    }
+
+    function statusClass(status) {
+        if (status === "completed") return "completed";
+        if (status === "cancelled") return "cancelled";
+        return "";
+    }
+
+    function formatDate(date) {
+        if (!date) return "تاریخ نامعلوم";
+
+        try {
+            return new Date(date + "T00:00:00").toLocaleDateString(
+                "fa-IR",
+                {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                }
+            );
+        } catch {
+            return date;
+        }
+    }
+
+    function formatTime(time) {
+        if (!time) return "ساعت نامعلوم";
+
+        return time.slice(0, 5);
+    }
+
+    async function loadMatches() {
+        const list = document.getElementById("matchesList");
+
+        list.innerHTML = `
+            <div class="loading">
+                در حال دریافت مسابقات...
+            </div>
+        `;
+
+        try {
+            // دریافت مسابقات
+            const {
+                data: matches,
+                error: matchesError
+            } = await supabaseClient
+                .from("matches")
+                .select("*")
+                .order("match_date", {
+                    ascending: true,
+                    nullsFirst: false
+                })
+                .order("match_time", {
+                    ascending: true,
+                    nullsFirst: false
+                });
+
+            if (matchesError) {
+                throw matchesError;
+            }
+
+            // دریافت بازیکنان
+            const {
+                data: players,
+                error: playersError
+            } = await supabaseClient
+                .from("players")
+                .select("id, name");
+
+            if (playersError) {
+                throw playersError;
+            }
+
+            const playerMap = {};
+
+            (players || []).forEach(player => {
+                playerMap[player.id] = player.name;
+            });
+
+            const allMatches = matches || [];
+
+            // آمار
+            document.getElementById("totalMatches").textContent =
+                faNumber(allMatches.length);
+
+            const scheduled = allMatches.filter(
+                match => match.status === "scheduled"
+            );
+
+            document.getElementById("scheduledMatches").textContent =
+                faNumber(scheduled.length);
+
+            if (scheduled.length > 0) {
+                document.getElementById("nearestMatch").textContent =
+                    "مسابقه " +
+                    faNumber(allMatches.indexOf(scheduled[0]) + 1);
+            } else {
+                document.getElementById("nearestMatch").textContent = "—";
+            }
+
+            // اگر مسابقه‌ای وجود نداشت
+            if (allMatches.length === 0) {
+                list.innerHTML = `
+                    <div class="empty">
+                        <div class="empty-icon">🎲</div>
+                        <h3>هنوز مسابقه‌ای ثبت نشده</h3>
+                        <p style="margin-top:10px;">
+                            مسابقات جدید از پنل مدیریت اینجا نمایش داده می‌شوند.
+                        </p>
+                    </div>
+                `;
+
+                return;
+            }
+
+            // ساخت کارت‌ها
+            list.innerHTML = allMatches.map((match, index) => {
+
+                const player1 =
+                    playerMap[match.player1_id] || "بازیکن اول";
+
+                const player2 =
+                    playerMap[match.player2_id] || "بازیکن دوم";
+
+                return `
+                    <article class="match-card">
+
+                        <div class="match-top">
+                            <span class="match-number">
+                                مسابقه #${faNumber(index + 1)}
+                            </span>
+
+                            <span class="status ${statusClass(match.status)}">
+                                ${escapeHTML(statusText(match.status))}
+                            </span>
+                        </div>
+
+                        <div class="players">
+
+                            <div class="player">
+                                ${escapeHTML(player1)}
+                            </div>
+
+                            <div class="vs">
+                                VS
+                            </div>
+
+                            <div class="player">
+                                ${escapeHTML(player2)}
+                            </div>
+
+                        </div>
+
+                        <div class="match-info">
+
+                            <span>
+                                📅 ${escapeHTML(formatDate(match.match_date))}
+                            </span>
+
+                            <span>
+                                ⏰ ${escapeHTML(formatTime(match.match_time))}
+                            </span>
+
+                        </div>
+
+                    </article>
+                `;
+            }).join("");
+
+        } catch (error) {
+
+            console.error("خطا در دریافت مسابقات:", error);
+
+            list.innerHTML = `
+                <div class="error">
+                    <div class="empty-icon">⚠️</div>
+                    <h3>دریافت مسابقات با خطا مواجه شد</h3>
+
+                    <p style="margin-top:10px;">
+                        اتصال به Supabase یا دسترسی جدول مسابقات را بررسی کنید.
+                    </p>
+
+                    <p style="
+                        margin-top:12px;
+                        direction:ltr;
+                        font-size:11px;
+                        opacity:.7;
+                    ">
+                        ${escapeHTML(error.message || "Unknown error")}
+                    </p>
+                </div>
+            `;
+        }
+    }
+
+    loadMatches();
+</script>
 
 </body>
-              </html>
+</html>
