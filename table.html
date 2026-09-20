@@ -1,186 +1,1753 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>جدول لیگ | لیگ تخته ساناز و ساشا</title>
+<meta charset="UTF-8">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<title>جدول لیگ | لیگ تخته ساناز و ساشا</title>
 
-        body {
-            font-family: "Vazirmatn", sans-serif;
-            background:
-                radial-gradient(circle at 15% 10%, rgba(124, 58, 237, 0.16), transparent 30%),
-                radial-gradient(circle at 85% 20%, rgba(59, 130, 246, 0.13), transparent 30%),
-                #060611;
-            color: #fff;
-            min-height: 100vh;
-        }
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+<style>
 
-        /* HEADER */
+/* =========================
+   RESET
+========================= */
 
-        header {
-            position: fixed;
-            top: 0;
-            right: 0;
-            left: 0;
-            z-index: 1000;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-            background: rgba(6, 6, 17, 0.78);
-            backdrop-filter: blur(18px);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.15);
-        }
+html{
+    scroll-behavior:smooth;
+}
 
-        .header-inner {
-            max-width: 1200px;
-            margin: auto;
-            padding: 16px 22px;
+body{
 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
+    font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+    min-height:100vh;
 
-            font-size: 20px;
-            font-weight: 900;
-        }
+    color:#fff;
 
-        .logo-icon {
-            width: 42px;
-            height: 42px;
+    background:
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(124,58,237,.35),
+            transparent 30%
+        ),
 
-            border-radius: 13px;
+        radial-gradient(
+            circle at 100% 20%,
+            rgba(168,85,247,.22),
+            transparent 32%
+        ),
 
-            background: linear-gradient(
-                135deg,
-                #7c3aed,
-                #2563eb
+        linear-gradient(
+            135deg,
+            #08050d,
+            #12091f 50%,
+            #09050f
+        );
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+    padding:18px 20px;
+
+    background:
+        rgba(8,5,13,.82);
+
+    backdrop-filter:
+        blur(20px);
+
+    border-bottom:
+        1px solid
+        rgba(190,110,255,.18);
+}
+
+.header-inner{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+}
+
+.logo{
+
+    font-size:21px;
+
+    font-weight:900;
+
+    color:#dca3ff;
+}
+
+.logo span{
+
+    color:#fff;
+}
+
+.back{
+
+    text-decoration:none;
+
+    color:#fff;
+
+    padding:10px 15px;
+
+    border-radius:12px;
+
+    background:
+        rgba(124,58,237,.22);
+
+    border:
+        1px solid
+        rgba(180,100,255,.2);
+
+    font-size:13px;
+
+    transition:.2s;
+}
+
+.back:hover{
+
+    background:
+        rgba(124,58,237,.4);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:
+        35px 18px
+        70px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:42px 30px;
+
+    border-radius:28px;
+
+    border:
+        1px solid
+        rgba(190,110,255,.2);
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(124,58,237,.2),
+            rgba(15,8,27,.92)
+        );
+
+    box-shadow:
+        0 25px 90px
+        rgba(0,0,0,.3);
+
+    margin-bottom:25px;
+}
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+
+    height:250px;
+
+    border-radius:50%;
+
+    background:
+        rgba(168,85,247,.16);
+
+    filter:blur(60px);
+
+    top:-130px;
+
+    left:-70px;
+}
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+}
+
+.badge{
+
+    display:inline-block;
+
+    padding:7px 12px;
+
+    border-radius:999px;
+
+    background:
+        rgba(168,85,247,.12);
+
+    border:
+        1px solid
+        rgba(190,110,255,.2);
+
+    color:#d6a5ff;
+
+    font-size:11px;
+
+    margin-bottom:14px;
+}
+
+.hero h1{
+
+    font-size:
+        clamp(28px,5vw,45px);
+
+    margin-bottom:10px;
+}
+
+.hero h1 span{
+
+    color:#c77dff;
+}
+
+.hero p{
+
+    color:#b9a9c5;
+
+    line-height:2;
+
+    font-size:14px;
+}
+
+
+/* =========================
+   LEAGUE STATUS
+========================= */
+
+.league-status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    margin-top:20px;
+
+    color:#a99caf;
+
+    font-size:13px;
+}
+
+.live-dot{
+
+    width:9px;
+
+    height:9px;
+
+    border-radius:50%;
+
+    background:#35e28a;
+
+    box-shadow:
+        0 0 15px
+        #35e28a;
+
+    animation:
+        pulse 1.7s infinite;
+}
+
+@keyframes pulse{
+
+    0%,100%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:.4;
+    }
+
+}
+
+
+/* =========================
+   INFO CARDS
+========================= */
+
+.info-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:15px;
+
+    margin-bottom:25px;
+}
+
+.info-card{
+
+    padding:20px;
+
+    border-radius:19px;
+
+    background:
+        rgba(16,8,29,.82);
+
+    border:
+        1px solid
+        rgba(190,110,255,.14);
+
+    box-shadow:
+        0 12px 40px
+        rgba(0,0,0,.16);
+}
+
+.info-icon{
+
+    font-size:25px;
+
+    margin-bottom:12px;
+}
+
+.info-number{
+
+    font-size:27px;
+
+    font-weight:900;
+
+    color:#d89cff;
+}
+
+.info-label{
+
+    color:#92869c;
+
+    font-size:12px;
+
+    margin-top:5px;
+}
+
+
+/* =========================
+   TABLE CARD
+========================= */
+
+.table-card{
+
+    overflow:hidden;
+
+    border-radius:25px;
+
+    background:
+        rgba(13,7,24,.9);
+
+    border:
+        1px solid
+        rgba(190,110,255,.18);
+
+    box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.25);
+}
+
+.table-header{
+
+    padding:22px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.06);
+}
+
+.table-title h2{
+
+    font-size:21px;
+}
+
+.table-title p{
+
+    margin-top:6px;
+
+    color:#85798f;
+
+    font-size:12px;
+}
+
+.live-badge{
+
+    padding:8px 12px;
+
+    border-radius:10px;
+
+    color:#62e6a0;
+
+    background:
+        rgba(30,180,100,.1);
+
+    border:
+        1px solid
+        rgba(30,180,100,.15);
+
+    font-size:11px;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-wrapper{
+
+    overflow-x:auto;
+}
+
+table{
+
+    width:100%;
+
+    min-width:650px;
+
+    border-collapse:collapse;
+}
+
+thead{
+
+    background:
+        rgba(124,58,237,.09);
+}
+
+th{
+
+    padding:16px 14px;
+
+    text-align:center;
+
+    color:#a99bb3;
+
+    font-size:11px;
+
+    font-weight:normal;
+
+    white-space:nowrap;
+}
+
+td{
+
+    padding:17px 14px;
+
+    text-align:center;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.045);
+
+    font-size:13px;
+}
+
+tbody tr{
+
+    transition:.2s;
+}
+
+tbody tr:hover{
+
+    background:
+        rgba(168,85,247,.06);
+}
+
+
+/* =========================
+   RANK
+========================= */
+
+.rank{
+
+    font-size:16px;
+
+    font-weight:900;
+}
+
+.rank.first{
+
+    color:#ffd76b;
+}
+
+.rank.second{
+
+    color:#d5d9e2;
+}
+
+.rank.third{
+
+    color:#d99061;
+}
+
+
+/* =========================
+   PLAYER
+========================= */
+
+.player-cell{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    text-align:right;
+}
+
+.avatar{
+
+    width:40px;
+
+    height:40px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b3dff,
+            #4c1d95
+        );
+
+    font-weight:900;
+
+    color:#fff;
+
+    flex-shrink:0;
+}
+
+.player-name{
+
+    font-weight:bold;
+
+    color:#fff;
+}
+
+.player-sub{
+
+    color:#756b7d;
+
+    font-size:10px;
+
+    margin-top:3px;
+}
+
+
+/* =========================
+   POINTS
+========================= */
+
+.points{
+
+    font-size:18px;
+
+    font-weight:900;
+
+    color:#d89cff;
+}
+
+
+/* =========================
+   WIN RATE
+========================= */
+
+.progress-box{
+
+    width:90px;
+
+    margin:auto;
+}
+
+.progress{
+
+    height:6px;
+
+    border-radius:99px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    overflow:hidden;
+}
+
+.progress span{
+
+    display:block;
+
+    height:100%;
+
+    border-radius:99px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #8b3dff,
+            #d26bff
+        );
+}
+
+.progress-text{
+
+    margin-top:5px;
+
+    color:#a999b1;
+
+    font-size:10px;
+}
+
+
+/* =========================
+   EMPTY / LOADING
+========================= */
+
+.loading{
+
+    text-align:center;
+
+    padding:55px 20px;
+
+    color:#92869c;
+}
+
+.spinner{
+
+    width:32px;
+
+    height:32px;
+
+    margin:
+        0 auto
+        15px;
+
+    border:
+        3px solid
+        rgba(255,255,255,.08);
+
+    border-top-color:#a855f7;
+
+    border-radius:50%;
+
+    animation:
+        spin .8s linear infinite;
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    text-align:center;
+
+    margin-top:30px;
+
+    color:#6f6577;
+
+    font-size:11px;
+
+    line-height:2;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+    .info-grid{
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+}
+
+@media(max-width:520px){
+
+    main{
+
+        padding-top:20px;
+    }
+
+    .hero{
+
+        padding:30px 20px;
+    }
+
+    .info-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .table-header{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="header-inner">
+
+        <div class="logo">
+
+            🎲 لیگ تخته
+
+            <span>
+                ｜جدول لیگ
+            </span>
+
+        </div>
+
+        <a
+            class="back"
+            href="index.html"
+        >
+            ← صفحه اصلی
+        </a>
+
+    </div>
+
+</header>
+
+
+<main>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            🏆 جدول رسمی لیگ
+        </div>
+
+        <h1>
+            جدول لیگ
+            <span>
+                ساناز و ساشا
+            </span>
+        </h1>
+
+        <p>
+            رتبه‌بندی بازیکنان بر اساس نتایج
+            واقعی ثبت‌شده در لیگ.
+        </p>
+
+        <div class="league-status">
+
+            <span class="live-dot"></span>
+
+            اطلاعات متصل به پایگاه داده لیگ
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     INFO
+========================= -->
+
+<section class="info-grid">
+
+
+<div class="info-card">
+
+    <div class="info-icon">
+        👥
+    </div>
+
+    <div
+        class="info-number"
+        id="playersCount"
+    >
+        ۰
+    </div>
+
+    <div class="info-label">
+        بازیکنان
+    </div>
+
+</div>
+
+
+<div class="info-card">
+
+    <div class="info-icon">
+        🎮
+    </div>
+
+    <div
+        class="info-number"
+        id="matchesCount"
+    >
+        ۰
+    </div>
+
+    <div class="info-label">
+        مسابقات برگزارشده
+    </div>
+
+</div>
+
+
+<div class="info-card">
+
+    <div class="info-icon">
+        🏆
+    </div>
+
+    <div
+        class="info-number"
+        id="leaderName"
+    >
+        —
+    </div>
+
+    <div class="info-label">
+        صدر جدول
+    </div>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================
+     TABLE
+========================= -->
+
+<section class="table-card">
+
+
+<div class="table-header">
+
+    <div class="table-title">
+
+        <h2>
+            📊 رده‌بندی بازیکنان
+        </h2>
+
+        <p>
+            آمار بر اساس نتایج ثبت‌شده
+        </p>
+
+    </div>
+
+    <div class="live-badge">
+        ● بروزرسانی خودکار
+    </div>
+
+</div>
+
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+    <th>
+        رتبه
+    </th>
+
+    <th>
+        بازیکن
+    </th>
+
+    <th>
+        امتیاز
+    </th>
+
+    <th>
+        بازی
+    </th>
+
+    <th>
+        برد
+    </th>
+
+    <th>
+        باخت
+    </th>
+
+    <th>
+        برد %
+    </th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="tableBody">
+
+<tr>
+
+<td colspan="7">
+
+<div class="loading">
+
+    <div class="spinner"></div>
+
+    در حال دریافت جدول...
+
+</div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+</section>
+
+
+<footer>
+
+    لیگ تخته ساناز و ساشا
+    <br>
+    ساخته شده توسط امیر عباس ❤️
+
+</footer>
+
+
+</main>
+
+
+<script>
+
+/* ==================================================
+   ابزار
+================================================== */
+
+function toPersianNumber(value){
+
+    return String(value)
+        .replace(
+            /\d/g,
+            d => "۰۱۲۳۴۵۶۷۸۹"[d]
+        );
+
+}
+
+
+function escapeHTML(value){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return "";
+
+    }
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* ==================================================
+   جدول
+================================================== */
+
+async function loadTable(){
+
+    const tbody =
+        document.getElementById(
+            "tableBody"
+        );
+
+
+    try{
+
+        /* بازیکنان */
+
+        const {
+            data:players,
+            error:playersError
+        } = await supabaseClient
+
+            .from("players")
+
+            .select(
+                "id,name"
+            )
+
+            .order(
+                "id",
+                {
+                    ascending:true
+                }
             );
 
-            box-shadow:
-                0 0 25px rgba(124, 58, 237, 0.35);
+
+        if(playersError){
+
+            throw playersError;
+
         }
 
-        .logo span {
-            color: #a78bfa;
-        }
 
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
+        /* مسابقات */
 
-        nav a {
-            padding: 8px 11px;
-            border-radius: 9px;
+        const {
+            data:matches,
+            error:matchesError
+        } = await supabaseClient
 
-            color: #aaaac2;
-            font-size: 13px;
+            .from("matches")
 
-            transition: 0.25s;
-        }
-
-        nav a:hover {
-            color: white;
-            background: rgba(124, 58, 237, 0.13);
-        }
-
-        nav a.active {
-            color: white;
-            background: rgba(124, 58, 237, 0.2);
-        }
-
-        /* MAIN */
-
-        main {
-            max-width: 1150px;
-            margin: auto;
-            padding: 135px 22px 60px;
-        }
-
-        .hero {
-            text-align: center;
-            margin-bottom: 42px;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-
-            padding: 8px 14px;
-            border-radius: 999px;
-
-            background: rgba(124, 58, 237, 0.12);
-            border: 1px solid rgba(167, 139, 250, 0.2);
-
-            color: #c4b5fd;
-            font-size: 13px;
-            font-weight: 700;
-
-            margin-bottom: 18px;
-        }
-
-        .hero h1 {
-            font-size: clamp(34px, 6vw, 58px);
-            font-weight: 900;
-            line-height: 1.2;
-
-            background: linear-gradient(
-                90deg,
-                #fff,
-                #c4b5fd,
-                #60a5fa
+            .select(
+                "id,player1_id,player2_id,status"
             );
 
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        if(matchesError){
+
+            throw matchesError;
+
         }
 
-        .hero p {
-            color: #9898b2;
-            margin-top: 14px;
-            font-size: 15px;
+
+        /* نتایج */
+
+        const {
+            data:results,
+            error:resultsError
+        } = await supabaseClient
+
+            .from("results")
+
+            .select(
+                "id,match_id,score1,score2,winner_id"
+            );
+
+
+        if(resultsError){
+
+            throw resultsError;
+
         }
 
-        /* INFO CARDS */
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-bottom: 28px;
+        /* اگر بازیکنی نیست */
+
+        if(
+            !players ||
+            !players.length
+        ){
+
+            tbody.innerHTML =
+
+                `<tr>
+
+                    <td colspan="7">
+
+                        <div class="loading">
+
+                            👥 هنوز بازیکنی ثبت نشده است.
+
+                        </div>
+
+                    </td>
+
+                </tr>`;
+
+            updateInfo(
+                [],
+                matches || []
+            );
+
+            return;
+
         }
 
-        .info-card {
-            padding: 22px;
-            border-radius: 18px;
 
-            background: rgba(18, 18, 35, 0.72
+        /* ساخت آمار */
+
+        const stats = {};
+
+
+        players.forEach(
+            player => {
+
+                stats[player.id] = {
+
+                    id:
+                        player.id,
+
+                    name:
+                        player.name,
+
+                    games:
+                        0,
+
+                    wins:
+                        0,
+
+                    losses:
+                        0,
+
+                    points:
+                        0
+
+                };
+
+            }
+        );
+
+
+        /* بررسی مسابقات */
+
+        (matches || [])
+            .forEach(
+                match => {
+
+                    const p1 =
+                        stats[
+                            match.player1_id
+                        ];
+
+                    const p2 =
+                        stats[
+                            match.player2_id
+                        ];
+
+
+                    if(!p1 || !p2){
+
+                        return;
+
+                    }
+
+
+                    /*
+                       فقط مسابقه‌ای که
+                       نتیجه دارد، بازی‌شده
+                       حساب می‌شود.
+                    */
+
+                    const result =
+                        (results || [])
+                            .find(
+                                r =>
+                                    Number(
+                                        r.match_id
+                                    )
+                                    ===
+                                    Number(
+                                        match.id
+                                    )
+                            );
+
+
+                    if(!result){
+
+                        return;
+
+                    }
+
+
+                    p1.games++;
+
+                    p2.games++;
+
+
+                    if(
+                        result.winner_id
+                        ===
+                        p1.id
+                    ){
+
+                        p1.wins++;
+
+                        p2.losses++;
+
+                    }
+
+                    else if(
+                        result.winner_id
+                        ===
+                        p2.id
+                    ){
+
+                        p2.wins++;
+
+                        p1.losses++;
+
+                    }
+
+
+                    /*
+                       سیستم امتیاز:
+
+                       برد = ۳ امتیاز
+                       باخت = ۰ امتیاز
+                    */
+
+                    if(
+                        result.winner_id
+                        ===
+                        p1.id
+                    ){
+
+                        p1.points += 3;
+
+                    }
+
+                    else if(
+                        result.winner_id
+                        ===
+                        p2.id
+                    ){
+
+                        p2.points += 3;
+
+                    }
+
+                }
+            );
+
+
+        /* مرتب‌سازی */
+
+        const ranking =
+
+            Object.values(stats)
+
+                .sort(
+                    (a,b) => {
+
+                        if(
+                            b.points
+                            !==
+                            a.points
+                        ){
+
+                            return (
+                                b.points
+                                -
+                                a.points
+                            );
+
+                        }
+
+
+                        if(
+                            b.wins
+                            !==
+                            a.wins
+                        ){
+
+                            return (
+                                b.wins
+                                -
+                                a.wins
+                            );
+
+                        }
+
+
+                        return (
+                            a.name
+                            ||
+                            ""
+                        ).localeCompare(
+                            b.name
+                            ||
+                            "",
+                            "fa"
+                        );
+
+                    }
+                );
+
+
+        /* جدول */
+
+        tbody.innerHTML =
+
+            ranking
+
+                .map(
+                    (player,index) => {
+
+                        const rank =
+                            index + 1;
+
+
+                        const winRate =
+                            player.games > 0
+
+                                ? Math.round(
+                                    (
+                                        player.wins
+                                        /
+                                        player.games
+                                    )
+                                    * 100
+                                )
+
+                                : 0;
+
+
+                        let rankClass = "";
+
+
+                        if(rank === 1){
+
+                            rankClass =
+                                "first";
+
+                        }
+
+                        else if(rank === 2){
+
+                            rankClass =
+                                "second";
+
+                        }
+
+                        else if(rank === 3){
+
+                            rankClass =
+                                "third";
+
+                        }
+
+
+                        let medal = "";
+
+
+                        if(rank === 1){
+
+                            medal = "🥇";
+
+                        }
+
+                        else if(rank === 2){
+
+                            medal = "🥈";
+
+                        }
+
+                        else if(rank === 3){
+
+                            medal = "🥉";
+
+                        }
+
+
+                        const initial =
+                            player.name
+                                ? player.name
+                                    .trim()
+                                    .charAt(0)
+                                : "؟";
+
+
+                        return `
+
+                            <tr>
+
+                                <td>
+
+                                    <div
+                                        class="rank ${rankClass}"
+                                    >
+
+                                        ${medal}
+
+                                        ${medal ? "" : toPersianNumber(rank)}
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div
+                                        class="player-cell"
+                                    >
+
+                                        <div
+                                            class="avatar"
+                                        >
+
+                                            ${escapeHTML(
+                                                initial
+                                            )}
+
+                                        </div>
+
+
+                                        <div>
+
+                                            <div
+                                                class="player-name"
+                                            >
+
+                                                ${escapeHTML(
+                                                    player.name
+                                                )}
+
+                                            </div>
+
+                                            <div
+                                                class="player-sub"
+                                            >
+
+                                                بازیکن لیگ
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div
+                                        class="points"
+                                    >
+
+                                        ${toPersianNumber(
+                                            player.points
+                                        )}
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    ${toPersianNumber(
+                                        player.games
+                                    )}
+
+                                </td>
+
+
+                                <td>
+
+                                    ${toPersianNumber(
+                                        player.wins
+                                    )}
+
+                                </td>
+
+
+                                <td>
+
+                                    ${toPersianNumber(
+                                        player.losses
+                                    )}
+
+                                </td>
+
+
+                                <td>
+
+                                    <div
+                                        class="progress-box"
+                                    >
+
+                                        <div
+                                            class="progress"
+                                        >
+
+                                            <span
+                                                style="
+                                                    width:${winRate}%;
+                                                "
+                                            ></span>
+
+                                        </div>
+
+                                        <div
+                                            class="progress-text"
+                                        >
+
+                                            ${toPersianNumber(
+                                                winRate
+                                            )}٪
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        `;
+
+                    }
+                )
+
+                .join("");
+
+
+        updateInfo(
+            ranking,
+            matches || []
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Table Error:",
+            error
+        );
+
+
+        tbody.innerHTML =
+
+            `<tr>
+
+                <td colspan="7">
+
+                    <div class="loading">
+
+                        ❌ خطا در دریافت جدول
+
+                        <br><br>
+
+                        <small>
+
+                            ${escapeHTML(
+                                error.message
+                            )}
+
+                        </small>
+
+                    </div>
+
+                </td>
+
+            </tr>`;
+
+    }
+
+}
+
+
+/* ==================================================
+   اطلاعات بالای جدول
+================================================== */
+
+function updateInfo(
+    ranking,
+    matches
+){
+
+    const playersCount =
+        document.getElementById(
+            "playersCount"
+        );
+
+
+    const matchesCount =
+        document.getElementById(
+            "matchesCount"
+        );
+
+
+    const leaderName =
+        document.getElementById(
+            "leaderName"
+        );
+
+
+    playersCount.textContent =
+        toPersianNumber(
+            ranking.length
+        );
+
+
+    const playedMatches =
+        matches.filter(
+            match =>
+                match.status ===
+                "completed"
+        ).length;
+
+
+    matchesCount.textContent =
+        toPersianNumber(
+            playedMatches
+        );
+
+
+    if(ranking.length){
+
+        leaderName.textContent =
+            ranking[0].name;
+
+    }else{
+
+        leaderName.textContent =
+            "—";
+
+    }
+
+}
+
+
+/* ==================================================
+   شروع
+================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadTable
+);
+
+</script>
+
+
+</body>
+
+    </html>
