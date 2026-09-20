@@ -13,8 +13,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet">
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <style>
 
 *{
@@ -39,23 +37,10 @@ body::before{
     position:fixed;
     inset:0;
     z-index:-3;
-
     background:
-        radial-gradient(
-            circle at 15% 15%,
-            rgba(124,58,237,.30),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 85% 25%,
-            rgba(37,99,235,.20),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 50% 90%,
-            rgba(168,85,247,.14),
-            transparent 35%
-        );
+        radial-gradient(circle at 15% 15%,rgba(124,58,237,.30),transparent 30%),
+        radial-gradient(circle at 85% 25%,rgba(37,99,235,.20),transparent 28%),
+        radial-gradient(circle at 50% 90%,rgba(168,85,247,.14),transparent 35%);
 }
 
 body::after{
@@ -63,18 +48,9 @@ body::after{
     position:fixed;
     inset:0;
     z-index:-2;
-
     background-image:
-        linear-gradient(
-            rgba(255,255,255,.025) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.025) 1px,
-            transparent 1px
-        );
-
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
     background-size:45px 45px;
 }
 
@@ -87,19 +63,15 @@ header{
     left:0;
     right:0;
     z-index:100;
-
     background:rgba(6,6,17,.75);
     backdrop-filter:blur(20px);
-
     border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .navbar{
     width:min(1250px,92%);
     margin:auto;
-
     min-height:75px;
-
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -110,7 +82,6 @@ header{
     display:flex;
     align-items:center;
     gap:12px;
-
     font-size:18px;
     font-weight:900;
     white-space:nowrap;
@@ -119,21 +90,11 @@ header{
 .logo-icon{
     width:43px;
     height:43px;
-
     display:grid;
     place-items:center;
-
     border-radius:13px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7c3aed,
-            #2563eb
-        );
-
-    box-shadow:
-        0 0 30px rgba(124,58,237,.35);
+    background:linear-gradient(135deg,#7c3aed,#2563eb);
+    box-shadow:0 0 30px rgba(124,58,237,.35);
 }
 
 .logo span{
@@ -144,7 +105,6 @@ header{
     display:flex;
     align-items:center;
     gap:7px;
-
     flex-wrap:wrap;
     justify-content:flex-end;
 }
@@ -152,13 +112,10 @@ header{
 .nav-links a{
     text-decoration:none;
     color:#aaa;
-
     padding:9px 12px;
     border-radius:10px;
-
     font-size:13px;
     font-weight:600;
-
     transition:.2s;
 }
 
@@ -173,14 +130,11 @@ header{
 .hero{
     width:min(1250px,92%);
     min-height:760px;
-
     margin:auto;
     padding-top:170px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     text-align:center;
 }
 
@@ -192,32 +146,22 @@ header{
     display:inline-flex;
     align-items:center;
     gap:9px;
-
     padding:9px 16px;
-
     border:1px solid rgba(168,85,247,.35);
     border-radius:999px;
-
     background:rgba(168,85,247,.08);
-
     color:#d8b4fe;
-
     font-size:13px;
     font-weight:700;
-
     margin-bottom:25px;
 }
 
 .live-dot{
     width:8px;
     height:8px;
-
     border-radius:50%;
-
     background:#facc15;
-
     box-shadow:0 0 12px #facc15;
-
     animation:pulse 1.6s infinite;
 }
 
@@ -235,11 +179,8 @@ header{
 
 .hero h1{
     font-size:clamp(45px,8vw,90px);
-
     line-height:1.05;
-
     font-weight:900;
-
     letter-spacing:-3px;
 
     background:
@@ -269,13 +210,9 @@ header{
 
 .hero-subtitle{
     margin:25px auto;
-
     max-width:650px;
-
     color:#9ca3af;
-
     font-size:16px;
-
     line-height:2;
 }
 
@@ -283,34 +220,25 @@ header{
     display:flex;
     justify-content:center;
     align-items:center;
-
     flex-wrap:wrap;
     gap:12px;
-
     margin-top:30px;
 }
 
 .btn{
     border:none;
     text-decoration:none;
-
     display:inline-flex;
     align-items:center;
     justify-content:center;
     gap:8px;
-
     padding:13px 20px;
-
     border-radius:13px;
-
     color:#fff;
-
     font-family:inherit;
     font-weight:700;
     font-size:14px;
-
     cursor:pointer;
-
     transition:.25s;
 }
 
@@ -319,20 +247,12 @@ header{
 }
 
 .btn-primary{
-    background:
-        linear-gradient(
-            135deg,
-            #7c3aed,
-            #2563eb
-        );
-
-    box-shadow:
-        0 10px 35px rgba(124,58,237,.25);
+    background:linear-gradient(135deg,#7c3aed,#2563eb);
+    box-shadow:0 10px 35px rgba(124,58,237,.25);
 }
 
 .btn-secondary{
     background:rgba(255,255,255,.06);
-
     border:1px solid rgba(255,255,255,.12);
 }
 
@@ -341,20 +261,14 @@ header{
 
 .stats{
     width:min(1100px,92%);
-
     margin:-30px auto 70px;
-
     display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
+    grid-template-columns:repeat(4,1fr);
     gap:14px;
 }
 
 .stat{
     padding:22px;
-
     border-radius:20px;
 
     background:
@@ -365,9 +279,7 @@ header{
         );
 
     border:1px solid rgba(255,255,255,.08);
-
     text-align:center;
-
     backdrop-filter:blur(12px);
 }
 
@@ -423,20 +335,14 @@ section{
 
 .menu-grid{
     display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
+    grid-template-columns:repeat(4,1fr);
     gap:15px;
 }
 
 .menu-card{
     position:relative;
-
     min-height:170px;
-
     padding:22px;
-
     border-radius:22px;
 
     background:
@@ -447,41 +353,28 @@ section{
         );
 
     border:1px solid rgba(255,255,255,.08);
-
     text-decoration:none;
-
     color:#fff;
-
     overflow:hidden;
-
     transition:.25s;
 }
 
 .menu-card::after{
     content:"";
-
     position:absolute;
-
     width:130px;
     height:130px;
-
     border-radius:50%;
-
     right:-50px;
     bottom:-70px;
-
     background:#7c3aed;
-
     filter:blur(50px);
-
     opacity:.15;
 }
 
 .menu-card:hover{
     transform:translateY(-6px);
-
-    border-color:
-        rgba(168,85,247,.4);
+    border-color:rgba(168,85,247,.4);
 
     background:
         linear-gradient(
@@ -502,11 +395,8 @@ section{
 
 .menu-card p{
     color:#777;
-
     font-size:12px;
-
     line-height:1.7;
-
     margin-top:7px;
 }
 
@@ -515,16 +405,12 @@ section{
 
 .feature{
     display:grid;
-
-    grid-template-columns:
-        1.2fr .8fr;
-
+    grid-template-columns:1.2fr .8fr;
     gap:20px;
 }
 
 .panel{
     padding:28px;
-
     border-radius:25px;
 
     background:
@@ -549,20 +435,14 @@ section{
 
 .next-match{
     margin-top:20px;
-
     padding:18px;
-
     border-radius:17px;
-
     background:rgba(0,0,0,.2);
-
     border:1px solid rgba(255,255,255,.06);
 
     display:flex;
-
     justify-content:space-between;
     align-items:center;
-
     gap:15px;
 }
 
@@ -581,14 +461,9 @@ section{
 
 footer{
     margin-top:120px;
-
-    border-top:
-        1px solid rgba(255,255,255,.08);
-
+    border-top:1px solid rgba(255,255,255,.08);
     padding:45px 20px;
-
     text-align:center;
-
     color:#666;
 }
 
@@ -610,13 +485,11 @@ footer{
 @media(max-width:950px){
 
     .stats{
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr);
     }
 
     .menu-grid{
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr);
     }
 
     .feature{
@@ -644,13 +517,11 @@ footer{
     }
 
     .stats{
-        grid-template-columns:
-            1fr 1fr;
+        grid-template-columns:1fr 1fr;
     }
 
     .menu-grid{
-        grid-template-columns:
-            1fr 1fr;
+        grid-template-columns:1fr 1fr;
     }
 
     .menu-card{
@@ -802,8 +673,11 @@ footer{
 
         <div class="stat-icon">👥</div>
 
-        <div class="stat-number">
+        <div class="stat-number"
+             id="playerCount">
+
             ۲
+
         </div>
 
         <div class="stat-label">
@@ -1115,108 +989,34 @@ footer{
 </footer>
 
 
-
-<!-- =========================================================
-     🔐🔐🔐 SUPABASE CONFIG
-     
-     ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
-     
-     اینجا دقیقاً جای اطلاعات دیتابیس است.
-     فقط دو قسمت پایین را پر کن.
-     
-     ========================================================= -->
-
-
-<script>
-
-/* =========================================================
-   
-   🔴🔴🔴 PROJECT URL
-   
-   اینجا Project URL خودت را بنویس:
-   
-   (
-       https://xxxxxxxxxxxx.supabase.co
-   )
-   
-   ========================================================= */
-
-const SUPABASE_URL = (
-    "https://ldjnkemwakuktqlicrgf.supabase.co"
-);
-
-
-/* =========================================================
-   
-   🔴🔴🔴 PUBLISHABLE KEY
-   
-   اینجا Publishable Key خودت را بنویس:
-   
-   (
-       sb_publishable_4GqTZUbB6poSY_LQ0_zIBQ_QF7Pj7Wy
-   )
-   
-   ⚠️ فقط Publishable Key
-   ⚠️ Secret / service_role را قرار نده
-   
-   ========================================================= */
-
-const SUPABASE_KEY = (
-    "اینجا PUBLISHABLE KEY را قرار بده"
-);
-
-
-/* =========================================================
-   
-   🟢 ساخت اتصال به دیتابیس
-   
-   ========================================================= */
-
-const supabaseClient =
-    supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-
-
-/* =========================================================
-   
-   🧪 تست اتصال
-   
-   ========================================================= */
-
-async function testSupabase(){
-
-    const { data, error } =
-        await supabaseClient
-            .from("players")
-            .select("*");
-
-
-    if(error){
-
-        console.error(
-            "❌ خطای Supabase:",
-            error
-        );
-
-        return;
-    }
-
-
-    console.log(
-        "✅ اتصال به Supabase موفق است!",
-        data
-    );
-
-}
-
-
-testSupabase();
-
-</script>
+<!-- ================= SUPABASE ================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
+
+<script>
+
+async function loadPlayers(){
+
+    const { data, error } = await supabaseClient
+        .from("players")
+        .select("id, name");
+
+    if(error){
+        console.error("Supabase Error:", error);
+        return;
+    }
+
+    const playerCount = document.getElementById("playerCount");
+
+    if(playerCount){
+        playerCount.textContent = data.length;
+    }
+}
+
+loadPlayers();
+
+</script>
+
 </body>
 </html>
