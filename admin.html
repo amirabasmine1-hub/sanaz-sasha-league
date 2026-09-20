@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>مدیریت لیگ | لیگ تخته ساناز و ساشا</title>
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
+<title>پنل مدیریت | لیگ تخته ساناز و ساشا</title>
+
+<!-- Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -17,9 +25,19 @@
 }
 
 body{
-    font-family:Tahoma,Arial,sans-serif;
+    font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+
     background:
-        radial-gradient(circle at top right,#32145f 0,#12091f 35%,#08050d 100%);
+        radial-gradient(
+            circle at top right,
+            #32145f 0,
+            #12091f 38%,
+            #08050d 100%
+        );
+
     color:#fff;
     min-height:100vh;
 }
@@ -35,481 +53,1114 @@ button{
     cursor:pointer;
 }
 
-.header{
-    position:sticky;
-    top:0;
-    z-index:20;
+
+/* =========================
+   LOGIN
+========================= */
+
+#loginScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:999999;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
     padding:20px;
-    background:rgba(10,6,18,.9);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(180,100,255,.2);
+
+    background:
+        radial-gradient(
+            circle at top right,
+            #32145f 0,
+            #12091f 40%,
+            #08050d 100%
+        );
+}
+
+.login-box{
+
+    width:100%;
+
+    max-width:420px;
+
+    padding:35px 25px;
+
+    text-align:center;
+
+    background:
+        rgba(15,8,27,.96);
+
+    border:
+        1px solid
+        rgba(190,110,255,.25);
+
+    border-radius:25px;
+
+    box-shadow:
+        0 25px 100px
+        rgba(0,0,0,.55),
+
+        0 0 60px
+        rgba(124,58,237,.15);
+}
+
+.login-icon{
+
+    font-size:55px;
+
+    margin-bottom:15px;
+}
+
+.login-box h1{
+
+    font-size:25px;
+
+    margin-bottom:10px;
+}
+
+.login-box p{
+
+    color:#9d91a8;
+
+    font-size:13px;
+
+    line-height:1.8;
+
+    margin-bottom:22px;
+}
+
+.login-box input{
+
+    width:100%;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    border:
+        1px solid
+        rgba(190,110,255,.2);
+
+    background:#09060e;
+
+    color:white;
+
+    outline:none;
+
+    text-align:center;
+
+    font-size:15px;
+
+    margin-bottom:12px;
+}
+
+.login-box input:focus{
+
+    border-color:#9b4dff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(155,77,255,.1);
+}
+
+.login-box button{
+
+    width:100%;
+
+    padding:14px;
+
+    border:0;
+
+    border-radius:12px;
+
+    color:white;
+
+    font-weight:bold;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b3dff,
+            #6421bd
+        );
+
+    transition:.2s;
+}
+
+.login-box button:hover{
+
+    transform:
+        translateY(-1px);
+
+    filter:
+        brightness(1.1);
+}
+
+#loginError{
+
+    min-height:20px;
+
+    margin-top:12px;
+
+    color:#ff7d8b;
+
+    font-size:13px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:20;
+
+    padding:20px;
+
+    background:
+        rgba(10,6,18,.9);
+
+    backdrop-filter:
+        blur(18px);
+
+    border-bottom:
+        1px solid
+        rgba(180,100,255,.2);
 }
 
 .header-inner{
+
     max-width:1250px;
+
     margin:auto;
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     gap:15px;
 }
 
 .logo{
+
     font-size:23px;
+
     font-weight:900;
+
     color:#d89cff;
 }
 
 .logo span{
+
     color:#fff;
 }
 
 .back-btn{
+
     text-decoration:none;
+
     color:#fff;
+
     background:#7c3aed;
+
     padding:10px 17px;
+
     border-radius:12px;
+
     font-size:14px;
 }
 
+
+/* =========================
+   CONTAINER
+========================= */
+
 .container{
+
     max-width:1250px;
+
     margin:auto;
-    padding:30px 18px 70px;
+
+    padding:
+        30px
+        18px
+        70px;
 }
 
+
+/* =========================
+   HERO
+========================= */
+
 .hero{
+
     padding:30px;
-    border:1px solid rgba(190,110,255,.2);
+
+    border:
+        1px solid
+        rgba(190,110,255,.2);
+
     border-radius:24px;
-    background:linear-gradient(
-        135deg,
-        rgba(124,58,237,.18),
-        rgba(20,10,35,.8)
-    );
-    box-shadow:0 20px 70px rgba(0,0,0,.25);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124,58,237,.18),
+            rgba(20,10,35,.8)
+        );
+
+    box-shadow:
+        0 20px 70px
+        rgba(0,0,0,.25);
+
     margin-bottom:25px;
 }
 
 .hero h1{
+
     font-size:32px;
+
     margin-bottom:10px;
 }
 
 .hero p{
+
     color:#cfc3dd;
+
     line-height:1.9;
 }
 
 .status-line{
+
     margin-top:18px;
+
     display:flex;
+
     align-items:center;
+
     gap:8px;
+
     color:#bdb0cb;
+
     font-size:14px;
 }
 
 .status-dot{
+
     width:9px;
+
     height:9px;
+
     border-radius:50%;
+
     background:#35e28a;
-    box-shadow:0 0 12px #35e28a;
+
+    box-shadow:
+        0 0 12px
+        #35e28a;
 }
 
+
+/* =========================
+   TITLES
+========================= */
+
 .section-title{
-    margin:30px 0 15px;
+
+    margin:
+        30px
+        0
+        15px;
+
     font-size:21px;
 }
 
+
+/* =========================
+   STATS
+========================= */
+
 .stats{
+
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
     gap:15px;
 }
 
 .stat{
-    background:rgba(18,10,31,.8);
-    border:1px solid rgba(190,110,255,.16);
+
+    background:
+        rgba(18,10,31,.8);
+
+    border:
+        1px solid
+        rgba(190,110,255,.16);
+
     border-radius:18px;
+
     padding:22px;
 }
 
 .stat-icon{
+
     font-size:25px;
+
     margin-bottom:10px;
 }
 
 .stat-value{
+
     font-size:30px;
+
     font-weight:900;
+
     color:#d9a1ff;
 }
 
 .stat-label{
+
     margin-top:6px;
+
     color:#a99caf;
+
     font-size:13px;
 }
 
+
+/* =========================
+   CARDS
+========================= */
+
 .grid{
+
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+
+    grid-template-columns:
+        repeat(2,1fr);
+
     gap:18px;
 }
 
 .card{
-    background:rgba(15,8,27,.88);
-    border:1px solid rgba(190,110,255,.16);
+
+    background:
+        rgba(15,8,27,.88);
+
+    border:
+        1px solid
+        rgba(190,110,255,.16);
+
     border-radius:20px;
+
     padding:22px;
-    box-shadow:0 15px 50px rgba(0,0,0,.16);
+
+    box-shadow:
+        0 15px 50px
+        rgba(0,0,0,.16);
 }
 
 .card h2{
+
     font-size:19px;
+
     margin-bottom:6px;
 }
 
 .card-description{
+
     color:#988da4;
+
     font-size:13px;
+
     margin-bottom:18px;
 }
 
+
+/* =========================
+   FORM
+========================= */
+
 .form-group{
+
     margin-bottom:14px;
 }
 
 label{
+
     display:block;
+
     color:#c8bdd1;
+
     font-size:13px;
+
     margin-bottom:7px;
 }
 
 input,
 textarea,
 select{
+
     width:100%;
-    border:1px solid rgba(190,110,255,.2);
+
+    border:
+        1px solid
+        rgba(190,110,255,.2);
+
     background:#0b0711;
+
     color:#fff;
+
     border-radius:11px;
+
     padding:12px;
+
     outline:none;
 }
 
 input:focus,
 textarea:focus,
 select:focus{
+
     border-color:#9b4dff;
-    box-shadow:0 0 0 3px rgba(155,77,255,.1);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(155,77,255,.1);
 }
 
 textarea{
+
     min-height:110px;
+
     resize:vertical;
 }
 
 .action-btn{
+
     width:100%;
+
     border:0;
+
     border-radius:12px;
+
     padding:13px;
+
     color:#fff;
-    background:linear-gradient(135deg,#8b3dff,#6421bd);
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b3dff,
+            #6421bd
+        );
+
     font-weight:bold;
+
     transition:.2s;
 }
 
 .action-btn:hover{
-    transform:translateY(-1px);
-    filter:brightness(1.1);
+
+    transform:
+        translateY(-1px);
+
+    filter:
+        brightness(1.1);
 }
 
 .action-btn:disabled{
+
     opacity:.5;
+
     cursor:not-allowed;
+
     transform:none;
 }
 
+
+/* =========================
+   MESSAGES
+========================= */
+
 .message{
+
     margin-top:12px;
+
     padding:10px 12px;
+
     border-radius:10px;
+
     font-size:13px;
+
     display:none;
 }
 
 .message.success{
+
     display:block;
-    background:rgba(30,180,100,.12);
+
+    background:
+        rgba(30,180,100,.12);
+
     color:#63e6a0;
-    border:1px solid rgba(30,180,100,.2);
+
+    border:
+        1px solid
+        rgba(30,180,100,.2);
 }
 
 .message.error{
+
     display:block;
-    background:rgba(255,60,80,.1);
+
+    background:
+        rgba(255,60,80,.1);
+
     color:#ff8995;
-    border:1px solid rgba(255,60,80,.2);
+
+    border:
+        1px solid
+        rgba(255,60,80,.2);
 }
 
+
+/* =========================
+   MATCHES
+========================= */
+
 .recent{
+
     margin-top:20px;
 }
 
 .match{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     gap:15px;
+
     padding:15px;
+
     border-radius:15px;
-    background:rgba(255,255,255,.025);
-    border:1px solid rgba(255,255,255,.06);
+
+    background:
+        rgba(255,255,255,.025);
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
     margin-bottom:10px;
 }
 
 .match-info{
+
     display:flex;
+
     align-items:center;
+
     gap:12px;
 }
 
 .match-icon{
+
     width:42px;
+
     height:42px;
+
     display:grid;
+
     place-items:center;
+
     border-radius:12px;
-    background:rgba(124,58,237,.16);
+
+    background:
+        rgba(124,58,237,.16);
+
     font-size:20px;
 }
 
 .match h3{
+
     font-size:15px;
 }
 
 .match p{
+
     margin-top:5px;
+
     color:#8f8499;
+
     font-size:12px;
 }
 
 .status{
+
     padding:7px 11px;
+
     border-radius:9px;
+
     font-size:11px;
+
     white-space:nowrap;
 }
 
 .status-scheduled{
+
     color:#cda6ff;
-    background:rgba(139,61,255,.12);
+
+    background:
+        rgba(139,61,255,.12);
 }
 
 .status-playing{
+
     color:#ffd36b;
-    background:rgba(255,190,50,.1);
+
+    background:
+        rgba(255,190,50,.1);
 }
 
 .status-completed{
+
     color:#63e6a0;
-    background:rgba(30,180,100,.1);
+
+    background:
+        rgba(30,180,100,.1);
 }
 
 .status-cancelled{
+
     color:#ff8a96;
-    background:rgba(255,60,80,.1);
+
+    background:
+        rgba(255,60,80,.1);
 }
 
 .empty{
+
     text-align:center;
+
     color:#8d8296;
+
     padding:25px 10px;
 }
 
+
+/* =========================
+   NEWS
+========================= */
+
 .news-list{
+
     margin-top:12px;
 }
 
 .news-item{
+
     padding:15px;
-    border:1px solid rgba(255,255,255,.06);
-    background:rgba(255,255,255,.025);
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
+    background:
+        rgba(255,255,255,.025);
+
     border-radius:15px;
+
     margin-bottom:10px;
 }
 
 .news-item-top{
+
     display:flex;
+
     justify-content:space-between;
+
     gap:10px;
 }
 
 .news-item h3{
+
     font-size:15px;
 }
 
 .news-date{
+
     color:#85798e;
+
     font-size:11px;
+
     margin-top:7px;
 }
 
 .news-content{
+
     color:#b8acbf;
+
     font-size:13px;
+
     line-height:1.8;
+
     margin-top:9px;
 }
 
 .delete-btn{
+
     border:0;
-    background:rgba(255,60,80,.1);
+
+    background:
+        rgba(255,60,80,.1);
+
     color:#ff8793;
+
     border-radius:9px;
+
     padding:7px 10px;
+
     height:max-content;
 }
 
+
+/* =========================
+   DATABASE
+========================= */
+
 .db-status{
+
     display:flex;
+
     align-items:center;
+
     gap:10px;
+
     color:#9f94a9;
+
     font-size:13px;
 }
 
 .db-indicator{
+
     width:10px;
+
     height:10px;
+
     border-radius:50%;
+
     background:#35e28a;
 }
 
+
+/* =========================
+   FOOTER
+========================= */
+
 .footer{
+
     text-align:center;
+
     color:#71677a;
+
     margin-top:40px;
+
     font-size:12px;
 }
 
+
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media(max-width:850px){
+
     .stats{
-        grid-template-columns:repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
     .grid{
+
         grid-template-columns:1fr;
     }
+
 }
 
 @media(max-width:500px){
+
     .stats{
-        grid-template-columns:1fr 1fr;
+
+        grid-template-columns:
+            1fr 1fr;
+
         gap:10px;
     }
 
     .stat{
+
         padding:16px;
     }
 
     .stat-value{
+
         font-size:24px;
     }
 
     .hero h1{
+
         font-size:25px;
     }
 
     .match{
+
         align-items:flex-start;
     }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================
+     LOGIN SCREEN
+========================= -->
+
+<div id="loginScreen">
+
+    <div class="login-box">
+
+        <div class="login-icon">
+            🔐
+        </div>
+
+        <h1>
+            ورود به پنل مدیریت
+        </h1>
+
+        <p>
+            برای ورود به پنل مدیریت
+            لیگ تخته، رمز عبور را وارد کنید.
+        </p>
+
+        <input
+            id="adminPassword"
+            type="password"
+            placeholder="رمز عبور"
+            autocomplete="off"
+            onkeydown="
+                if(event.key==='Enter')
+                    checkAdminPassword()
+            "
+        >
+
+        <button
+            onclick="checkAdminPassword()"
+        >
+            🔓 ورود به پنل
+        </button>
+
+        <div id="loginError"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header class="header">
+
     <div class="header-inner">
 
         <div class="logo">
-            🎲 لیگ تخته <span>｜پنل مدیریت</span>
+
+            🎲 لیگ تخته
+
+            <span>
+                ｜پنل مدیریت
+            </span>
+
         </div>
 
-        <a href="index.html" class="back-btn">
+        <a
+            href="index.html"
+            class="back-btn"
+        >
             ← بازگشت به سایت
         </a>
 
     </div>
+
 </header>
+
+
+<!-- =========================
+     MAIN
+========================= -->
 
 <main class="container">
 
+
 <section class="hero">
 
-    <h1>پنل مدیریت لیگ</h1>
+    <h1>
+        پنل مدیریت لیگ
+    </h1>
 
     <p>
-        مدیریت بازیکنان، مسابقات، نتایج و اخبار
-        لیگ تخته ساناز و ساشا
+        مدیریت بازیکنان، مسابقات،
+        نتایج و اخبار لیگ تخته ساناز و ساشا
     </p>
 
     <div class="status-line">
+
         <span class="status-dot"></span>
+
         اتصال به پایگاه داده فعال است
+
     </div>
 
 </section>
 
 
-<h2 class="section-title">📊 آمار لیگ</h2>
+<!-- STATS -->
+
+<h2 class="section-title">
+    📊 آمار لیگ
+</h2>
+
 
 <section class="stats">
 
-    <div class="stat">
-        <div class="stat-icon">👥</div>
-        <div class="stat-value" id="playerCount">۰</div>
-        <div class="stat-label">بازیکنان</div>
+
+<div class="stat">
+
+    <div class="stat-icon">
+        👥
     </div>
 
-    <div class="stat">
-        <div class="stat-icon">🎲</div>
-        <div class="stat-value" id="matchCount">۰</div>
-        <div class="stat-label">مسابقات</div>
+    <div
+        class="stat-value"
+        id="playerCount"
+    >
+        ۰
     </div>
 
-    <div class="stat">
-        <div class="stat-icon">🏆</div>
-        <div class="stat-value" id="resultCount">۰</div>
-        <div class="stat-label">نتایج ثبت‌شده</div>
+    <div class="stat-label">
+        بازیکنان
     </div>
 
-    <div class="stat">
-        <div class="stat-icon">📰</div>
-        <div class="stat-value" id="newsCount">۰</div>
-        <div class="stat-label">اخبار</div>
+</div>
+
+
+<div class="stat">
+
+    <div class="stat-icon">
+        🎲
     </div>
+
+    <div
+        class="stat-value"
+        id="matchCount"
+    >
+        ۰
+    </div>
+
+    <div class="stat-label">
+        مسابقات
+    </div>
+
+</div>
+
+
+<div class="stat">
+
+    <div class="stat-icon">
+        🏆
+    </div>
+
+    <div
+        class="stat-value"
+        id="resultCount"
+    >
+        ۰
+    </div>
+
+    <div class="stat-label">
+        نتایج ثبت‌شده
+    </div>
+
+</div>
+
+
+<div class="stat">
+
+    <div class="stat-icon">
+        📰
+    </div>
+
+    <div
+        class="stat-value"
+        id="newsCount"
+    >
+        ۰
+    </div>
+
+    <div class="stat-label">
+        اخبار
+    </div>
+
+</div>
+
 
 </section>
 
 
-<h2 class="section-title">⚙️ مدیریت</h2>
+<!-- MANAGEMENT -->
+
+<h2 class="section-title">
+    ⚙️ مدیریت
+</h2>
+
 
 <section class="grid">
 
 
-<!-- ADD PLAYER -->
+<!-- PLAYER -->
 
 <div class="card">
 
-    <h2>👤 افزودن بازیکن</h2>
+    <h2>
+        👤 افزودن بازیکن
+    </h2>
 
     <p class="card-description">
         بازیکن جدید را به لیگ اضافه کنید.
@@ -517,7 +1168,7 @@ textarea{
 
     <div class="form-group">
 
-        <label for="playerName">
+        <label>
             نام بازیکن
         </label>
 
@@ -537,20 +1188,26 @@ textarea{
         ➕ افزودن بازیکن
     </button>
 
-    <div id="playerMessage" class="message"></div>
+    <div
+        id="playerMessage"
+        class="message"
+    ></div>
 
 </div>
 
 
-<!-- CREATE MATCH -->
+<!-- MATCH -->
 
 <div class="card">
 
-    <h2>🎮 ایجاد مسابقه</h2>
+    <h2>
+        🎮 ایجاد مسابقه
+    </h2>
 
     <p class="card-description">
         یک مسابقه جدید برای دو بازیکن ایجاد کنید.
     </p>
+
 
     <div class="form-group">
 
@@ -559,12 +1216,15 @@ textarea{
         </label>
 
         <select id="matchPlayer1">
+
             <option value="">
                 در حال دریافت...
             </option>
+
         </select>
 
     </div>
+
 
     <div class="form-group">
 
@@ -573,12 +1233,15 @@ textarea{
         </label>
 
         <select id="matchPlayer2">
+
             <option value="">
                 در حال دریافت...
             </option>
+
         </select>
 
     </div>
+
 
     <div class="form-group">
 
@@ -593,6 +1256,7 @@ textarea{
 
     </div>
 
+
     <div class="form-group">
 
         <label>
@@ -605,6 +1269,7 @@ textarea{
         >
 
     </div>
+
 
     <div class="form-group">
 
@@ -634,6 +1299,7 @@ textarea{
 
     </div>
 
+
     <button
         class="action-btn"
         id="createMatchBtn"
@@ -642,7 +1308,11 @@ textarea{
         🎮 ایجاد مسابقه
     </button>
 
-    <div id="matchMessage" class="message"></div>
+
+    <div
+        id="matchMessage"
+        class="message"
+    ></div>
 
 </div>
 
@@ -651,11 +1321,14 @@ textarea{
 
 <div class="card">
 
-    <h2>🏆 ثبت نتیجه</h2>
+    <h2>
+        🏆 ثبت نتیجه
+    </h2>
 
     <p class="card-description">
         نتیجه یک مسابقه را ثبت کنید.
     </p>
+
 
     <div class="form-group">
 
@@ -673,6 +1346,7 @@ textarea{
 
     </div>
 
+
     <div class="form-group">
 
         <label>
@@ -687,6 +1361,7 @@ textarea{
         >
 
     </div>
+
 
     <div class="form-group">
 
@@ -703,6 +1378,7 @@ textarea{
 
     </div>
 
+
     <button
         class="action-btn"
         id="saveResultBtn"
@@ -711,7 +1387,11 @@ textarea{
         🏆 ذخیره نتیجه
     </button>
 
-    <div id="resultMessage" class="message"></div>
+
+    <div
+        id="resultMessage"
+        class="message"
+    ></div>
 
 </div>
 
@@ -720,11 +1400,14 @@ textarea{
 
 <div class="card">
 
-    <h2>📰 مدیریت اخبار</h2>
+    <h2>
+        📰 مدیریت اخبار
+    </h2>
 
     <p class="card-description">
         خبر جدید منتشر کنید.
     </p>
+
 
     <div class="form-group">
 
@@ -740,6 +1423,7 @@ textarea{
 
     </div>
 
+
     <div class="form-group">
 
         <label>
@@ -752,6 +1436,7 @@ textarea{
         ></textarea>
 
     </div>
+
 
     <div class="form-group">
 
@@ -767,6 +1452,7 @@ textarea{
 
     </div>
 
+
     <button
         class="action-btn"
         id="publishNewsBtn"
@@ -775,16 +1461,24 @@ textarea{
         📰 انتشار خبر
     </button>
 
-    <div id="newsMessage" class="message"></div>
+
+    <div
+        id="newsMessage"
+        class="message"
+    ></div>
 
 </div>
+
 
 </section>
 
 
-<!-- RECENT MATCHES -->
+<!-- MATCHES -->
 
-<h2 class="section-title">🎲 مسابقات اخیر</h2>
+<h2 class="section-title">
+    🎲 مسابقات اخیر
+</h2>
+
 
 <section class="card recent">
 
@@ -801,11 +1495,17 @@ textarea{
 
 <!-- NEWS LIST -->
 
-<h2 class="section-title">📰 اخبار منتشرشده</h2>
+<h2 class="section-title">
+    📰 اخبار منتشرشده
+</h2>
+
 
 <section class="card">
 
-    <div id="newsList" class="news-list">
+    <div
+        id="newsList"
+        class="news-list"
+    >
 
         <div class="empty">
             در حال دریافت اخبار...
@@ -818,7 +1518,10 @@ textarea{
 
 <!-- DATABASE -->
 
-<h2 class="section-title">🗄️ وضعیت سیستم</h2>
+<h2 class="section-title">
+    🗄️ وضعیت سیستم
+</h2>
+
 
 <section class="card">
 
@@ -839,23 +1542,109 @@ textarea{
 
 
 <footer class="footer">
+
     ساخته شده توسط امیر عباس ❤️
+
 </footer>
+
 
 </main>
 
 
 <script>
 
-/* =========================
-   ابزارهای عمومی
-========================= */
+/* ==================================================
+   رمز ورود
+================================================== */
+
+const ADMIN_PASSWORD = "AMIR2026";
+
+
+function checkAdminPassword(){
+
+    const input =
+        document.getElementById(
+            "adminPassword"
+        );
+
+    const error =
+        document.getElementById(
+            "loginError"
+        );
+
+    const loginScreen =
+        document.getElementById(
+            "loginScreen"
+        );
+
+
+    if(input.value === ADMIN_PASSWORD){
+
+        sessionStorage.setItem(
+            "admin_authenticated",
+            "true"
+        );
+
+        loginScreen.style.display =
+            "none";
+
+        error.textContent = "";
+
+    }else{
+
+        error.textContent =
+            "❌ رمز عبور اشتباه است.";
+
+        input.value = "";
+
+        input.focus();
+
+    }
+
+}
+
+
+/* بررسی ورود قبلی */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        const loggedIn =
+            sessionStorage.getItem(
+                "admin_authenticated"
+            );
+
+        if(loggedIn === "true"){
+
+            const loginScreen =
+                document.getElementById(
+                    "loginScreen"
+                );
+
+            if(loginScreen){
+
+                loginScreen.style.display =
+                    "none";
+
+            }
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   ابزارها
+================================================== */
 
 function toPersianNumber(value){
 
     return String(value)
-        .replace(/\d/g, d =>
-            "۰۱۲۳۴۵۶۷۸۹"[d]
+        .replace(
+            /\d/g,
+            d => "۰۱۲۳۴۵۶۷۸۹"[d]
         );
 
 }
@@ -863,29 +1652,63 @@ function toPersianNumber(value){
 
 function escapeHTML(value){
 
-    if(value === null || value === undefined){
+    if(
+        value === null ||
+        value === undefined
+    ){
+
         return "";
+
     }
 
+
     return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
 
-function showMessage(id,text,type="success"){
+function showMessage(
+    id,
+    text,
+    type="success"
+){
 
-    const el = document.getElementById(id);
+    const element =
+        document.getElementById(id);
 
-    if(!el) return;
+    if(!element){
+        return;
+    }
 
-    el.textContent = text;
+    element.textContent =
+        text;
 
-    el.className =
+    element.className =
         "message " + type;
 
 }
@@ -893,42 +1716,59 @@ function showMessage(id,text,type="success"){
 
 function clearMessage(id){
 
-    const el = document.getElementById(id);
+    const element =
+        document.getElementById(id);
 
-    if(!el) return;
+    if(!element){
+        return;
+    }
 
-    el.textContent = "";
+    element.textContent = "";
 
-    el.className = "message";
+    element.className =
+        "message";
 
 }
 
 
-/* =========================
-   وضعیت دیتابیس
-========================= */
+/* ==================================================
+   DATABASE STATUS
+================================================== */
 
 async function checkDatabase(){
 
     const indicator =
-        document.getElementById("dbIndicator");
+        document.getElementById(
+            "dbIndicator"
+        );
 
     const text =
-        document.getElementById("dbStatusText");
+        document.getElementById(
+            "dbStatusText"
+        );
+
 
     try{
 
         const { error } =
             await supabaseClient
+
                 .from("players")
+
                 .select("id")
+
                 .limit(1);
 
+
         if(error){
+
             throw error;
+
         }
 
-        indicator.style.background = "#35e28a";
+
+        indicator.style.background =
+            "#35e28a";
 
         indicator.style.boxShadow =
             "0 0 12px #35e28a";
@@ -936,12 +1776,14 @@ async function checkDatabase(){
         text.textContent =
             "اتصال به Supabase برقرار است ✅";
 
+
     }catch(error){
 
         console.error(
             "Database Error:",
             error
         );
+
 
         indicator.style.background =
             "#ff5266";
@@ -957,9 +1799,9 @@ async function checkDatabase(){
 }
 
 
-/* =========================
-   بازیکنان
-========================= */
+/* ==================================================
+   PLAYERS
+================================================== */
 
 let playersCache = [];
 
@@ -967,24 +1809,47 @@ let playersCache = [];
 async function loadPlayers(){
 
     const select1 =
-        document.getElementById("matchPlayer1");
+        document.getElementById(
+            "matchPlayer1"
+        );
 
     const select2 =
-        document.getElementById("matchPlayer2");
+        document.getElementById(
+            "matchPlayer2"
+        );
+
 
     try{
 
-        const { data, error } =
-            await supabaseClient
-                .from("players")
-                .select("id,name")
-                .order("id",{ascending:true});
+        const {
+            data,
+            error
+        } = await supabaseClient
+
+            .from("players")
+
+            .select(
+                "id,name"
+            )
+
+            .order(
+                "id",
+                {
+                    ascending:true
+                }
+            );
+
 
         if(error){
+
             throw error;
+
         }
 
-        playersCache = data || [];
+
+        playersCache =
+            data || [];
+
 
         if(!playersCache.length){
 
@@ -999,23 +1864,45 @@ async function loadPlayers(){
                 </option>`;
 
             return;
+
         }
 
-        const options = playersCache
-            .map(player => `
-                <option value="${player.id}">
-                    ${escapeHTML(player.name)}
-                </option>
-            `)
-            .join("");
+
+        const options =
+            playersCache
+
+                .map(
+                    player => `
+
+                        <option
+                            value="${player.id}"
+                        >
+                            ${escapeHTML(
+                                player.name
+                            )}
+                        </option>
+
+                    `
+                )
+
+                .join("");
+
 
         select1.innerHTML =
-            `<option value="">انتخاب بازیکن</option>`
-            + options;
+            `<option value="">
+                انتخاب بازیکن
+            </option>`
+            +
+            options;
+
 
         select2.innerHTML =
-            `<option value="">انتخاب بازیکن</option>`
-            + options;
+            `<option value="">
+                انتخاب بازیکن
+            </option>`
+            +
+            options;
+
 
     }catch(error){
 
@@ -1024,10 +1911,12 @@ async function loadPlayers(){
             error
         );
 
+
         select1.innerHTML =
             `<option value="">
                 خطا در دریافت بازیکنان
             </option>`;
+
 
         select2.innerHTML =
             `<option value="">
@@ -1042,21 +1931,41 @@ async function loadPlayers(){
 async function loadPlayerCount(){
 
     const element =
-        document.getElementById("playerCount");
+        document.getElementById(
+            "playerCount"
+        );
+
 
     try{
 
-        const { count, error } =
-            await supabaseClient
-                .from("players")
-                .select("*",{count:"exact",head:true});
+        const {
+            count,
+            error
+        } = await supabaseClient
+
+            .from("players")
+
+            .select(
+                "*",
+                {
+                    count:"exact",
+                    head:true
+                }
+            );
+
 
         if(error){
+
             throw error;
+
         }
 
+
         element.textContent =
-            toPersianNumber(count || 0);
+            toPersianNumber(
+                count || 0
+            );
+
 
     }catch(error){
 
@@ -1065,7 +1974,8 @@ async function loadPlayerCount(){
             error
         );
 
-        element.textContent = "—";
+        element.textContent =
+            "—";
 
     }
 
@@ -1075,15 +1985,24 @@ async function loadPlayerCount(){
 async function addPlayer(){
 
     const input =
-        document.getElementById("playerName");
+        document.getElementById(
+            "playerName"
+        );
 
     const button =
-        document.getElementById("addPlayerBtn");
+        document.getElementById(
+            "addPlayerBtn"
+        );
+
 
     const name =
         input.value.trim();
 
-    clearMessage("playerMessage");
+
+    clearMessage(
+        "playerMessage"
+    );
+
 
     if(!name){
 
@@ -1094,35 +2013,51 @@ async function addPlayer(){
         );
 
         return;
+
     }
+
 
     button.disabled = true;
 
     button.textContent =
         "در حال افزودن...";
 
+
     try{
 
-        const { error } =
-            await supabaseClient
-                .from("players")
-                .insert({
-                    name:name
-                });
+        const {
+            error
+        } = await supabaseClient
+
+            .from("players")
+
+            .insert({
+
+                name:name
+
+            });
+
 
         if(error){
+
             throw error;
+
         }
 
+
         input.value = "";
+
 
         showMessage(
             "playerMessage",
             "✅ بازیکن با موفقیت اضافه شد."
         );
 
+
         await loadPlayers();
+
         await loadPlayerCount();
+
 
     }catch(error){
 
@@ -1131,11 +2066,14 @@ async function addPlayer(){
             error
         );
 
+
         showMessage(
             "playerMessage",
-            "❌ خطا: " + error.message,
+            "❌ خطا: " +
+            error.message,
             "error"
         );
+
 
     }finally{
 
@@ -1149,25 +2087,31 @@ async function addPlayer(){
 }
 
 
-/* =========================
-   مسابقات
-========================= */
+/* ==================================================
+   MATCHES
+================================================== */
 
 function getStatusText(status){
 
     const map = {
 
-        scheduled:"برنامه‌ریزی‌شده",
+        scheduled:
+            "برنامه‌ریزی‌شده",
 
-        playing:"در حال برگزاری",
+        playing:
+            "در حال برگزاری",
 
-        completed:"پایان‌یافته",
+        completed:
+            "پایان‌یافته",
 
-        cancelled:"لغوشده"
+        cancelled:
+            "لغوشده"
 
     };
 
-    return map[status] || "نامعلوم";
+
+    return map[status]
+        || "نامعلوم";
 
 }
 
@@ -1175,66 +2119,107 @@ function getStatusText(status){
 function getStatusClass(status){
 
     if(status === "playing"){
+
         return "status-playing";
+
     }
+
 
     if(status === "completed"){
+
         return "status-completed";
+
     }
 
+
     if(status === "cancelled"){
+
         return "status-cancelled";
+
     }
+
 
     return "status-scheduled";
 
 }
 
 
-function formatMatchDate(date,time){
+function formatMatchDate(
+    date,
+    time
+){
 
     if(!date && !time){
+
         return "زمان نامعلوم";
+
     }
 
+
     let output = "";
+
 
     if(date){
 
         const parts =
             date.split("-");
 
+
         if(parts.length === 3){
 
-            output +=
+            output =
+
                 toPersianNumber(
                     parts[2]
-                ) + "/" +
+                )
+
+                +
+
+                "/"
+
+                +
+
                 toPersianNumber(
                     parts[1]
-                ) + "/" +
+                )
+
+                +
+
+                "/"
+
+                +
+
                 toPersianNumber(
                     parts[0]
                 );
 
         }else{
 
-            output +=
-                escapeHTML(date);
+            output =
+                escapeHTML(
+                    date
+                );
 
         }
 
     }
 
+
     if(time){
 
         output +=
-            " · " +
+
+            " · "
+
+            +
+
             toPersianNumber(
-                String(time).slice(0,5)
+                String(time)
+                    .slice(0,5)
             );
 
     }
+
 
     return output;
 
@@ -1248,32 +2233,43 @@ async function createMatch(){
             "matchPlayer1"
         ).value;
 
+
     const player2 =
         document.getElementById(
             "matchPlayer2"
         ).value;
 
+
     const date =
         document.getElementById(
             "matchDate"
-        ).value || null;
+        ).value
+        || null;
+
 
     const time =
         document.getElementById(
             "matchTime"
-        ).value || null;
+        ).value
+        || null;
+
 
     const status =
         document.getElementById(
             "matchStatus"
         ).value;
 
+
     const button =
         document.getElementById(
             "createMatchBtn"
         );
 
-    clearMessage("matchMessage");
+
+    clearMessage(
+        "matchMessage"
+    );
+
 
     if(!player1 || !player2){
 
@@ -1284,7 +2280,9 @@ async function createMatch(){
         );
 
         return;
+
     }
+
 
     if(player1 === player2){
 
@@ -1295,38 +2293,63 @@ async function createMatch(){
         );
 
         return;
+
     }
+
 
     button.disabled = true;
 
     button.textContent =
         "در حال ایجاد...";
 
+
     try{
 
-        const { error } =
-            await supabaseClient
-                .from("matches")
-                .insert({
-                    player1_id:Number(player1),
-                    player2_id:Number(player2),
-                    match_date:date,
-                    match_time:time,
-                    status:status
-                });
+        const {
+            error
+        } = await supabaseClient
+
+            .from("matches")
+
+            .insert({
+
+                player1_id:
+                    Number(player1),
+
+                player2_id:
+                    Number(player2),
+
+                match_date:
+                    date,
+
+                match_time:
+                    time,
+
+                status:
+                    status
+
+            });
+
 
         if(error){
+
             throw error;
+
         }
+
 
         showMessage(
             "matchMessage",
             "✅ مسابقه با موفقیت ایجاد شد."
         );
 
+
         await loadMatchCount();
+
         await loadMatches();
+
         await loadResultMatches();
+
 
     }catch(error){
 
@@ -1335,11 +2358,14 @@ async function createMatch(){
             error
         );
 
+
         showMessage(
             "matchMessage",
-            "❌ خطا: " + error.message,
+            "❌ خطا: " +
+            error.message,
             "error"
         );
+
 
     }finally{
 
@@ -1356,24 +2382,41 @@ async function createMatch(){
 async function loadMatchCount(){
 
     const element =
-        document.getElementById("matchCount");
+        document.getElementById(
+            "matchCount"
+        );
+
 
     try{
 
-        const { count,error } =
-            await supabaseClient
-                .from("matches")
-                .select("*",{
+        const {
+            count,
+            error
+        } = await supabaseClient
+
+            .from("matches")
+
+            .select(
+                "*",
+                {
                     count:"exact",
                     head:true
-                });
+                }
+            );
+
 
         if(error){
+
             throw error;
+
         }
 
+
         element.textContent =
-            toPersianNumber(count || 0);
+            toPersianNumber(
+                count || 0
+            );
+
 
     }catch(error){
 
@@ -1382,7 +2425,8 @@ async function loadMatchCount(){
             error
         );
 
-        element.textContent = "—";
+        element.textContent =
+            "—";
 
     }
 
@@ -1396,28 +2440,45 @@ async function loadMatches(){
             "recentMatches"
         );
 
+
     container.innerHTML =
         `<div class="empty">
             در حال دریافت مسابقات...
         </div>`;
 
+
     try{
 
-        /* بدون Join */
-        const { data:matches,error } =
-            await supabaseClient
-                .from("matches")
-                .select("*")
-                .order("id",{
+        const {
+            data:matches,
+            error
+        } = await supabaseClient
+
+            .from("matches")
+
+            .select("*")
+
+            .order(
+                "id",
+                {
                     ascending:false
-                })
-                .limit(6);
+                }
+            )
+
+            .limit(6);
+
 
         if(error){
+
             throw error;
+
         }
 
-        if(!matches || !matches.length){
+
+        if(
+            !matches ||
+            !matches.length
+        ){
 
             container.innerHTML =
                 `<div class="empty">
@@ -1425,104 +2486,176 @@ async function loadMatches(){
                 </div>`;
 
             return;
+
         }
 
+
         const playerIds = [
+
             ...new Set(
-                matches.flatMap(match => [
-                    match.player1_id,
-                    match.player2_id
-                ])
+
+                matches.flatMap(
+                    match => [
+
+                        match.player1_id,
+
+                        match.player2_id
+
+                    ]
+                )
+
             )
+
         ].filter(Boolean);
+
 
         let playerMap = {};
 
+
         if(playerIds.length){
 
-            const { data:players,error:playersError } =
-                await supabaseClient
-                    .from("players")
-                    .select("id,name")
-                    .in("id",playerIds);
+            const {
+                data:players,
+                error:playersError
+            } = await supabaseClient
+
+                .from("players")
+
+                .select(
+                    "id,name"
+                )
+
+                .in(
+                    "id",
+                    playerIds
+                );
+
 
             if(playersError){
+
                 throw playersError;
+
             }
 
-            (players || []).forEach(player => {
 
-                playerMap[player.id] =
-                    player.name;
+            (players || [])
+                .forEach(
+                    player => {
 
-            });
+                        playerMap[
+                            player.id
+                        ] =
+                            player.name;
+
+                    }
+                );
 
         }
 
+
         container.innerHTML =
-            matches.map(match => {
 
-                const name1 =
-                    playerMap[match.player1_id]
-                    || "بازیکن ۱";
+            matches
 
-                const name2 =
-                    playerMap[match.player2_id]
-                    || "بازیکن ۲";
+                .map(
+                    match => {
 
-                const statusText =
-                    getStatusText(
-                        match.status
-                    );
+                        const name1 =
+                            playerMap[
+                                match.player1_id
+                            ]
+                            ||
+                            "بازیکن ۱";
 
-                const statusClass =
-                    getStatusClass(
-                        match.status
-                    );
 
-                const dateText =
-                    formatMatchDate(
-                        match.match_date,
-                        match.match_time
-                    );
+                        const name2 =
+                            playerMap[
+                                match.player2_id
+                            ]
+                            ||
+                            "بازیکن ۲";
 
-                return `
 
-                    <div class="match">
+                        const statusText =
+                            getStatusText(
+                                match.status
+                            );
 
-                        <div class="match-info">
 
-                            <div class="match-icon">
-                                🎲
+                        const statusClass =
+                            getStatusClass(
+                                match.status
+                            );
+
+
+                        const dateText =
+                            formatMatchDate(
+                                match.match_date,
+                                match.match_time
+                            );
+
+
+                        return `
+
+                            <div class="match">
+
+                                <div class="match-info">
+
+                                    <div class="match-icon">
+                                        🎲
+                                    </div>
+
+                                    <div>
+
+                                        <h3>
+
+                                            ${escapeHTML(
+                                                name1
+                                            )}
+
+                                            ×
+
+                                            ${escapeHTML(
+                                                name2
+                                            )}
+
+                                        </h3>
+
+                                        <p>
+
+                                            مسابقه #
+
+                                            ${toPersianNumber(
+                                                match.id
+                                            )}
+
+                                            ·
+
+                                            ${dateText}
+
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                                <div
+                                    class="status ${statusClass}"
+                                >
+
+                                    ${statusText}
+
+                                </div>
+
                             </div>
 
-                            <div>
+                        `;
 
-                                <h3>
-                                    ${escapeHTML(name1)}
-                                    ×
-                                    ${escapeHTML(name2)}
-                                </h3>
+                    }
+                )
 
-                                <p>
-                                    مسابقه #${toPersianNumber(match.id)}
-                                    ·
-                                    ${dateText}
-                                </p>
+                .join("");
 
-                            </div>
-
-                        </div>
-
-                        <div class="status ${statusClass}">
-                            ${statusText}
-                        </div>
-
-                    </div>
-
-                `;
-
-            }).join("");
 
     }catch(error){
 
@@ -1531,13 +2664,23 @@ async function loadMatches(){
             error
         );
 
+
         container.innerHTML =
+
             `<div class="empty">
+
                 ❌ دریافت مسابقات با خطا مواجه شد.
+
                 <br><br>
+
                 <small>
-                    ${escapeHTML(error.message)}
+
+                    ${escapeHTML(
+                        error.message
+                    )}
+
                 </small>
+
             </div>`;
 
     }
@@ -1545,9 +2688,9 @@ async function loadMatches(){
 }
 
 
-/* =========================
-   نتایج
-========================= */
+/* ==================================================
+   RESULTS
+================================================== */
 
 async function loadResultCount(){
 
@@ -1556,22 +2699,37 @@ async function loadResultCount(){
             "resultCount"
         );
 
+
     try{
 
-        const { count,error } =
-            await supabaseClient
-                .from("results")
-                .select("*",{
+        const {
+            count,
+            error
+        } = await supabaseClient
+
+            .from("results")
+
+            .select(
+                "*",
+                {
                     count:"exact",
                     head:true
-                });
+                }
+            );
+
 
         if(error){
+
             throw error;
+
         }
 
+
         element.textContent =
-            toPersianNumber(count || 0);
+            toPersianNumber(
+                count || 0
+            );
+
 
     }catch(error){
 
@@ -1580,7 +2738,8 @@ async function loadResultCount(){
             error
         );
 
-        element.textContent = "—";
+        element.textContent =
+            "—";
 
     }
 
@@ -1594,21 +2753,37 @@ async function loadResultMatches(){
             "resultMatch"
         );
 
+
     try{
 
-        const { data:matches,error } =
-            await supabaseClient
-                .from("matches")
-                .select("*")
-                .order("id",{
+        const {
+            data:matches,
+            error
+        } = await supabaseClient
+
+            .from("matches")
+
+            .select("*")
+
+            .order(
+                "id",
+                {
                     ascending:false
-                });
+                }
+            );
+
 
         if(error){
+
             throw error;
+
         }
 
-        if(!matches || !matches.length){
+
+        if(
+            !matches ||
+            !matches.length
+        ){
 
             select.innerHTML =
                 `<option value="">
@@ -1616,65 +2791,135 @@ async function loadResultMatches(){
                 </option>`;
 
             return;
+
         }
 
+
         const playerIds = [
+
             ...new Set(
-                matches.flatMap(match => [
-                    match.player1_id,
-                    match.player2_id
-                ])
+
+                matches.flatMap(
+                    match => [
+
+                        match.player1_id,
+
+                        match.player2_id
+
+                    ]
+                )
+
             )
+
         ].filter(Boolean);
+
 
         let playerMap = {};
 
+
         if(playerIds.length){
 
-            const { data:players,error:playersError } =
-                await supabaseClient
-                    .from("players")
-                    .select("id,name")
-                    .in("id",playerIds);
+            const {
+                data:players,
+                error:playersError
+            } = await supabaseClient
+
+                .from("players")
+
+                .select(
+                    "id,name"
+                )
+
+                .in(
+                    "id",
+                    playerIds
+                );
+
 
             if(playersError){
+
                 throw playersError;
+
             }
 
-            (players || []).forEach(player => {
 
-                playerMap[player.id] =
-                    player.name;
+            (players || [])
+                .forEach(
+                    player => {
 
-            });
+                        playerMap[
+                            player.id
+                        ] =
+                            player.name;
+
+                    }
+                );
 
         }
 
+
         select.innerHTML =
+
             `<option value="">
                 انتخاب مسابقه
-            </option>` +
-            matches.map(match => {
+            </option>`
 
-                const name1 =
-                    playerMap[match.player1_id]
-                    || "بازیکن ۱";
+            +
 
-                const name2 =
-                    playerMap[match.player2_id]
-                    || "بازیکن ۲";
+            matches
 
-                return `
-                    <option value="${match.id}">
-                        #${toPersianNumber(match.id)}
-                        —
-                        ${escapeHTML(name1)}
-                        ×
-                        ${escapeHTML(name2)}
-                    </option>
-                `;
+                .map(
+                    match => {
 
-            }).join("");
+                        const name1 =
+                            playerMap[
+                                match.player1_id
+                            ]
+                            ||
+                            "بازیکن ۱";
+
+
+                        const name2 =
+                            playerMap[
+                                match.player2_id
+                            ]
+                            ||
+                            "بازیکن ۲";
+
+
+                        return `
+
+                            <option
+                                value="${match.id}"
+                            >
+
+                                #
+
+                                ${toPersianNumber(
+                                    match.id
+                                )}
+
+                                —
+
+                                ${escapeHTML(
+                                    name1
+                                )}
+
+                                ×
+
+                                ${escapeHTML(
+                                    name2
+                                )}
+
+                            </option>
+
+                        `;
+
+                    }
+                )
+
+                .join("");
+
 
     }catch(error){
 
@@ -1682,6 +2927,7 @@ async function loadResultMatches(){
             "Result Matches Error:",
             error
         );
+
 
         select.innerHTML =
             `<option value="">
@@ -1700,22 +2946,29 @@ async function saveResult(){
             "resultMatch"
         ).value;
 
+
     const score1 =
         document.getElementById(
             "score1"
         ).value;
+
 
     const score2 =
         document.getElementById(
             "score2"
         ).value;
 
+
     const button =
         document.getElementById(
             "saveResultBtn"
         );
 
-    clearMessage("resultMessage");
+
+    clearMessage(
+        "resultMessage"
+    );
+
 
     if(!matchId){
 
@@ -1726,9 +2979,14 @@ async function saveResult(){
         );
 
         return;
+
     }
 
-    if(score1 === "" || score2 === ""){
+
+    if(
+        score1 === "" ||
+        score2 === ""
+    ){
 
         showMessage(
             "resultMessage",
@@ -1737,12 +2995,22 @@ async function saveResult(){
         );
 
         return;
+
     }
 
-    const s1 = Number(score1);
-    const s2 = Number(score2);
 
-    if(s1 < 0 || s2 < 0){
+    const s1 =
+        Number(score1);
+
+
+    const s2 =
+        Number(score2);
+
+
+    if(
+        s1 < 0 ||
+        s2 < 0
+    ){
 
         showMessage(
             "resultMessage",
@@ -1751,94 +3019,193 @@ async function saveResult(){
         );
 
         return;
+
     }
+
 
     if(s1 === s2){
 
         showMessage(
             "resultMessage",
-            "❌ برای ثبت برنده، امتیازها نباید مساوی باشند.",
+            "❌ امتیازها نباید مساوی باشند.",
             "error"
         );
 
         return;
+
     }
+
 
     button.disabled = true;
 
     button.textContent =
         "در حال ذخیره...";
 
+
     try{
 
-        const { data:match,error:matchError } =
-            await supabaseClient
-                .from("matches")
-                .select(
-                    "id,player1_id,player2_id"
-                )
-                .eq("id",Number(matchId))
-                .single();
+        /* دریافت مسابقه */
+
+        const {
+            data:match,
+            error:matchError
+        } = await supabaseClient
+
+            .from("matches")
+
+            .select(
+                "id,player1_id,player2_id"
+            )
+
+            .eq(
+                "id",
+                Number(matchId)
+            )
+
+            .single();
+
 
         if(matchError){
+
             throw matchError;
+
         }
+
+
+        /* جلوگیری از ثبت دوباره */
+
+        const {
+            data:existingResult,
+            error:existingError
+        } = await supabaseClient
+
+            .from("results")
+
+            .select("id")
+
+            .eq(
+                "match_id",
+                Number(matchId)
+            )
+
+            .limit(1);
+
+
+        if(existingError){
+
+            throw existingError;
+
+        }
+
+
+        if(
+            existingResult &&
+            existingResult.length
+        ){
+
+            showMessage(
+                "resultMessage",
+                "❌ برای این مسابقه قبلاً نتیجه ثبت شده است.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        /* مشخص کردن برنده */
 
         const winnerId =
             s1 > s2
+
                 ? match.player1_id
+
                 : match.player2_id;
 
-        const { error:resultError } =
-            await supabaseClient
-                .from("results")
-                .insert({
 
-                    match_id:Number(matchId),
+        /* ثبت نتیجه */
 
-                    score1:s1,
+        const {
+            error:resultError
+        } = await supabaseClient
 
-                    score2:s2,
+            .from("results")
 
-                    winner_id:winnerId
+            .insert({
 
-                });
+                match_id:
+                    Number(matchId),
+
+                score1:
+                    s1,
+
+                score2:
+                    s2,
+
+                winner_id:
+                    winnerId
+
+            });
+
 
         if(resultError){
+
             throw resultError;
+
         }
 
-        const { error:updateError } =
-            await supabaseClient
-                .from("matches")
-                .update({
-                    status:"completed"
-                })
-                .eq(
-                    "id",
-                    Number(matchId)
-                );
+
+        /* تغییر وضعیت مسابقه */
+
+        const {
+            error:updateError
+        } = await supabaseClient
+
+            .from("matches")
+
+            .update({
+
+                status:
+                    "completed"
+
+            })
+
+            .eq(
+                "id",
+                Number(matchId)
+            );
+
 
         if(updateError){
+
             throw updateError;
+
         }
+
 
         document.getElementById(
             "score1"
         ).value = "";
 
+
         document.getElementById(
             "score2"
         ).value = "";
+
 
         showMessage(
             "resultMessage",
             "✅ نتیجه با موفقیت ثبت شد."
         );
 
+
         await loadResultCount();
+
         await loadMatches();
+
         await loadMatchCount();
+
 
     }catch(error){
 
@@ -1847,11 +3214,14 @@ async function saveResult(){
             error
         );
 
+
         showMessage(
             "resultMessage",
-            "❌ خطا: " + error.message,
+            "❌ خطا: " +
+            error.message,
             "error"
         );
+
 
     }finally{
 
@@ -1865,9 +3235,9 @@ async function saveResult(){
 }
 
 
-/* =========================
-   اخبار
-========================= */
+/* ==================================================
+   NEWS
+================================================== */
 
 async function loadNews(){
 
@@ -1876,91 +3246,141 @@ async function loadNews(){
             "newsList"
         );
 
+
     container.innerHTML =
         `<div class="empty">
             در حال دریافت اخبار...
         </div>`;
 
+
     try{
 
-        const { data,error } =
-            await supabaseClient
-                .from("news")
-                .select(
-                    "id,title,content,image_url,created_at"
-                )
-                .order(
-                    "created_at",
-                    {ascending:false}
-                );
+        const {
+            data,
+            error
+        } = await supabaseClient
+
+            .from("news")
+
+            .select(
+                "id,title,content,image_url,created_at"
+            )
+
+            .order(
+                "created_at",
+                {
+                    ascending:false
+                }
+            );
+
 
         if(error){
+
             throw error;
+
         }
 
-        if(!data || !data.length){
+
+        if(
+            !data ||
+            !data.length
+        ){
 
             container.innerHTML =
                 `<div class="empty">
+
                     📰 هنوز خبری منتشر نشده است.
+
                 </div>`;
 
             return;
+
         }
 
+
         container.innerHTML =
-            data.map(news => {
 
-                const date =
-                    news.created_at
-                    ? new Date(
-                        news.created_at
-                    ).toLocaleDateString(
-                        "fa-IR"
-                    )
-                    : "";
+            data
 
-                return `
+                .map(
+                    news => {
 
-                    <div class="news-item">
+                        const date =
+                            news.created_at
 
-                        <div class="news-item-top">
+                                ? new Date(
+                                    news.created_at
+                                ).toLocaleDateString(
+                                    "fa-IR"
+                                )
 
-                            <div>
+                                : "";
 
-                                <h3>
+
+                        return `
+
+                            <div class="news-item">
+
+                                <div
+                                    class="news-item-top"
+                                >
+
+                                    <div>
+
+                                        <h3>
+
+                                            ${escapeHTML(
+                                                news.title
+                                                ||
+                                                "بدون عنوان"
+                                            )}
+
+                                        </h3>
+
+                                        <div
+                                            class="news-date"
+                                        >
+
+                                            ${date}
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <button
+                                        class="delete-btn"
+                                        onclick="deleteNews(${news.id})"
+                                    >
+
+                                        🗑 حذف
+
+                                    </button>
+
+                                </div>
+
+
+                                <div
+                                    class="news-content"
+                                >
+
                                     ${escapeHTML(
-                                        news.title ||
-                                        "بدون عنوان"
+                                        news.content
+                                        ||
+                                        ""
                                     )}
-                                </h3>
 
-                                <div class="news-date">
-                                    ${date}
                                 </div>
 
                             </div>
 
-                            <button
-                                class="delete-btn"
-                                onclick="deleteNews(${news.id})"
-                            >
-                                🗑 حذف
-                            </button>
+                        `;
 
-                        </div>
+                    }
+                )
 
-                        <div class="news-content">
-                            ${escapeHTML(
-                                news.content || ""
-                            )}
-                        </div>
+                .join("");
 
-                    </div>
-
-                `;
-
-            }).join("");
 
     }catch(error){
 
@@ -1969,13 +3389,23 @@ async function loadNews(){
             error
         );
 
+
         container.innerHTML =
+
             `<div class="empty">
+
                 ❌ دریافت اخبار با خطا مواجه شد.
+
                 <br><br>
+
                 <small>
-                    ${escapeHTML(error.message)}
+
+                    ${escapeHTML(
+                        error.message
+                    )}
+
                 </small>
+
             </div>`;
 
     }
@@ -1990,22 +3420,37 @@ async function loadNewsCount(){
             "newsCount"
         );
 
+
     try{
 
-        const { count,error } =
-            await supabaseClient
-                .from("news")
-                .select("*",{
+        const {
+            count,
+            error
+        } = await supabaseClient
+
+            .from("news")
+
+            .select(
+                "*",
+                {
                     count:"exact",
                     head:true
-                });
+                }
+            );
+
 
         if(error){
+
             throw error;
+
         }
 
+
         element.textContent =
-            toPersianNumber(count || 0);
+            toPersianNumber(
+                count || 0
+            );
+
 
     }catch(error){
 
@@ -2014,7 +3459,8 @@ async function loadNewsCount(){
             error
         );
 
-        element.textContent = "—";
+        element.textContent =
+            "—";
 
     }
 
@@ -2028,22 +3474,29 @@ async function publishNews(){
             "newsTitle"
         ).value.trim();
 
+
     const content =
         document.getElementById(
             "newsContent"
         ).value.trim();
+
 
     const image =
         document.getElementById(
             "newsImage"
         ).value.trim();
 
+
     const button =
         document.getElementById(
             "publishNewsBtn"
         );
 
-    clearMessage("newsMessage");
+
+    clearMessage(
+        "newsMessage"
+    );
+
 
     if(!title){
 
@@ -2054,7 +3507,9 @@ async function publishNews(){
         );
 
         return;
+
     }
+
 
     if(!content){
 
@@ -2065,53 +3520,73 @@ async function publishNews(){
         );
 
         return;
+
     }
+
 
     button.disabled = true;
 
     button.textContent =
         "در حال انتشار...";
 
+
     try{
 
-        const { error } =
-            await supabaseClient
-                .from("news")
-                .insert({
+        const {
+            error
+        } = await supabaseClient
 
-                    name:"مدیریت لیگ",
+            .from("news")
 
-                    title:title,
+            .insert({
 
-                    content:content,
+                name:
+                    "مدیریت لیگ",
 
-                    image_url:image || null
+                title:
+                    title,
 
-                });
+                content:
+                    content,
+
+                image_url:
+                    image || null
+
+            });
+
 
         if(error){
+
             throw error;
+
         }
+
 
         document.getElementById(
             "newsTitle"
         ).value = "";
 
+
         document.getElementById(
             "newsContent"
         ).value = "";
 
+
         document.getElementById(
             "newsImage"
         ).value = "";
+
 
         showMessage(
             "newsMessage",
             "✅ خبر با موفقیت منتشر شد."
         );
 
+
         await loadNews();
+
         await loadNewsCount();
+
 
     }catch(error){
 
@@ -2120,11 +3595,14 @@ async function publishNews(){
             error
         );
 
+
         showMessage(
             "newsMessage",
-            "❌ خطا: " + error.message,
+            "❌ خطا: " +
+            error.message,
             "error"
         );
+
 
     }finally{
 
@@ -2145,24 +3623,41 @@ async function deleteNews(id){
             "آیا مطمئن هستید که می‌خواهید این خبر حذف شود؟"
         );
 
+
     if(!confirmed){
+
         return;
+
     }
+
 
     try{
 
-        const { error } =
-            await supabaseClient
-                .from("news")
-                .delete()
-                .eq("id",id);
+        const {
+            error
+        } = await supabaseClient
+
+            .from("news")
+
+            .delete()
+
+            .eq(
+                "id",
+                id
+            );
+
 
         if(error){
+
             throw error;
+
         }
 
+
         await loadNews();
+
         await loadNewsCount();
+
 
     }catch(error){
 
@@ -2171,8 +3666,10 @@ async function deleteNews(id){
             error
         );
 
+
         alert(
-            "❌ حذف خبر انجام نشد:\n" +
+            "❌ حذف خبر انجام نشد:\n"
+            +
             error.message
         );
 
@@ -2181,15 +3678,16 @@ async function deleteNews(id){
 }
 
 
-/* =========================
-   شروع پنل
-========================= */
+/* ==================================================
+   START ADMIN
+================================================== */
 
 async function initializeAdmin(){
 
     try{
 
         await checkDatabase();
+
 
         await Promise.all([
 
@@ -2211,9 +3709,11 @@ async function initializeAdmin(){
 
         ]);
 
+
         console.log(
             "✅ Admin Panel Loaded"
         );
+
 
     }catch(error){
 
@@ -2235,4 +3735,5 @@ document.addEventListener(
 </script>
 
 </body>
+
     </html>
